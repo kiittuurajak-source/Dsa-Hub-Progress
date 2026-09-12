@@ -34,6 +34,8 @@ create table if not exists dsa_progress (
   solution_seen boolean not null default false,
   solved_at timestamptz,
   last_viewed_at timestamptz,
+  code text,
+  code_updated_at timestamptz,
   primary key (user_id, question_id)
 );
 create table if not exists dsa_notes (
@@ -58,6 +60,8 @@ create table if not exists placement_progress (
   solution_seen boolean not null default false,
   solved_at timestamptz,
   last_viewed_at timestamptz,
+  code text,
+  code_updated_at timestamptz,
   primary key (user_id, question_id)
 );
 create table if not exists placement_notes (
@@ -108,6 +112,11 @@ create table if not exists custom_question_notes (
 
 -- safe to re-run: adds the priority column if this table already existed from an earlier version
 alter table placement_questions add column if not exists priority text not null default 'Unranked';
+-- safe to re-run: adds the code-editor persistence columns if these tables already existed from an earlier version
+alter table dsa_progress add column if not exists code text;
+alter table dsa_progress add column if not exists code_updated_at timestamptz;
+alter table placement_progress add column if not exists code text;
+alter table placement_progress add column if not exists code_updated_at timestamptz;
 
 alter table profiles enable row level security;
 alter table dsa_progress enable row level security;
