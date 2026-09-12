@@ -1,0 +1,1126 @@
+[
+  {
+    "id": 1,
+    "how": "1. Read the array. 2. Create a sum variable starting at 0. 3. Traverse every element and add it to the sum. 4. After the traversal, divide the sum by the array length when an average is required. 5. Return or print the sum and average in the required format."
+  },
+  {
+    "id": 2,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 3,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 4,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 5,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 6,
+    "how": "1. Start comparing from the second element. 2. Compare each value with the previous value. 3. Check whether every comparison follows the required ascending or descending order. 4. Stop when a violation is found, or finish the traversal if all comparisons are valid. 5. Return the required true or false result."
+  },
+  {
+    "id": 7,
+    "how": "1. Start comparing from the second element. 2. Compare each value with the previous value. 3. Check whether every comparison follows the required ascending or descending order. 4. Stop when a violation is found, or finish the traversal if all comparisons are valid. 5. Return the required true or false result."
+  },
+  {
+    "id": 8,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 9,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 10,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 11,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 12,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 13,
+    "how": "1. Scan the array from left to right. 2. Keep track of the next position where a valid element should be placed. 3. Whenever a value should stay in the main section, place it at that position. 4. After all valid elements are placed, fill the remaining positions with zeroes as required. 5. Preserve the relative order whenever the question asks for it."
+  },
+  {
+    "id": 14,
+    "how": "1. Scan the array from left to right. 2. Keep track of the next position where a valid element should be placed. 3. Whenever a value should stay in the main section, place it at that position. 4. After all valid elements are placed, fill the remaining positions with negative values as required. 5. Preserve the relative order whenever the question asks for it."
+  },
+  {
+    "id": 15,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 16,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 17,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 18,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 19,
+    "how": "1. Scan the input one value at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 20,
+    "how": "1. Read the array. 2. Create a sum variable starting at 0. 3. Traverse every element and add it to the sum. 4. After the traversal, divide the sum by the array length when an average is required. 5. Return or print the sum and average in the required format."
+  },
+  {
+    "id": 21,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 22,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 23,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 24,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 25,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 26,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 27,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 28,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 29,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 30,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 31,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 32,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 33,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 34,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 35,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 36,
+    "how": "1. Start with the first value as the best sum seen so far. 2. Keep a current sum for the subarray ending at the current position. 3. Decide whether to continue the current subarray or start a new one at the current value. 4. Update the best sum whenever the current sum becomes larger. 5. For the version asking for the actual subarray, also remember the start and end positions."
+  },
+  {
+    "id": 37,
+    "how": "1. Start with the first value as the best sum seen so far. 2. Keep a current sum for the subarray ending at the current position. 3. Decide whether to continue the current subarray or start a new one at the current value. 4. Update the best sum whenever the current sum becomes larger. 5. For the version asking for the actual subarray, also remember the start and end positions."
+  },
+  {
+    "id": 38,
+    "how": "1. Scan the prices from left to right. 2. Keep the smallest price seen so far as the best buying price. 3. For each current price, calculate the profit if you sold today. 4. Update the maximum profit when this value is larger. 5. Return the best profit from the single allowed transaction."
+  },
+  {
+    "id": 39,
+    "how": "1. Read the stock price for each day in order. 2. Compare each day's price with the previous day's price. 3. Whenever the price increases, take that positive increase as part of the total profit. 4. Add all allowed increases together. 5. Return the maximum total profit."
+  },
+  {
+    "id": 40,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 41,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 42,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 43,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 44,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 45,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 46,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 47,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 48,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 49,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 50,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 51,
+    "how": "1. Scan the array from left to right. 2. Keep both the largest and smallest product ending at the current position because a negative number can swap their roles. 3. Update these two products using the current value. 4. Track the largest product seen anywhere. 5. Return that maximum product."
+  },
+  {
+    "id": 52,
+    "how": "1. Find the total sum of the array. 2. Keep a running sum of the elements seen on the left. 3. For the current index, calculate the right-side sum from the total minus the left sum and current value. 4. Compare left and right sums. 5. Return the first or all valid indices according to the question."
+  },
+  {
+    "id": 53,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 54,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 55,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 56,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 57,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 58,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 59,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 60,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 61,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 62,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 63,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 64,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 65,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 66,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 67,
+    "how": "1. Count the required frequency of each character in the pattern or first string. 2. Scan the other string or each fixed-size window. 3. Maintain the current character frequencies. 4. Compare the current frequencies with the required frequencies. 5. Record every position or return the boolean result required by the question."
+  },
+  {
+    "id": 68,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 69,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 70,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 71,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 72,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 73,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 74,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 75,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 76,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 77,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 78,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 79,
+    "how": "1. Keep a window representing the current substring. 2. Move the right side forward one character at a time. 3. Track characters currently inside the window. 4. When a character repeats, move the left side forward until the window becomes valid again. 5. Record the largest valid window length or substring."
+  },
+  {
+    "id": 80,
+    "how": "1. Create a sliding window over the string. 2. Add each new character and update its frequency. 3. If the window has more than the allowed number of distinct characters, move the left side forward and update frequencies. 4. For the at most K case, record only windows that satisfy that exact condition. 5. Return the maximum length or count required."
+  },
+  {
+    "id": 81,
+    "how": "1. Start at the root of the Binary Search Tree. 2. Compare the target with the current node value. 3. Move left when the target belongs to the smaller side and right when it belongs to the larger side. 4. Continue until the required node, boundary value, or empty position is found. 5. Return the required BST result and keep the tree valid when modification is required."
+  },
+  {
+    "id": 82,
+    "how": "1. Start at the root of the Binary Search Tree. 2. Compare the target with the current node value. 3. Move left when the target belongs to the smaller side and right when it belongs to the larger side. 4. Continue until the required node, boundary value, or empty position is found. 5. Return the required BST result and keep the tree valid when modification is required."
+  },
+  {
+    "id": 83,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 84,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 85,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 86,
+    "how": "1. Count the required frequency of each character in the pattern or first string. 2. Scan the other string or each fixed-size window. 3. Maintain the current character frequencies. 4. Compare the current frequencies with the required frequencies. 5. Record every position or return the boolean result required by the question."
+  },
+  {
+    "id": 87,
+    "how": "1. Count the characters required from the target string. 2. Expand the right side of the window until the current window contains every required character with enough frequency. 3. Once valid, move the left side forward to remove unnecessary characters. 4. Record the smallest valid window found so far. 5. Continue until the full source string has been processed and return the best window."
+  },
+  {
+    "id": 88,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 89,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 90,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 91,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 92,
+    "how": "1. Create a sliding window over the string. 2. Add each new character and update its frequency. 3. If the window has more than the allowed number of distinct characters, move the left side forward and update frequencies. 4. For the exactly K case, record only windows that satisfy that exact condition. 5. Return the maximum length or count required."
+  },
+  {
+    "id": 93,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 94,
+    "how": "1. Define what each DP state represents. 2. Write the base cases for the smallest inputs. 3. Determine how the current state depends on previously solved states. 4. Fill the states in an order that makes those previous results available, or memoize them during recursion. 5. Return the final state that represents the complete answer."
+  },
+  {
+    "id": 95,
+    "how": "1. Count the required frequency of each character in the pattern or first string. 2. Scan the other string or each fixed-size window. 3. Maintain the current character frequencies. 4. Compare the current frequencies with the required frequencies. 5. Record every position or return the boolean result required by the question."
+  },
+  {
+    "id": 96,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 97,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 98,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 99,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 100,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 101,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 102,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 103,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 104,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 105,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 106,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 107,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 108,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 109,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 110,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 111,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 112,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 113,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 114,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 115,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 116,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 117,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 118,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 119,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 120,
+    "how": "1. Start from the head node. 2. Move through the list using the next reference and inspect each node required by the problem. 3. Keep the previous and/or next node references when links must be changed. 4. Update the required link, value, count, or result without losing the rest of the list. 5. Return the updated head, result, or required information."
+  },
+  {
+    "id": 121,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 122,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 123,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 124,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 125,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 126,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 127,
+    "how": "1. Scan the input one value at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 128,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 129,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 130,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 131,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 132,
+    "how": "1. Count the required frequency of each character in the pattern or first string. 2. Scan the other string or each fixed-size window. 3. Maintain the current character frequencies. 4. Compare the current frequencies with the required frequencies. 5. Record every position or return the boolean result required by the question."
+  },
+  {
+    "id": 133,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 134,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 135,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 136,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 137,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 138,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 139,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 140,
+    "how": "1. Use the sorted array and choose a left-to-right search range. 2. Check the middle element against the target. 3. When the target is found, save the position and continue searching toward the required side instead of stopping immediately. 4. Repeat until the boundary for the first or last occurrence is fixed. 5. Return the required position or both positions."
+  },
+  {
+    "id": 141,
+    "how": "1. Use the sorted array and choose a left-to-right search range. 2. Check the middle element against the target. 3. When the target is found, save the position and continue searching toward the required side instead of stopping immediately. 4. Repeat until the boundary for the first or last occurrence is fixed. 5. Return the required position or both positions."
+  },
+  {
+    "id": 142,
+    "how": "1. Use the sorted array and choose a left-to-right search range. 2. Check the middle element against the target. 3. When the target is found, save the position and continue searching toward the required side instead of stopping immediately. 4. Repeat until the boundary for the first or last occurrence is fixed. 5. Return the required position or both positions."
+  },
+  {
+    "id": 143,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 144,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 145,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 146,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 147,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 148,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 149,
+    "how": "1. Read the array and normalize K so it fits within the array length. 2. Decide the required rotation direction. 3. Move the elements that cross the boundary while preserving their order. 4. Place the remaining elements in their new positions. 5. Return the rotated array. For an in-place version, perform the rearrangement inside the original array."
+  },
+  {
+    "id": 150,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 151,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 152,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 153,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 154,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 155,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 156,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 157,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 158,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 159,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 160,
+    "how": "1. Read the complete input required by the problem. 2. Break the task into the main operations described in the question and process them in order. 3. Keep the variables or data structures needed to store the current result while processing the input. 4. Check the special conditions and edge cases mentioned in the question before finalizing the answer. 5. Return or print the final result exactly in the required format."
+  },
+  {
+    "id": 161,
+    "how": "1. Read the given number or numbers. 2. Identify the mathematical condition that the question asks you to check or calculate. 3. Process the value step by step while maintaining the required intermediate result. 4. Finish when the complete number has been handled. 5. Return or print the final numerical answer."
+  },
+  {
+    "id": 162,
+    "how": "1. Start from the beginning of the array. 2. Compare adjacent elements. 3. Swap them when they are in the wrong order. 4. Repeat passes until the largest remaining values move to their correct positions. 5. Stop early when a full pass makes no swaps."
+  },
+  {
+    "id": 163,
+    "how": "1. Read the array and identify the exact ordering required. 2. Apply the sorting rule given by the question to compare, select, shift, or partition values. 3. Keep the already processed portion in correct order. 4. Continue until every element is in its required position. 5. Return the sorted array or any additional count/result requested."
+  },
+  {
+    "id": 164,
+    "how": "1. Read the array and identify the exact ordering required. 2. Apply the sorting rule given by the question to compare, select, shift, or partition values. 3. Keep the already processed portion in correct order. 4. Continue until every element is in its required position. 5. Return the sorted array or any additional count/result requested."
+  },
+  {
+    "id": 165,
+    "how": "1. Split the array into smaller halves until each part has one element. 2. Merge two sorted parts by repeatedly taking the smaller front value. 3. Continue merging upward until one sorted array is formed. 4. Keep equal values in the required order when stability matters. 5. Return the fully sorted array."
+  },
+  {
+    "id": 166,
+    "how": "1. Split the array into smaller halves until each part has one element. 2. Merge two sorted parts by repeatedly taking the smaller front value. 3. Continue merging upward until one sorted array is formed. 4. Keep equal values in the required order when stability matters. 5. Return the fully sorted array."
+  },
+  {
+    "id": 167,
+    "how": "1. Choose a pivot according to the problem's partition rule. 2. Rearrange values so smaller and larger values are placed on the correct sides of the pivot. 3. The pivot reaches its final position. 4. Repeat the same process on the left and right parts. 5. Return the sorted array."
+  },
+  {
+    "id": 168,
+    "how": "1. Read the array and identify exactly what value, position, count, or arrangement the question asks for. 2. Scan or process the elements in the required order. 3. Keep the information needed for the current answer. 4. Update the result whenever a better or valid condition is found. 5. Return the final result in the format requested by the question."
+  },
+  {
+    "id": 169,
+    "how": "1. Scan the input one value at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 170,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 171,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 172,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 173,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 174,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 175,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 176,
+    "how": "1. Represent the graph using the structure expected by the problem. 2. Start from the required source or vertex set. 3. Visit and process neighbors while tracking which vertices have already been handled. 4. Apply the graph condition such as reachability, cycle checking, shortest path, or connectivity. 5. Return the required graph result."
+  },
+  {
+    "id": 177,
+    "how": "1. Read the input values and determine the required sorted order. 2. Repeatedly compare or place values according to the sorting rule described by the question. 3. Keep the already processed portion in the correct order. 4. Continue until every value is in its final position. 5. Return the sorted result or the additional count requested."
+  },
+  {
+    "id": 178,
+    "how": "1. Read the array and target value. 2. For each current number, determine the value needed to reach the target. 3. Check whether that needed value has already been seen while scanning the array. 4. When the pair is found, return the required two indices or values. 5. Make sure the same array position is not used twice."
+  },
+  {
+    "id": 179,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 180,
+    "how": "1. Scan the array from left to right. 2. Keep track of the next position where a valid element should be placed. 3. Whenever a value should stay in the main section, place it at that position. 4. After all valid elements are placed, fill the remaining positions with zeroes as required. 5. Preserve the relative order whenever the question asks for it."
+  },
+  {
+    "id": 181,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 182,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 183,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 184,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 185,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 186,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 187,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 188,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 189,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 190,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 191,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 192,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 193,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 194,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 195,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 196,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 197,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 198,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 199,
+    "how": "1. Scan the input one character at a time. 2. Store how many times each distinct item appears. 3. After the full scan, use those counts to build the required output. 4. Apply any tie or ordering rule stated in the question. 5. Return the final frequencies or selected item(s)."
+  },
+  {
+    "id": 200,
+    "how": "1. Count the characters required from the target string. 2. Expand the right side of the window until the current window contains every required character with enough frequency. 3. Once valid, move the left side forward to remove unnecessary characters. 4. Record the smallest valid window found so far. 5. Continue until the full source string has been processed and return the best window."
+  },
+  {
+    "id": 201,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 202,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 203,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 204,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 205,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 206,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 207,
+    "how": "1. Create the required queue structure and identify the front and rear operations. 2. Add items at the rear and remove items from the front according to the operation being performed. 3. Keep the order consistent with first-in, first-out behavior. 4. Handle empty and boundary cases correctly. 5. Return or print the result after all required operations."
+  },
+  {
+    "id": 208,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 209,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 210,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 211,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 212,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 213,
+    "how": "1. Scan the prices from left to right. 2. Keep the smallest price seen so far as the best buying price. 3. For each current price, calculate the profit if you sold today. 4. Update the maximum profit when this value is larger. 5. Return the best profit from the single allowed transaction."
+  },
+  {
+    "id": 214,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 215,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 216,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 217,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 218,
+    "how": "1. Create a window over the required range of elements. 2. Expand the right side to include new elements. 3. Keep the information needed to know whether the current window is valid. 4. When the window becomes invalid or needs optimization, move the left side forward and update that information. 5. Record the best valid window and return the requested answer."
+  },
+  {
+    "id": 219,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 220,
+    "how": "1. Process the input from left to right unless the problem requires another direction. 2. Push values or information that may be needed later. 3. When the current value resolves the condition for the top item, remove and process that item. 4. Continue until all input is handled, then process any remaining stack items if required. 5. Build and return the final result in the required order."
+  },
+  {
+    "id": 221,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 222,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 223,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 224,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 225,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 226,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 227,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 228,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 229,
+    "how": "1. Place one pointer at the beginning and one at the end, or use the two positions required by the problem. 2. Compare the values at both pointers. 3. Move the pointer that can improve the required condition. 4. Continue until the pointers meet or the target condition is satisfied. 5. Return the required pair, rearranged array, length, or area."
+  },
+  {
+    "id": 230,
+    "how": "1. Start with one pointer at the beginning and another at the end. 2. Compare the matching characters or values. 3. If a pair does not match, the input is not a palindrome. 4. If the comparison continues successfully toward the center, the input satisfies the palindrome condition. 5. Return the required boolean, count, string, or minimum value based on the question."
+  },
+  {
+    "id": 231,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 232,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 233,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 234,
+    "how": "1. Define the smallest input where the answer is directly known as the base case. 2. Decide how the current problem becomes a smaller version of the same problem. 3. Call the function on that smaller input. 4. Combine the returned result with the current value or action. 5. Make sure every recursive path reaches the base case and return the final answer."
+  },
+  {
+    "id": 235,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 236,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 237,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 238,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 239,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 240,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 241,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 242,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 243,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 244,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 245,
+    "how": "1. Read the matrix dimensions and all cell values. 2. Identify the rows, columns, diagonals, or regions involved in the operation. 3. Traverse the required cells in a clear row-and-column order. 4. Update or collect only the cells required by the problem while preserving the rest. 5. Return or print the final matrix or calculated result."
+  },
+  {
+    "id": 246,
+    "how": "1. Scan the input once while storing the information needed for quick lookup. 2. For each item, check the stored data for an earlier match or required count. 3. Update the stored frequency, index, or presence information. 4. Use the collected information to build the final result. 5. Return the required values while handling duplicates exactly as the question specifies."
+  },
+  {
+    "id": 247,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 248,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 249,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 250,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 251,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 252,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 253,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 254,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 255,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 256,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 257,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 258,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 259,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 260,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 261,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 262,
+    "how": "1. Start from the root node. 2. Follow the traversal or tree rule stated by the question. 3. Recursively or iteratively process child nodes while preserving their parent-child relationships. 4. Update the required count, value, path, or result as nodes are processed. 5. Return the final tree-based answer."
+  },
+  {
+    "id": 263,
+    "how": "1. Confirm that the input follows the sorted-order requirement. 2. Set the search range using left and right boundaries. 3. Check the middle element. 4. Discard the half that cannot contain the answer and continue with the remaining half. 5. When the search finishes, return the target index or the required floor, ceiling, insertion position, or not-found result."
+  },
+  {
+    "id": 264,
+    "how": "1. Scan the prices from left to right. 2. Keep the smallest price seen so far as the best buying price. 3. For each current price, calculate the profit if you sold today. 4. Update the maximum profit when this value is larger. 5. Return the best profit from the single allowed transaction."
+  },
+  {
+    "id": 265,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 266,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 267,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 268,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 269,
+    "how": "1. Identify the local choice that is allowed at the current step. 2. Choose the best valid option according to the problem rule. 3. Update the remaining capacity, time, position, or state. 4. Repeat the same decision until all items or positions are handled. 5. Return the total value, count, profit, or feasibility result."
+  },
+  {
+    "id": 270,
+    "how": "1. Read the given number or numbers. 2. Identify the mathematical condition that the question asks you to check or calculate. 3. Process the value step by step while maintaining the required intermediate result. 4. Finish when the complete number has been handled. 5. Return or print the final numerical answer."
+  },
+  {
+    "id": 271,
+    "how": "1. Identify the choices available at the current step. 2. Determine the locally best valid choice using the rule described in the problem. 3. Apply that choice and update the remaining capacity, time, positions, or resources. 4. Repeat the same decision process until every relevant item has been handled. 5. Return the final maximum value, minimum value, count, or feasibility result."
+  },
+  {
+    "id": 272,
+    "how": "1. Identify the choices available at the current step. 2. Determine the locally best valid choice using the rule described in the problem. 3. Apply that choice and update the remaining capacity, time, positions, or resources. 4. Repeat the same decision process until every relevant item has been handled. 5. Return the final maximum value, minimum value, count, or feasibility result."
+  },
+  {
+    "id": 273,
+    "how": "1. Read the string and identify the exact character or word condition required. 2. Scan the characters or words in the required order. 3. Maintain the information needed for the current condition. 4. Update the answer whenever the required rule is satisfied. 5. Return the final string, count, position, or boolean result."
+  },
+  {
+    "id": 274,
+    "how": "1. Start at the root of the Binary Search Tree. 2. Compare the target with the current node value. 3. Move left when the target belongs to the smaller side and right when it belongs to the larger side. 4. Continue until the required node, boundary value, or empty position is found. 5. Return the required BST result and keep the tree valid when modification is required."
+  },
+  {
+    "id": 275,
+    "how": "1. Read the given number or numbers. 2. Identify the mathematical condition that the question asks you to check or calculate. 3. Process the value step by step while maintaining the required intermediate result. 4. Finish when the complete number has been handled. 5. Return or print the final numerical answer."
+  },
+  {
+    "id": 276,
+    "how": "1. Read the matrix dimensions and values. 2. Identify the rows, columns, or cells involved in the required operation. 3. Traverse or update those positions according to the problem rule. 4. Preserve every value or relationship that should not change. 5. Return the updated matrix or calculated result."
+  },
+  {
+    "id": 277,
+    "how": "1. Define what one smaller state means, such as an answer for the first i items, first i positions, or a given remaining capacity. 2. Write the base cases for the smallest states. 3. Express the current state using already solved smaller states. 4. Compute states in an order that guarantees the required previous states are available. 5. Return the final state containing the answer."
+  },
+  {
+    "id": 278,
+    "how": "1. Create a queue and mark the starting vertex as visited. 2. Remove one vertex from the queue and process it. 3. Add every unvisited neighbor to the queue and mark it visited. 4. Continue until the queue is empty. 5. Return the traversal or graph result required by the question."
+  },
+  {
+    "id": 279,
+    "how": "1. Start from the required vertex. 2. Mark the current vertex as visited. 3. Visit an unvisited neighbor and continue exploring from there. 4. Continue until all reachable vertices have been processed, then backtrack to explore other branches. 5. Return the traversal or graph result."
+  },
+  {
+    "id": 280,
+    "how": "1. Read the given number or numbers. 2. Identify the mathematical condition that the question asks you to check or calculate. 3. Process the value step by step while maintaining the required intermediate result. 4. Finish when the complete number has been handled. 5. Return or print the final numerical answer."
+  },
+  {
+    "id": 281,
+    "how": "1. Create a queue and mark the starting vertex as visited. 2. Remove one vertex from the queue and process it. 3. Add every unvisited neighbor to the queue and mark it visited. 4. Continue until the queue is empty. 5. Return the traversal or graph result required by the question."
+  }
+]

@@ -1,0 +1,2487 @@
+[
+  {
+    "id": 1,
+    "section": "Basics of Programming",
+    "title": "Sum of two integers",
+    "difficulty": "Easy",
+    "pattern": "Input → Process → Output"
+  },
+  {
+    "id": 2,
+    "section": "Basics of Programming",
+    "title": "Print message with values and sum",
+    "difficulty": "Easy",
+    "pattern": "Expression Evaluation"
+  },
+  {
+    "id": 3,
+    "section": "Basics of Programming",
+    "title": "Accept two integers and print sum",
+    "difficulty": "Easy",
+    "pattern": "Input → Process → Output"
+  },
+  {
+    "id": 4,
+    "section": "Basics of Programming",
+    "title": "Accept name, age and print formatted output",
+    "difficulty": "Easy",
+    "pattern": "Input → Output Formatting"
+  },
+  {
+    "id": 5,
+    "section": "Basics of Programming",
+    "title": "Increment & Decrement operator practice",
+    "difficulty": "Easy",
+    "pattern": "Variable Manipulation"
+  },
+  {
+    "id": 6,
+    "section": "Basics of Programming",
+    "title": "Swap two numbers (with & without 3rd variable)",
+    "difficulty": "Easy",
+    "pattern": "Swap Pattern"
+  },
+  {
+    "id": 7,
+    "section": "Basics of Programming",
+    "title": "Rectangle area & perimeter calculation",
+    "difficulty": "Easy",
+    "pattern": "Formula Based"
+  },
+  {
+    "id": 8,
+    "section": "Basics of Programming",
+    "title": "Compound Interest calculation",
+    "difficulty": "Easy",
+    "pattern": "Mathematical Simulation"
+  },
+  {
+    "id": 9,
+    "section": "Basics of Programming",
+    "title": "Triangle area using Heron's formula",
+    "difficulty": "Medium",
+    "pattern": "Formula + Multi-step Calculation"
+  },
+  {
+    "id": 10,
+    "section": "Control Flow Statements",
+    "title": "Greatest between two numbers",
+    "difficulty": "Easy",
+    "pattern": "Comparison"
+  },
+  {
+    "id": 11,
+    "section": "Control Flow Statements",
+    "title": "Gender-based greeting message",
+    "difficulty": "Easy",
+    "pattern": "Conditional Mapping"
+  },
+  {
+    "id": 12,
+    "section": "Control Flow Statements",
+    "title": "Handle wrong gender input + validation",
+    "difficulty": "Easy",
+    "pattern": "Input Validation"
+  },
+  {
+    "id": 13,
+    "section": "Control Flow Statements",
+    "title": "Check even or odd",
+    "difficulty": "Easy",
+    "pattern": "Modulo Check"
+  },
+  {
+    "id": 14,
+    "section": "Control Flow Statements",
+    "title": "Voter eligibility check (+ years left)",
+    "difficulty": "Medium",
+    "pattern": "Conditional + Calculation"
+  },
+  {
+    "id": 15,
+    "section": "Control Flow Statements",
+    "title": "Day name from number (1–7)",
+    "difficulty": "Easy",
+    "pattern": "Mapping / Conditional"
+  },
+  {
+    "id": 16,
+    "section": "Control Flow Statements",
+    "title": "Greatest among three numbers",
+    "difficulty": "Easy",
+    "pattern": "Nested Comparison"
+  },
+  {
+    "id": 17,
+    "section": "Control Flow Statements",
+    "title": "Leap year check",
+    "difficulty": "Easy",
+    "pattern": "Mathematical Condition"
+  },
+  {
+    "id": 18,
+    "section": "Control Flow Statements",
+    "title": "Shop discount calculation",
+    "difficulty": "Medium",
+    "pattern": "Conditional + Formula"
+  },
+  {
+    "id": 19,
+    "section": "Control Flow Statements",
+    "title": "Electricity bill calculation",
+    "difficulty": "Medium",
+    "pattern": "Slab Based Calculation"
+  },
+  {
+    "id": 20,
+    "section": "Loops & Switch Statement",
+    "title": "Print \"Hello World\" n times",
+    "difficulty": "Easy",
+    "pattern": "Iteration"
+  },
+  {
+    "id": 21,
+    "section": "Loops & Switch Statement",
+    "title": "Print natural numbers up to n",
+    "difficulty": "Easy",
+    "pattern": "Iteration"
+  },
+  {
+    "id": 22,
+    "section": "Loops & Switch Statement",
+    "title": "Print n to 1 (reverse loop)",
+    "difficulty": "Easy",
+    "pattern": "Reverse Iteration"
+  },
+  {
+    "id": 23,
+    "section": "Loops & Switch Statement",
+    "title": "Multiplication table of a number",
+    "difficulty": "Easy",
+    "pattern": "Iteration + Formula"
+  },
+  {
+    "id": 24,
+    "section": "Loops & Switch Statement",
+    "title": "Sum up to n terms",
+    "difficulty": "Easy",
+    "pattern": "Accumulation"
+  },
+  {
+    "id": 25,
+    "section": "Loops & Switch Statement",
+    "title": "Sum of even & odd numbers separately",
+    "difficulty": "Easy",
+    "pattern": "Conditional + Accumulation"
+  },
+  {
+    "id": 26,
+    "section": "Loops & Switch Statement",
+    "title": "Print all factors of a number",
+    "difficulty": "Medium",
+    "pattern": "Factor Pattern"
+  },
+  {
+    "id": 27,
+    "section": "Loops & Switch Statement",
+    "title": "Sum of all factors",
+    "difficulty": "Medium",
+    "pattern": "Factor + Accumulation"
+  },
+  {
+    "id": 28,
+    "section": "Loops & Switch Statement",
+    "title": "Prime number check",
+    "difficulty": "Medium",
+    "pattern": "Factor Pattern"
+  },
+  {
+    "id": 29,
+    "section": "Loops & Switch Statement",
+    "title": "Power of a number (a^b)",
+    "difficulty": "Medium",
+    "pattern": "Repeated Multiplication"
+  },
+  {
+    "id": 30,
+    "section": "Loops & Switch Statement",
+    "title": "Print each digit of a number",
+    "difficulty": "Medium",
+    "pattern": "Digit Extraction"
+  },
+  {
+    "id": 31,
+    "section": "Loops & Switch Statement",
+    "title": "Sum of digits",
+    "difficulty": "Medium",
+    "pattern": "Digit Extraction + Accumulation"
+  },
+  {
+    "id": 32,
+    "section": "Loops & Switch Statement",
+    "title": "Reverse a number",
+    "difficulty": "Medium",
+    "pattern": "Digit Manipulation"
+  },
+  {
+    "id": 33,
+    "section": "Loops & Switch Statement",
+    "title": "Palindrome number check",
+    "difficulty": "Medium",
+    "pattern": "Digit Manipulation"
+  },
+  {
+    "id": 34,
+    "section": "Loops & Switch Statement",
+    "title": "Strong number check",
+    "difficulty": "Medium",
+    "pattern": "Digit + Factorial"
+  },
+  {
+    "id": 35,
+    "section": "Loops & Switch Statement",
+    "title": "Automorphic number",
+    "difficulty": "Medium",
+    "pattern": "Mathematical Pattern"
+  },
+  {
+    "id": 36,
+    "section": "Loops & Switch Statement",
+    "title": "Print \"Hello\" until wrong input (do-while)",
+    "difficulty": "Easy",
+    "pattern": "Sentinel Loop"
+  },
+  {
+    "id": 37,
+    "section": "Loops & Switch Statement",
+    "title": "Menu-driven calculator (do- while)",
+    "difficulty": "Medium",
+    "pattern": "Menu Loop"
+  },
+  {
+    "id": 38,
+    "section": "Loops & Switch Statement",
+    "title": "Print weekday using switch",
+    "difficulty": "Easy",
+    "pattern": "Mapping Switch"
+  },
+  {
+    "id": 39,
+    "section": "Loops & Switch Statement",
+    "title": "Check vowel/consonant using switch",
+    "difficulty": "Easy",
+    "pattern": "Character Mapping"
+  },
+  {
+    "id": 40,
+    "section": "Loops & Switch Statement",
+    "title": "Project - Guess Game",
+    "difficulty": "Medium",
+    "pattern": "Simulation + Loop"
+  },
+  {
+    "id": 41,
+    "section": "Loops & Switch Statement",
+    "title": "Right Triangle - Star Pattern",
+    "difficulty": "Easy",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 42,
+    "section": "Loops & Switch Statement",
+    "title": "Right Triangle - Number Pattern",
+    "difficulty": "Easy",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 43,
+    "section": "Loops & Switch Statement",
+    "title": "Right Triangle - Alphabet Pattern",
+    "difficulty": "Easy",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 44,
+    "section": "Loops & Switch Statement",
+    "title": "Inverted Right Triangle Pattern",
+    "difficulty": "Medium",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 45,
+    "section": "Loops & Switch Statement",
+    "title": "Mirrored Right Triangle Pattern",
+    "difficulty": "Medium",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 46,
+    "section": "Loops & Switch Statement",
+    "title": "Triangle Pattern",
+    "difficulty": "Medium",
+    "pattern": "Nested Loop Pattern"
+  },
+  {
+    "id": 47,
+    "section": "Loops & Switch Statement",
+    "title": "V Pattern",
+    "difficulty": "Medium",
+    "pattern": "Pattern Logic"
+  },
+  {
+    "id": 48,
+    "section": "Loops & Switch Statement",
+    "title": "X Pattern",
+    "difficulty": "Medium",
+    "pattern": "Pattern Logic"
+  },
+  {
+    "id": 49,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Sum & average of array elements",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Accumulation"
+  },
+  {
+    "id": 50,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Find greatest element",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking"
+  },
+  {
+    "id": 51,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Find second greatest element",
+    "difficulty": "Medium",
+    "pattern": "Max Tracking"
+  },
+  {
+    "id": 52,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Check if array is sorted",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Comparison"
+  },
+  {
+    "id": 53,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Reverse copy of array",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Reverse"
+  },
+  {
+    "id": 54,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Left rotation by 1",
+    "difficulty": "Easy",
+    "pattern": "Rotation"
+  },
+  {
+    "id": 55,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Left rotation by K",
+    "difficulty": "Medium",
+    "pattern": "Rotation"
+  },
+  {
+    "id": 56,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Reverse array without extra space",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 57,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Move negatives to left, positives to right",
+    "difficulty": "Medium",
+    "pattern": "Partition / Two Pointer"
+  },
+  {
+    "id": 58,
+    "section": "Array Data Structures (Level - 1)",
+    "title": "Count subarrays with given sum",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum"
+  },
+  {
+    "id": 59,
+    "section": "Sorting Algorithm",
+    "title": "Bubble Sort",
+    "difficulty": "Easy",
+    "pattern": "Comparison + Swapping"
+  },
+  {
+    "id": 60,
+    "section": "Sorting Algorithm",
+    "title": "Insertion Sort",
+    "difficulty": "Easy",
+    "pattern": "Insertion + Shifting"
+  },
+  {
+    "id": 61,
+    "section": "Sorting Algorithm",
+    "title": "Selection Sort",
+    "difficulty": "Easy",
+    "pattern": "Selection + Swapping"
+  },
+  {
+    "id": 62,
+    "section": "Matrix (2D Arrays)",
+    "title": "Matrix Diagonal Sum",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 63,
+    "section": "Matrix (2D Arrays)",
+    "title": "Transpose Matrix",
+    "difficulty": "Easy",
+    "pattern": "Index Transformation"
+  },
+  {
+    "id": 64,
+    "section": "Matrix (2D Arrays)",
+    "title": "Flipping an Image",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer Row-wise)"
+  },
+  {
+    "id": 65,
+    "section": "Matrix (2D Arrays)",
+    "title": "Rotate Image",
+    "difficulty": "Medium",
+    "pattern": "Transpose + Reverse"
+  },
+  {
+    "id": 66,
+    "section": "Matrix (2D Arrays)",
+    "title": "Search a 2D Matrix",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 67,
+    "section": "Matrix (2D Arrays)",
+    "title": "Set Matrix Zeroes",
+    "difficulty": "Medium",
+    "pattern": "Marking / In-place"
+  },
+  {
+    "id": 68,
+    "section": "OOPS Introduction",
+    "title": "Design Private Cab Service",
+    "difficulty": "Medium",
+    "pattern": "Object Modeling"
+  },
+  {
+    "id": 69,
+    "section": "OOPS Introduction",
+    "title": "Design Railway Ticket Class",
+    "difficulty": "Easy",
+    "pattern": "Class Design"
+  },
+  {
+    "id": 70,
+    "section": "String",
+    "title": "Print each character of string",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 71,
+    "section": "String",
+    "title": "Reverse a string",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 72,
+    "section": "String",
+    "title": "Palindrome using method (Two Pointer)",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 73,
+    "section": "String",
+    "title": "Count vowels and consonants",
+    "difficulty": "Easy",
+    "pattern": "Character Classification"
+  },
+  {
+    "id": 74,
+    "section": "String",
+    "title": "Toggle each alphabet",
+    "difficulty": "Medium",
+    "pattern": "Character Manipulation"
+  },
+  {
+    "id": 75,
+    "section": "String",
+    "title": "Count strings with given prefix",
+    "difficulty": "Medium",
+    "pattern": "Prefix Matching"
+  },
+  {
+    "id": 76,
+    "section": "String",
+    "title": "Capitalize first & last character of each word",
+    "difficulty": "Medium",
+    "pattern": "String Manipulation"
+  },
+  {
+    "id": 77,
+    "section": "String",
+    "title": "Maximum number of words in sentences",
+    "difficulty": "Easy",
+    "pattern": "String Parsing"
+  },
+  {
+    "id": 78,
+    "section": "String",
+    "title": "Frequency of each character",
+    "difficulty": "Medium",
+    "pattern": "Hashing"
+  },
+  {
+    "id": 79,
+    "section": "String",
+    "title": "Check anagram strings",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Sorting"
+  },
+  {
+    "id": 80,
+    "section": "String",
+    "title": "Sort words in a sentence",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Parsing"
+  },
+  {
+    "id": 81,
+    "section": "String",
+    "title": "Rotate string",
+    "difficulty": "Medium",
+    "pattern": "String Manipulation"
+  },
+  {
+    "id": 82,
+    "section": "Collection Framework",
+    "title": "Print unique elements in array",
+    "difficulty": "Easy",
+    "pattern": "HashSet"
+  },
+  {
+    "id": 83,
+    "section": "Collection Framework",
+    "title": "Frequency of elements in array",
+    "difficulty": "Easy",
+    "pattern": "HashMap (Hashing)"
+  },
+  {
+    "id": 84,
+    "section": "Collection Framework",
+    "title": "Jewels and Stones",
+    "difficulty": "Easy",
+    "pattern": "Hashing"
+  },
+  {
+    "id": 85,
+    "section": "Collection Framework",
+    "title": "Check if sentence is pangram",
+    "difficulty": "Easy",
+    "pattern": "HashSet"
+  },
+  {
+    "id": 86,
+    "section": "Collection Framework",
+    "title": "First letter to appear twice",
+    "difficulty": "Easy",
+    "pattern": "Hashing"
+  },
+  {
+    "id": 87,
+    "section": "Collection Framework",
+    "title": "Sum of unique elements",
+    "difficulty": "Easy",
+    "pattern": "HashSet + Traversal"
+  },
+  {
+    "id": 88,
+    "section": "Collection Framework",
+    "title": "Sort the People",
+    "difficulty": "Medium",
+    "pattern": "HashMap + Sorting"
+  },
+  {
+    "id": 89,
+    "section": "Collection Framework",
+    "title": "Most Frequent Even Element",
+    "difficulty": "Medium",
+    "pattern": "HashMap + Frequency"
+  },
+  {
+    "id": 90,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Print name N times",
+    "difficulty": "Easy",
+    "pattern": "Recursion Linear"
+  },
+  {
+    "id": 91,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Print 1 to N",
+    "difficulty": "Easy",
+    "pattern": "Recursion Forward)"
+  },
+  {
+    "id": 92,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Print N to 1",
+    "difficulty": "Easy",
+    "pattern": "Recursion Backward)"
+  },
+  {
+    "id": 93,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Sum of first N numbers",
+    "difficulty": "Easy",
+    "pattern": "Recursion Accumulation)"
+  },
+  {
+    "id": 94,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Factorial of a number",
+    "difficulty": "Easy",
+    "pattern": "Recursion Multiplicative)"
+  },
+  {
+    "id": 95,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Reverse an array",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Two Pointer"
+  },
+  {
+    "id": 96,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Check palindrome string",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Two Pointer"
+  },
+  {
+    "id": 97,
+    "section": "Memory Areas & Recursion - I",
+    "title": "Fibonacci number",
+    "difficulty": "Easy",
+    "pattern": "Recursion Tree"
+  },
+  {
+    "id": 98,
+    "section": "Mathematics for Programming",
+    "title": "GCD / HCF of two numbers",
+    "difficulty": "Easy",
+    "pattern": "Euclidean Algorithm"
+  },
+  {
+    "id": 99,
+    "section": "Mathematics for Programming",
+    "title": "GCD of array",
+    "difficulty": "Medium",
+    "pattern": "GCD Reduction"
+  },
+  {
+    "id": 100,
+    "section": "Mathematics for Programming",
+    "title": "LCM of two numbers",
+    "difficulty": "Easy",
+    "pattern": "GCD Formula"
+  },
+  {
+    "id": 101,
+    "section": "Mathematics for Programming",
+    "title": "Count digits of a number",
+    "difficulty": "Easy",
+    "pattern": "Logarithmic Trick"
+  },
+  {
+    "id": 102,
+    "section": "Mathematics for Programming",
+    "title": "Median of data",
+    "difficulty": "Easy",
+    "pattern": "Sorting / Logic"
+  },
+  {
+    "id": 103,
+    "section": "Mathematics for Programming",
+    "title": "Palindromic number",
+    "difficulty": "Easy",
+    "pattern": "Digit Manipulation"
+  },
+  {
+    "id": 104,
+    "section": "Mathematics for Programming",
+    "title": "Factors of a number",
+    "difficulty": "Easy",
+    "pattern": "Factor Pattern (√n)"
+  },
+  {
+    "id": 105,
+    "section": "Mathematics for Programming",
+    "title": "Prime number check",
+    "difficulty": "Easy",
+    "pattern": "Factor Pattern (√n)"
+  },
+  {
+    "id": 106,
+    "section": "Mathematics for Programming",
+    "title": "Count primes Sieve of Eratosthenes)",
+    "difficulty": "Medium",
+    "pattern": "Sieve Technique"
+  },
+  {
+    "id": 107,
+    "section": "Mathematics for Programming",
+    "title": "Kth factor of n",
+    "difficulty": "Medium",
+    "pattern": "Factor Traversal"
+  },
+  {
+    "id": 108,
+    "section": "Mathematics for Programming",
+    "title": "Square root Integer)",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 109,
+    "section": "Mathematics for Programming",
+    "title": "Power (x^n)",
+    "difficulty": "Medium",
+    "pattern": "Fast Exponentiation"
+  },
+  {
+    "id": 110,
+    "section": "Mathematics for Programming",
+    "title": "Power of Two",
+    "difficulty": "Easy",
+    "pattern": "Bit Manipulation"
+  },
+  {
+    "id": 111,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Max Consecutive Ones",
+    "difficulty": "Easy",
+    "pattern": "Sliding Window"
+  },
+  {
+    "id": 112,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Merge Sorted Array",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 113,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Remove Duplicates from Sorted Array",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 114,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Duplicate Zeros",
+    "difficulty": "Easy",
+    "pattern": "Simulation"
+  },
+  {
+    "id": 115,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Valid Mountain Array",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 116,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Replace Elements with Greatest on Right",
+    "difficulty": "Easy",
+    "pattern": "Reverse Traversal"
+  },
+  {
+    "id": 117,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Squares of a Sorted Array",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 118,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Move Zeroes",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 119,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Sort Array By Parity",
+    "difficulty": "Easy",
+    "pattern": "Partition / Two Pointer"
+  },
+  {
+    "id": 120,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Fibonacci Number",
+    "difficulty": "Easy",
+    "pattern": "DP / Iteration"
+  },
+  {
+    "id": 121,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "pattern": "Hashing"
+  },
+  {
+    "id": 122,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Running Sum of 1D Array",
+    "difficulty": "Easy",
+    "pattern": "Prefix Sum"
+  },
+  {
+    "id": 123,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Find Pivot Index",
+    "difficulty": "Easy",
+    "pattern": "Prefix Sum"
+  },
+  {
+    "id": 124,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "pattern": "Prefix + Suffix"
+  },
+  {
+    "id": 125,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Maximum Subarray Kadaneʼs Algo)",
+    "difficulty": "Medium",
+    "pattern": "Kadane"
+  },
+  {
+    "id": 126,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Majority Element Boyer Moore)",
+    "difficulty": "Medium",
+    "pattern": "Voting Algorithm"
+  },
+  {
+    "id": 127,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "3Sum",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Two Pointer"
+  },
+  {
+    "id": 128,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Best Time to Buy & Sell Stock",
+    "difficulty": "Easy",
+    "pattern": "Kadane / Greedy"
+  },
+  {
+    "id": 129,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Best Time to Buy & Sell Stock II",
+    "difficulty": "Medium",
+    "pattern": "Greedy"
+  },
+  {
+    "id": 130,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Trapping Rain Water",
+    "difficulty": "Hard",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 131,
+    "section": "Arrays & ArrayList Problems (Level - 2)",
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 132,
+    "section": "Sorting Algorithms",
+    "title": "Missing Number",
+    "difficulty": "Easy",
+    "pattern": "Cyclic Sort"
+  },
+  {
+    "id": 133,
+    "section": "Sorting Algorithms",
+    "title": "Find All Numbers Disappeared in an Array",
+    "difficulty": "Easy",
+    "pattern": "Cyclic Sort"
+  },
+  {
+    "id": 134,
+    "section": "Sorting Algorithms",
+    "title": "Set Mismatch",
+    "difficulty": "Easy",
+    "pattern": "Cyclic Sort"
+  },
+  {
+    "id": 135,
+    "section": "Sorting Algorithms",
+    "title": "Find All Duplicates in an Array",
+    "difficulty": "Medium",
+    "pattern": "Cyclic Sort"
+  },
+  {
+    "id": 136,
+    "section": "Sorting Algorithms",
+    "title": "Find the Duplicate Number",
+    "difficulty": "Medium",
+    "pattern": "Cycle Detection"
+  },
+  {
+    "id": 137,
+    "section": "Sorting Algorithms",
+    "title": "First Missing Positive",
+    "difficulty": "Hard",
+    "pattern": "Cyclic Sort"
+  },
+  {
+    "id": 138,
+    "section": "Binary Search",
+    "title": "Binary Search on descending array",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 139,
+    "section": "Binary Search",
+    "title": "Order Agnostic Binary Search",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 140,
+    "section": "Binary Search",
+    "title": "Guess Number Higher or Lower",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 141,
+    "section": "Binary Search",
+    "title": "Search Insert Position",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 142,
+    "section": "Binary Search",
+    "title": "Ceiling of a number",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 143,
+    "section": "Binary Search",
+    "title": "Floor of a number",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 144,
+    "section": "Binary Search",
+    "title": "Smallest letter greater than target",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 145,
+    "section": "Binary Search",
+    "title": "Valid Perfect Square",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 146,
+    "section": "Binary Search",
+    "title": "First Bad Version",
+    "difficulty": "Easy",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 147,
+    "section": "Binary Search",
+    "title": "First and Last Position in Sorted Array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 148,
+    "section": "Binary Search",
+    "title": "Count of element in sorted array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 149,
+    "section": "Binary Search",
+    "title": "Peak in Mountain / Bitonic array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 150,
+    "section": "Binary Search",
+    "title": "Search in Mountain / Bitonic array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 151,
+    "section": "Binary Search",
+    "title": "Minimum in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 152,
+    "section": "Binary Search",
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 153,
+    "section": "Binary Search",
+    "title": "Search in Infinite Sorted Array",
+    "difficulty": "Medium",
+    "pattern": "Binary Search"
+  },
+  {
+    "id": 154,
+    "section": "Binary Search",
+    "title": "Book Allocation Problem",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 155,
+    "section": "Binary Search",
+    "title": "Capacity to Ship Packages",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 156,
+    "section": "Binary Search",
+    "title": "Minimum Days to Make Bouquets",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 157,
+    "section": "Binary Search",
+    "title": "Smallest Divisor Given Threshold",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 158,
+    "section": "Binary Search",
+    "title": "Koko Eating Bananas",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 159,
+    "section": "Binary Search",
+    "title": "Split Array Largest Sum",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 160,
+    "section": "Binary Search",
+    "title": "Aggressive Cows",
+    "difficulty": "Hard",
+    "pattern": "Binary Search on Answer"
+  },
+  {
+    "id": 161,
+    "section": "Hashing (Level - 2)",
+    "title": "Intersection of Two Arrays",
+    "difficulty": "Easy",
+    "pattern": "HashSet"
+  },
+  {
+    "id": 162,
+    "section": "Hashing (Level - 2)",
+    "title": "Intersection of Two Arrays II",
+    "difficulty": "Easy",
+    "pattern": "HashMap"
+  },
+  {
+    "id": 163,
+    "section": "Hashing (Level - 2)",
+    "title": "Subarray Sum Equals K Positive)",
+    "difficulty": "Easy",
+    "pattern": "Sliding Window"
+  },
+  {
+    "id": 164,
+    "section": "Hashing (Level - 2)",
+    "title": "Subarray Sum Equals K",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + HashMap"
+  },
+  {
+    "id": 165,
+    "section": "Hashing (Level - 2)",
+    "title": "Subarray with 0 Sum",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + HashSet"
+  },
+  {
+    "id": 166,
+    "section": "Hashing (Level - 2)",
+    "title": "Longest Subarray with Sum K",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + HashMap"
+  },
+  {
+    "id": 167,
+    "section": "Hashing (Level - 2)",
+    "title": "Contiguous Array",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + HashMap"
+  },
+  {
+    "id": 168,
+    "section": "Hashing (Level - 2)",
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "Medium",
+    "pattern": "HashSet"
+  },
+  {
+    "id": 169,
+    "section": "Hashing (Level - 2)",
+    "title": "Count distinct elements in every window",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + HashMap"
+  },
+  {
+    "id": 170,
+    "section": "Hashing (Level - 2)",
+    "title": "Insert Delete GetRandom O1",
+    "difficulty": "Hard",
+    "pattern": "HashMap + Design"
+  },
+  {
+    "id": 171,
+    "section": "Linked List",
+    "title": "Design Linked List",
+    "difficulty": "Easy",
+    "pattern": "Implementation"
+  },
+  {
+    "id": 172,
+    "section": "Linked List",
+    "title": "Middle of Linked List",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer Tortoise & Hare)"
+  },
+  {
+    "id": 173,
+    "section": "Linked List",
+    "title": "Merge Two Sorted Lists",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 174,
+    "section": "Linked List",
+    "title": "Linked List Cycle",
+    "difficulty": "Easy",
+    "pattern": "Cycle Detection Floydʼs)"
+  },
+  {
+    "id": 175,
+    "section": "Linked List",
+    "title": "Linked List Cycle II",
+    "difficulty": "Medium",
+    "pattern": "Cycle Detection"
+  },
+  {
+    "id": 176,
+    "section": "Linked List",
+    "title": "Reverse Linked List",
+    "difficulty": "Easy",
+    "pattern": "Iterative / Recursion"
+  },
+  {
+    "id": 177,
+    "section": "Linked List",
+    "title": "Convert Binary LL to Integer",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 178,
+    "section": "Linked List",
+    "title": "Merge K Sorted Lists",
+    "difficulty": "Hard",
+    "pattern": "Heap / Divide & Conquer"
+  },
+  {
+    "id": 179,
+    "section": "Linked List",
+    "title": "Remove Duplicates from Sorted List",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 180,
+    "section": "Linked List",
+    "title": "Remove Duplicates II",
+    "difficulty": "Medium",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 181,
+    "section": "Linked List",
+    "title": "Intersection of Two Linked Lists",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 182,
+    "section": "Linked List",
+    "title": "Remove Linked List Elements",
+    "difficulty": "Easy",
+    "pattern": "Traversal"
+  },
+  {
+    "id": 183,
+    "section": "Linked List",
+    "title": "Palindrome Linked List",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 184,
+    "section": "Linked List",
+    "title": "Delete Node in Linked List",
+    "difficulty": "Easy",
+    "pattern": "Pointer Manipulation"
+  },
+  {
+    "id": 185,
+    "section": "Linked List",
+    "title": "Reverse Nodes in K Group",
+    "difficulty": "Hard",
+    "pattern": "Linked List Manipulation"
+  },
+  {
+    "id": 186,
+    "section": "Linked List",
+    "title": "Swap Nodes in Pairs",
+    "difficulty": "Medium",
+    "pattern": "Pointer Manipulation"
+  },
+  {
+    "id": 187,
+    "section": "Linked List",
+    "title": "Remove Nth Node From End",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer"
+  },
+  {
+    "id": 188,
+    "section": "Linked List",
+    "title": "Add Two Numbers",
+    "difficulty": "Medium",
+    "pattern": "Simulation"
+  },
+  {
+    "id": 189,
+    "section": "Linked List",
+    "title": "Copy List with Random Pointer",
+    "difficulty": "Hard",
+    "pattern": "HashMap / Cloning"
+  },
+  {
+    "id": 190,
+    "section": "Linked List",
+    "title": "Flattening a Linked List",
+    "difficulty": "Hard",
+    "pattern": "Recursion / Divide & Conquer"
+  },
+  {
+    "id": 191,
+    "section": "Stack & Queue",
+    "title": "Implement Queue using Stacks",
+    "difficulty": "Easy",
+    "pattern": "Simulation"
+  },
+  {
+    "id": 192,
+    "section": "Stack & Queue",
+    "title": "Implement Stack using Queues",
+    "difficulty": "Easy",
+    "pattern": "Simulation"
+  },
+  {
+    "id": 193,
+    "section": "Stack & Queue",
+    "title": "Infix to Postfix Conversion",
+    "difficulty": "Medium",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 194,
+    "section": "Stack & Queue",
+    "title": "Prefix to Infix Conversion",
+    "difficulty": "Medium",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 195,
+    "section": "Stack & Queue",
+    "title": "Prefix to Postfix Conversion",
+    "difficulty": "Medium",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 196,
+    "section": "Stack & Queue",
+    "title": "Postfix to Prefix Conversion",
+    "difficulty": "Medium",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 197,
+    "section": "Stack & Queue",
+    "title": "Postfix to Infix Conversion",
+    "difficulty": "Easy",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 198,
+    "section": "Stack & Queue",
+    "title": "Infix to Prefix Conversion",
+    "difficulty": "Medium",
+    "pattern": "Stack Expression)"
+  },
+  {
+    "id": 199,
+    "section": "Stack & Queue",
+    "title": "Next Larger Element",
+    "difficulty": "Easy",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 200,
+    "section": "Stack & Queue",
+    "title": "Smaller on Left",
+    "difficulty": "Easy",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 201,
+    "section": "Stack & Queue",
+    "title": "Next Greater Element I",
+    "difficulty": "Easy",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 202,
+    "section": "Stack & Queue",
+    "title": "Smallest number on left",
+    "difficulty": "Easy",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 203,
+    "section": "Stack & Queue",
+    "title": "Next Smaller Element",
+    "difficulty": "Easy",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 204,
+    "section": "Stack & Queue",
+    "title": "Backspace String Compare",
+    "difficulty": "Medium",
+    "pattern": "Stack / Two Pointer"
+  },
+  {
+    "id": 205,
+    "section": "Stack & Queue",
+    "title": "Stock Span Problem",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 206,
+    "section": "Stack & Queue",
+    "title": "Online Stock Span",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 207,
+    "section": "Stack & Queue",
+    "title": "Min Stack",
+    "difficulty": "Medium",
+    "pattern": "Stack Design"
+  },
+  {
+    "id": 208,
+    "section": "Stack & Queue",
+    "title": "Largest Rectangle in Histogram",
+    "difficulty": "Hard",
+    "pattern": "Monotonic Stack"
+  },
+  {
+    "id": 209,
+    "section": "Stack & Queue",
+    "title": "Maximal Rectangle",
+    "difficulty": "Hard",
+    "pattern": "Stack + Matrix"
+  },
+  {
+    "id": 210,
+    "section": "Stack & Queue",
+    "title": "Celebrity Problem",
+    "difficulty": "Medium",
+    "pattern": "Stack / Two Pointer"
+  },
+  {
+    "id": 211,
+    "section": "Stack & Queue",
+    "title": "LRU Cache",
+    "difficulty": "Hard",
+    "pattern": "HashMap + DLL"
+  },
+  {
+    "id": 212,
+    "section": "Stack & Queue",
+    "title": "LFU Cache",
+    "difficulty": "Hard",
+    "pattern": "HashMap + Design"
+  },
+  {
+    "id": 213,
+    "section": "Number System / Bit Manipulation",
+    "title": "Introduction to Bits and Tricks",
+    "difficulty": "Easy",
+    "pattern": "Bit Basics"
+  },
+  {
+    "id": 214,
+    "section": "Number System / Bit Manipulation",
+    "title": "Check if i-th bit is set or not",
+    "difficulty": "Easy",
+    "pattern": "Bit Masking"
+  },
+  {
+    "id": 215,
+    "section": "Number System / Bit Manipulation",
+    "title": "Check if number is odd or not",
+    "difficulty": "Easy",
+    "pattern": "Bit Check"
+  },
+  {
+    "id": 216,
+    "section": "Number System / Bit Manipulation",
+    "title": "Check if number is power of 2",
+    "difficulty": "Easy",
+    "pattern": "Bit Trick"
+  },
+  {
+    "id": 217,
+    "section": "Number System / Bit Manipulation",
+    "title": "Count number of set bits",
+    "difficulty": "Easy",
+    "pattern": "Bit Counting"
+  },
+  {
+    "id": 218,
+    "section": "Number System / Bit Manipulation",
+    "title": "Set/Unset rightmost unset bit",
+    "difficulty": "Easy",
+    "pattern": "Bit Manipulation"
+  },
+  {
+    "id": 219,
+    "section": "Number System / Bit Manipulation",
+    "title": "Swap two numbers",
+    "difficulty": "Easy",
+    "pattern": "XOR Trick"
+  },
+  {
+    "id": 220,
+    "section": "Number System / Bit Manipulation",
+    "title": "Divide two numbers without * and /",
+    "difficulty": "Medium",
+    "pattern": "Bit Manipulation"
+  },
+  {
+    "id": 221,
+    "section": "Number System / Bit Manipulation",
+    "title": "Minimum bit flips to convert number",
+    "difficulty": "Medium",
+    "pattern": "XOR"
+  },
+  {
+    "id": 222,
+    "section": "Number System / Bit Manipulation",
+    "title": "Single Number - I",
+    "difficulty": "Medium",
+    "pattern": "XOR"
+  },
+  {
+    "id": 223,
+    "section": "Number System / Bit Manipulation",
+    "title": "Power Set Bit Manipulation)",
+    "difficulty": "Medium",
+    "pattern": "Bit Masking"
+  },
+  {
+    "id": 224,
+    "section": "Number System / Bit Manipulation",
+    "title": "XOR of numbers in a range",
+    "difficulty": "Medium",
+    "pattern": "Pattern + XOR"
+  },
+  {
+    "id": 225,
+    "section": "Number System / Bit Manipulation",
+    "title": "Single Number - II",
+    "difficulty": "Medium",
+    "pattern": "XOR + Bit Masking"
+  },
+  {
+    "id": 226,
+    "section": "Number System / Bit Manipulation",
+    "title": "Single Number - III",
+    "difficulty": "Medium",
+    "pattern": "XOR Bit Masking"
+  },
+  {
+    "id": 227,
+    "section": "Greedy Approach & Problems",
+    "title": "Assign Cookies",
+    "difficulty": "Easy",
+    "pattern": "Greedy + Sorting"
+  },
+  {
+    "id": 228,
+    "section": "Greedy Approach & Problems",
+    "title": "Fractional Knapsack",
+    "difficulty": "Medium",
+    "pattern": "Greedy Ratio Based)"
+  },
+  {
+    "id": 229,
+    "section": "Greedy Approach & Problems",
+    "title": "Lemonade Change",
+    "difficulty": "Easy",
+    "pattern": "Greedy Simulation)"
+  },
+  {
+    "id": 230,
+    "section": "Greedy Approach & Problems",
+    "title": "Valid Parenthesis Checker",
+    "difficulty": "Hard",
+    "pattern": "Stack Validation)"
+  },
+  {
+    "id": 231,
+    "section": "Greedy Approach & Problems",
+    "title": "N Meetings in One Room",
+    "difficulty": "Medium",
+    "pattern": "Greedy Activity Selection)"
+  },
+  {
+    "id": 232,
+    "section": "Greedy Approach & Problems",
+    "title": "Jump Game I",
+    "difficulty": "Easy",
+    "pattern": "Greedy"
+  },
+  {
+    "id": 233,
+    "section": "Greedy Approach & Problems",
+    "title": "Jump Game II",
+    "difficulty": "Medium",
+    "pattern": "Greedy"
+  },
+  {
+    "id": 234,
+    "section": "Greedy Approach & Problems",
+    "title": "Minimum Platforms",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Sorting"
+  },
+  {
+    "id": 235,
+    "section": "Greedy Approach & Problems",
+    "title": "Job Sequencing Problem",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Heap"
+  },
+  {
+    "id": 236,
+    "section": "Greedy Approach & Problems",
+    "title": "Candy",
+    "difficulty": "Hard",
+    "pattern": "Greedy"
+  },
+  {
+    "id": 237,
+    "section": "Greedy Approach & Problems",
+    "title": "Shortest Job First",
+    "difficulty": "Medium",
+    "pattern": "Greedy Scheduling)"
+  },
+  {
+    "id": 238,
+    "section": "Greedy Approach & Problems",
+    "title": "LRU Page Replacement",
+    "difficulty": "Medium",
+    "pattern": "Greedy / Simulation"
+  },
+  {
+    "id": 239,
+    "section": "Greedy Approach & Problems",
+    "title": "Insert Interval",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Intervals"
+  },
+  {
+    "id": 240,
+    "section": "Greedy Approach & Problems",
+    "title": "Merge Intervals",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Sorting"
+  },
+  {
+    "id": 241,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "K-th Symbol in Grammar",
+    "difficulty": "Medium",
+    "pattern": "Recursion"
+  },
+  {
+    "id": 242,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Tower of Hanoi",
+    "difficulty": "Medium",
+    "pattern": "Recursion"
+  },
+  {
+    "id": 243,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Josephus Problem",
+    "difficulty": "Medium",
+    "pattern": "Recursion"
+  },
+  {
+    "id": 244,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Find Winner of Circular Game",
+    "difficulty": "Medium",
+    "pattern": "Simulation / Recursion"
+  },
+  {
+    "id": 245,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Sort List / Stack Recursive)",
+    "difficulty": "Medium",
+    "pattern": "Recursion"
+  },
+  {
+    "id": 246,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Power Set",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 247,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Subsets",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 248,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Permutations",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 249,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Subsets II",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 250,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Letter Combinations of Phone Number",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 251,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Combination Sum",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 252,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Combination Sum III",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 253,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Rat in a Maze",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 254,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Sudoku Solver",
+    "difficulty": "Hard",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 255,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "NQueens",
+    "difficulty": "Hard",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 256,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Word Search",
+    "difficulty": "Medium",
+    "pattern": "Backtracking"
+  },
+  {
+    "id": 257,
+    "section": "Recursion & Backtracking - Advanced",
+    "title": "Permutation Sequence",
+    "difficulty": "Hard",
+    "pattern": "Backtracking + Math"
+  },
+  {
+    "id": 258,
+    "section": "Binary Tree",
+    "title": "Inorder Traversal",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 259,
+    "section": "Binary Tree",
+    "title": "Preorder Traversal",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 260,
+    "section": "Binary Tree",
+    "title": "Postorder Traversal",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 261,
+    "section": "Binary Tree",
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 262,
+    "section": "Binary Tree",
+    "title": "Level Order Traversal",
+    "difficulty": "Easy",
+    "pattern": "BFS"
+  },
+  {
+    "id": 263,
+    "section": "Binary Tree",
+    "title": "Level Order Traversal II",
+    "difficulty": "Easy",
+    "pattern": "BFS"
+  },
+  {
+    "id": 264,
+    "section": "Binary Tree",
+    "title": "Symmetric Tree",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 265,
+    "section": "Binary Tree",
+    "title": "Path Sum",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 266,
+    "section": "Binary Tree",
+    "title": "Populate Next Right Pointers",
+    "difficulty": "Medium",
+    "pattern": "BFS"
+  },
+  {
+    "id": 267,
+    "section": "Binary Tree",
+    "title": "Diameter of Binary Tree",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 268,
+    "section": "Binary Tree",
+    "title": "Balanced Binary Tree",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 269,
+    "section": "Binary Tree",
+    "title": "Same Tree",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 270,
+    "section": "Binary Tree",
+    "title": "Zigzag Level Order Traversal",
+    "difficulty": "Medium",
+    "pattern": "BFS"
+  },
+  {
+    "id": 271,
+    "section": "Binary Tree",
+    "title": "Left View of Binary Tree",
+    "difficulty": "Medium",
+    "pattern": "BFS/DFS"
+  },
+  {
+    "id": 272,
+    "section": "Binary Tree",
+    "title": "Right View of Binary Tree",
+    "difficulty": "Medium",
+    "pattern": "BFS/DFS"
+  },
+  {
+    "id": 273,
+    "section": "Binary Tree",
+    "title": "Top View of Binary Tree",
+    "difficulty": "Medium",
+    "pattern": "BFS Map"
+  },
+  {
+    "id": 274,
+    "section": "Binary Tree",
+    "title": "Bottom View of Binary Tree",
+    "difficulty": "Medium",
+    "pattern": "BFS Map"
+  },
+  {
+    "id": 275,
+    "section": "Binary Tree",
+    "title": "Vertical Order Traversal",
+    "difficulty": "Hard",
+    "pattern": "BFS Map"
+  },
+  {
+    "id": 276,
+    "section": "Binary Tree",
+    "title": "Sum of Longest Bloodline",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 277,
+    "section": "Binary Tree",
+    "title": "Lowest Common Ancestor",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 278,
+    "section": "Binary Tree",
+    "title": "Path Sum II",
+    "difficulty": "Medium",
+    "pattern": "DFS + Backtracking"
+  },
+  {
+    "id": 279,
+    "section": "Binary Tree",
+    "title": "Path Sum III",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + DFS"
+  },
+  {
+    "id": 280,
+    "section": "Binary Tree",
+    "title": "Construct Tree Preorder + Inorder)",
+    "difficulty": "Medium",
+    "pattern": "Recursion"
+  },
+  {
+    "id": 281,
+    "section": "Binary Tree",
+    "title": "Burning Tree",
+    "difficulty": "Hard",
+    "pattern": "BFS Mapping"
+  },
+  {
+    "id": 282,
+    "section": "Binary Tree",
+    "title": "Morris Traversal",
+    "difficulty": "Hard",
+    "pattern": "Threaded Tree"
+  },
+  {
+    "id": 283,
+    "section": "Binary Search Tree (BST)",
+    "title": "Validate Binary Search Tree",
+    "difficulty": "Medium",
+    "pattern": "DFS Bounds Check)"
+  },
+  {
+    "id": 284,
+    "section": "Binary Search Tree (BST)",
+    "title": "Search in BST",
+    "difficulty": "Easy",
+    "pattern": "BST Traversal"
+  },
+  {
+    "id": 285,
+    "section": "Binary Search Tree (BST)",
+    "title": "Kth Smallest in BST",
+    "difficulty": "Medium",
+    "pattern": "Inorder Traversal"
+  },
+  {
+    "id": 286,
+    "section": "Binary Search Tree (BST)",
+    "title": "Floor and Ceil in BST",
+    "difficulty": "Medium",
+    "pattern": "BST Traversal"
+  },
+  {
+    "id": 287,
+    "section": "Binary Search Tree (BST)",
+    "title": "Delete Node in BST",
+    "difficulty": "Medium",
+    "pattern": "BST Manipulation"
+  },
+  {
+    "id": 288,
+    "section": "Binary Search Tree (BST)",
+    "title": "Predecessor and Successor",
+    "difficulty": "Medium",
+    "pattern": "BST Traversal"
+  },
+  {
+    "id": 289,
+    "section": "Binary Search Tree (BST)",
+    "title": "Lowest Common Ancestor in BST",
+    "difficulty": "Easy",
+    "pattern": "BST Property"
+  },
+  {
+    "id": 290,
+    "section": "Binary Search Tree (BST)",
+    "title": "Two Sum IV BST",
+    "difficulty": "Easy",
+    "pattern": "Hashing / Inorder"
+  },
+  {
+    "id": 291,
+    "section": "Binary Search Tree (BST)",
+    "title": "Convert Sorted Array to BST",
+    "difficulty": "Easy",
+    "pattern": "Divide & Conquer"
+  },
+  {
+    "id": 292,
+    "section": "Binary Heap",
+    "title": "Last Stone Weight",
+    "difficulty": "Easy",
+    "pattern": "Max Heap"
+  },
+  {
+    "id": 293,
+    "section": "Binary Heap",
+    "title": "Kth Largest Element in Array",
+    "difficulty": "Medium",
+    "pattern": "Heap"
+  },
+  {
+    "id": 294,
+    "section": "Binary Heap",
+    "title": "K Closest Points to Origin",
+    "difficulty": "Medium",
+    "pattern": "Heap"
+  },
+  {
+    "id": 295,
+    "section": "Binary Heap",
+    "title": "Top K Frequent Elements",
+    "difficulty": "Medium",
+    "pattern": "Heap + Hashing"
+  },
+  {
+    "id": 296,
+    "section": "Binary Heap",
+    "title": "Top K Frequent Words",
+    "difficulty": "Medium",
+    "pattern": "Heap + Sorting"
+  },
+  {
+    "id": 297,
+    "section": "Binary Heap",
+    "title": "Sort Characters By Frequency",
+    "difficulty": "Medium",
+    "pattern": "Heap + Hashing"
+  },
+  {
+    "id": 298,
+    "section": "Sliding Window Technique",
+    "title": "Max Sum Subarray of size K",
+    "difficulty": "Easy",
+    "pattern": "Fixed Window"
+  },
+  {
+    "id": 299,
+    "section": "Sliding Window Technique",
+    "title": "Maximum Points You Can Obtain",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window"
+  },
+  {
+    "id": 300,
+    "section": "Sliding Window Technique",
+    "title": "Count Occurrence of Anagram",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing"
+  },
+  {
+    "id": 301,
+    "section": "Sliding Window Technique",
+    "title": "Largest Subarray with Sum K",
+    "difficulty": "Medium",
+    "pattern": "Variable Window"
+  },
+  {
+    "id": 302,
+    "section": "Sliding Window Technique",
+    "title": "Pick Toys",
+    "difficulty": "Medium",
+    "pattern": "Variable Window"
+  },
+  {
+    "id": 303,
+    "section": "Sliding Window Technique",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing"
+  },
+  {
+    "id": 304,
+    "section": "Sliding Window Technique",
+    "title": "Minimum Window Substring",
+    "difficulty": "Hard",
+    "pattern": "Sliding Window + Hashing"
+  },
+  {
+    "id": 305,
+    "section": "Graph",
+    "title": "BFS Traversal",
+    "difficulty": "Easy",
+    "pattern": "BFS"
+  },
+  {
+    "id": 306,
+    "section": "Graph",
+    "title": "DFS Traversal",
+    "difficulty": "Easy",
+    "pattern": "DFS"
+  },
+  {
+    "id": 307,
+    "section": "Graph",
+    "title": "Cycle Detection Undirected)",
+    "difficulty": "Medium",
+    "pattern": "BFS/DFS"
+  },
+  {
+    "id": 308,
+    "section": "Graph",
+    "title": "Cycle Detection Directed)",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 309,
+    "section": "Graph",
+    "title": "Topological Sort DFS",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 310,
+    "section": "Graph",
+    "title": "Kahnʼs Algorithm",
+    "difficulty": "Medium",
+    "pattern": "BFS"
+  },
+  {
+    "id": 311,
+    "section": "Graph",
+    "title": "Topological Sort Kahnʼs",
+    "difficulty": "Medium",
+    "pattern": "BFS"
+  },
+  {
+    "id": 312,
+    "section": "Graph",
+    "title": "Cycle Detection Kahnʼs",
+    "difficulty": "Medium",
+    "pattern": "BFS"
+  },
+  {
+    "id": 313,
+    "section": "Graph",
+    "title": "Keys and Rooms",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 314,
+    "section": "Graph",
+    "title": "All Paths from Source to Target",
+    "difficulty": "Medium",
+    "pattern": "DFS"
+  },
+  {
+    "id": 315,
+    "section": "Graph",
+    "title": "Number of Islands",
+    "difficulty": "Medium",
+    "pattern": "DFS/BFS"
+  },
+  {
+    "id": 316,
+    "section": "Graph",
+    "title": "Dijkstra Algorithm",
+    "difficulty": "Medium",
+    "pattern": "Shortest Path"
+  },
+  {
+    "id": 317,
+    "section": "Graph",
+    "title": "Bellman Ford Algorithm",
+    "difficulty": "Medium",
+    "pattern": "Shortest Path"
+  },
+  {
+    "id": 318,
+    "section": "Graph",
+    "title": "Primʼs Algorithm",
+    "difficulty": "Medium",
+    "pattern": "MST"
+  },
+  {
+    "id": 319,
+    "section": "Graph",
+    "title": "Kruskal Algorithm",
+    "difficulty": "Medium",
+    "pattern": "MST"
+  },
+  {
+    "id": 320,
+    "section": "Graph",
+    "title": "Floyd Warshall Algorithm",
+    "difficulty": "Hard",
+    "pattern": "All-Pairs Shortest Path"
+  },
+  {
+    "id": 321,
+    "section": "Graph",
+    "title": "Find City with Smallest Neighbors",
+    "difficulty": "Medium",
+    "pattern": "Graph + Shortest Path"
+  },
+  {
+    "id": 322,
+    "section": "Graph",
+    "title": "Flood Fill",
+    "difficulty": "Easy",
+    "pattern": "BFS/DFS"
+  },
+  {
+    "id": 323,
+    "section": "Graph",
+    "title": "Clone Graph",
+    "difficulty": "Medium",
+    "pattern": "DFS/BFS"
+  },
+  {
+    "id": 324,
+    "section": "Graph",
+    "title": "Number of Provinces",
+    "difficulty": "Medium",
+    "pattern": "DFS/BFS"
+  },
+  {
+    "id": 325,
+    "section": "Graph",
+    "title": "Course Schedule",
+    "difficulty": "Medium",
+    "pattern": "Topological Sort"
+  },
+  {
+    "id": 326,
+    "section": "Graph",
+    "title": "Cheapest Flights Within K Stops",
+    "difficulty": "Hard",
+    "pattern": "BFS / Dijkstra"
+  },
+  {
+    "id": 327,
+    "section": "Dynamic Programming (DP)",
+    "title": "Fibonacci Number",
+    "difficulty": "Easy",
+    "pattern": "DP 1D"
+  },
+  {
+    "id": 328,
+    "section": "Dynamic Programming (DP)",
+    "title": "Climbing Stairs",
+    "difficulty": "Easy",
+    "pattern": "DP 1D"
+  },
+  {
+    "id": 329,
+    "section": "Dynamic Programming (DP)",
+    "title": "Min Cost Climbing Stairs",
+    "difficulty": "Easy",
+    "pattern": "DP 1D"
+  },
+  {
+    "id": 330,
+    "section": "Dynamic Programming (DP)",
+    "title": "Jump Game",
+    "difficulty": "Medium",
+    "pattern": "Greedy / DP"
+  },
+  {
+    "id": 331,
+    "section": "Dynamic Programming (DP)",
+    "title": "0/1 Knapsack",
+    "difficulty": "Medium",
+    "pattern": "DP (Knapsack)"
+  },
+  {
+    "id": 332,
+    "section": "Dynamic Programming (DP)",
+    "title": "Subset Sum Problem",
+    "difficulty": "Medium",
+    "pattern": "DP Subset"
+  },
+  {
+    "id": 333,
+    "section": "Dynamic Programming (DP)",
+    "title": "Partition Equal Subset Sum",
+    "difficulty": "Medium",
+    "pattern": "DP Subset"
+  },
+  {
+    "id": 334,
+    "section": "Dynamic Programming (DP)",
+    "title": "Perfect Sum Problem",
+    "difficulty": "Medium",
+    "pattern": "DP (Count Subsets)"
+  },
+  {
+    "id": 335,
+    "section": "Dynamic Programming (DP)",
+    "title": "Unbounded Knapsack",
+    "difficulty": "Medium",
+    "pattern": "DP (Knapsack)"
+  },
+  {
+    "id": 336,
+    "section": "Dynamic Programming (DP)",
+    "title": "Rod Cutting",
+    "difficulty": "Medium",
+    "pattern": "DP (Unbounded Knapsack)"
+  },
+  {
+    "id": 337,
+    "section": "Dynamic Programming (DP)",
+    "title": "Coin Change II",
+    "difficulty": "Medium",
+    "pattern": "DP (Count Ways)"
+  },
+  {
+    "id": 338,
+    "section": "Dynamic Programming (DP)",
+    "title": "Coin Change",
+    "difficulty": "Medium",
+    "pattern": "DP (Min Coins)"
+  },
+  {
+    "id": 339,
+    "section": "Dynamic Programming (DP)",
+    "title": "Longest Common Subsequence",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 340,
+    "section": "Dynamic Programming (DP)",
+    "title": "Longest Common Substring",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 341,
+    "section": "Dynamic Programming (DP)",
+    "title": "Print Longest Common Subsequence",
+    "difficulty": "Medium",
+    "pattern": "DP (Reconstruction)"
+  },
+  {
+    "id": 342,
+    "section": "Dynamic Programming (DP)",
+    "title": "Shortest Common Supersequence",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 343,
+    "section": "Dynamic Programming (DP)",
+    "title": "Print Shortest Common Supersequence",
+    "difficulty": "Medium",
+    "pattern": "DP (Reconstruction)"
+  },
+  {
+    "id": 344,
+    "section": "Dynamic Programming (DP)",
+    "title": "Longest Palindromic Subsequence",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 345,
+    "section": "Dynamic Programming (DP)",
+    "title": "Minimum Deletions to Make String Palindrome",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 346,
+    "section": "Dynamic Programming (DP)",
+    "title": "Matrix Chain Multiplication",
+    "difficulty": "Hard",
+    "pattern": "DP (Partition)"
+  },
+  {
+    "id": 347,
+    "section": "Dynamic Programming (DP)",
+    "title": "Palindrome Partitioning",
+    "difficulty": "Hard",
+    "pattern": "DP (Partition)"
+  },
+  {
+    "id": 348,
+    "section": "Dynamic Programming (DP)",
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "pattern": "DP / Expand"
+  },
+  {
+    "id": 349,
+    "section": "Dynamic Programming (DP)",
+    "title": "Egg Dropping Puzzle",
+    "difficulty": "Hard",
+    "pattern": "DP (Partition)"
+  },
+  {
+    "id": 350,
+    "section": "Dynamic Programming (DP)",
+    "title": "Scramble String",
+    "difficulty": "Hard",
+    "pattern": "DP (Strings)"
+  },
+  {
+    "id": 351,
+    "section": "Trie",
+    "title": "Implement Trie (Prefix Tree)",
+    "difficulty": "Medium",
+    "pattern": "Trie"
+  },
+  {
+    "id": 352,
+    "section": "Trie",
+    "title": "Longest Common Prefix",
+    "difficulty": "Easy",
+    "pattern": "Trie / String"
+  },
+  {
+    "id": 353,
+    "section": "Trie",
+    "title": "Word Break",
+    "difficulty": "Medium",
+    "pattern": "Trie + DP"
+  },
+  {
+    "id": 354,
+    "section": "Trie",
+    "title": "Word Search II",
+    "difficulty": "Hard",
+    "pattern": "Trie + Backtracking"
+  },
+  {
+    "id": 355,
+    "section": "Trie",
+    "title": "Maximum XOR of Two Numbers in Array",
+    "difficulty": "Medium",
+    "pattern": "Trie (Bit Manipulation)"
+  }
+]

@@ -1,0 +1,2531 @@
+[
+  {
+    "id": 1,
+    "topic": "Arrays",
+    "title": "Find the sum and average of all elements in an array",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Accumulation",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 2,
+    "topic": "Arrays",
+    "title": "Find the greatest (maximum) element in an array",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 3,
+    "topic": "Arrays",
+    "title": "Find the second largest element in an array",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Strong Pattern Match (repeats in general & Daffodil-style lists)",
+    "priority": "HIGH"
+  },
+  {
+    "id": 4,
+    "topic": "Arrays",
+    "title": "Find the third largest element in an array",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 5,
+    "topic": "Arrays",
+    "title": "Find the second smallest element in an array",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 6,
+    "topic": "Arrays",
+    "title": "Check whether an array is sorted in ascending order",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Comparison",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 7,
+    "topic": "Arrays",
+    "title": "Check whether an array is sorted in descending order",
+    "difficulty": "Easy",
+    "pattern": "Traversal + Comparison",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 8,
+    "topic": "Arrays",
+    "title": "Reverse an array using extra space",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 9,
+    "topic": "Arrays",
+    "title": "Reverse an array in place without extra space",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 10,
+    "topic": "Arrays",
+    "title": "Left rotate an array by one position",
+    "difficulty": "Easy",
+    "pattern": "Rotation",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 11,
+    "topic": "Arrays",
+    "title": "Left rotate an array by K positions",
+    "difficulty": "Easy",
+    "pattern": "Rotation",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 12,
+    "topic": "Arrays",
+    "title": "Right rotate an array by K positions",
+    "difficulty": "Easy",
+    "pattern": "Rotation",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 13,
+    "topic": "Arrays",
+    "title": "Move all zeroes in an array to the end (keep order of others)",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 14,
+    "topic": "Arrays",
+    "title": "Move all negative numbers to the end (keep order of others)",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 15,
+    "topic": "Arrays",
+    "title": "Remove duplicates from a sorted array in place",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 16,
+    "topic": "Arrays",
+    "title": "Find the missing number from 1 to N in an array",
+    "difficulty": "Easy",
+    "pattern": "Cyclic Sort / Math",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 17,
+    "topic": "Arrays",
+    "title": "Find the duplicate number in an array of 1 to N",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Cyclic Sort",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 18,
+    "topic": "Arrays",
+    "title": "Count positive, negative and zero elements in an array",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 19,
+    "topic": "Arrays",
+    "title": "Find the frequency of every element in an array",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 20,
+    "topic": "Arrays",
+    "title": "Find the sum of the maximum and the minimum element",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 21,
+    "topic": "Arrays",
+    "title": "Find the first equilibrium index of an array (left sum = right sum)",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Actual Daffodil Software Question (Uploaded PDF)",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 22,
+    "topic": "Arrays",
+    "title": "Find all equilibrium indices in an array, not just the first",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 23,
+    "topic": "Arrays",
+    "title": "Find the equilibrium index when the array contains negative numbers",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 24,
+    "topic": "Arrays",
+    "title": "Return the equilibrium value (not the index) at the balance point",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 25,
+    "topic": "Arrays",
+    "title": "Find the equilibrium index using O(1) extra space (no prefix array)",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 26,
+    "topic": "Arrays",
+    "title": "Find the intersection of two sorted arrays",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 27,
+    "topic": "Arrays",
+    "title": "Find the union of two sorted arrays without duplicates",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 28,
+    "topic": "Arrays",
+    "title": "Find the intersection of two unsorted arrays using hashing",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 29,
+    "topic": "Arrays",
+    "title": "Sort an array of only 0s, 1s and 2s (Dutch National Flag)",
+    "difficulty": "Medium",
+    "pattern": "Partition (3-way)",
+    "source": "Service-Based Common",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 30,
+    "topic": "Arrays",
+    "title": "Rearrange an array so positive and negative numbers alternate",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer / Simulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 31,
+    "topic": "Arrays",
+    "title": "Segregate even and odd numbers in an array in place",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 32,
+    "topic": "Arrays",
+    "title": "Find two numbers in an array that add up to a target sum (Two Sum)",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 33,
+    "topic": "Arrays",
+    "title": "Find all unique pairs in an array with a given sum",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 34,
+    "topic": "Arrays",
+    "title": "Find the majority element that appears more than n/2 times",
+    "difficulty": "Medium",
+    "pattern": "Boyer-Moore / Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 35,
+    "topic": "Arrays",
+    "title": "Find all elements that appear more than n/3 times",
+    "difficulty": "Medium",
+    "pattern": "Boyer-Moore Extension",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 36,
+    "topic": "Arrays",
+    "title": "Find the maximum sum of a contiguous subarray (Kadane's Algorithm)",
+    "difficulty": "Medium",
+    "pattern": "Kadane",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 37,
+    "topic": "Arrays",
+    "title": "Print the actual subarray with the maximum sum, not just the sum",
+    "difficulty": "Medium",
+    "pattern": "Kadane",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 38,
+    "topic": "Arrays",
+    "title": "Best time to buy and sell a stock (one transaction only)",
+    "difficulty": "Easy",
+    "pattern": "Kadane / Greedy",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 39,
+    "topic": "Arrays",
+    "title": "Best time to buy and sell a stock with unlimited transactions",
+    "difficulty": "Medium",
+    "pattern": "Greedy",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 40,
+    "topic": "Arrays",
+    "title": "Find a subarray with a given sum in an array of non-negative numbers",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window / Prefix Sum",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 41,
+    "topic": "Arrays",
+    "title": "Find a subarray with a given sum when negatives are allowed",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + Hashing",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 42,
+    "topic": "Arrays",
+    "title": "Find three numbers in an array that add up to zero (3Sum)",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 43,
+    "topic": "Arrays",
+    "title": "Find the container that holds the most water (Container With Most Water)",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 44,
+    "topic": "Arrays",
+    "title": "Rearrange array elements alternately as max, min, max, min...",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer / Sorting",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 45,
+    "topic": "Arrays",
+    "title": "Find the leader elements of an array (greater than all elements to its right)",
+    "difficulty": "Easy",
+    "pattern": "Traversal (Right-to-Left)",
+    "source": "Service-Based Common",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 46,
+    "topic": "Arrays",
+    "title": "Find the minimum number of platforms needed given arrival/departure times",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Two Pointer",
+    "source": "Strong Pattern Match",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 47,
+    "topic": "Arrays",
+    "title": "Merge two sorted arrays in place without extra space",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer / Gap Method",
+    "source": "Foundation / Prerequisite",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 48,
+    "topic": "Arrays",
+    "title": "Find the second largest element without sorting the array",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 49,
+    "topic": "Arrays",
+    "title": "Find the second largest element allowing duplicates",
+    "difficulty": "Easy",
+    "pattern": "Max Tracking",
+    "source": "Derived Variation",
+    "priority": "MEDIUM"
+  },
+  {
+    "id": 50,
+    "topic": "Arrays",
+    "title": "Find the K-th largest element in an unsorted array",
+    "difficulty": "Medium",
+    "pattern": "Sorting / Max Tracking",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 51,
+    "topic": "Arrays",
+    "title": "Find the maximum product subarray",
+    "difficulty": "Medium",
+    "pattern": "Kadane Variant",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 52,
+    "topic": "Arrays",
+    "title": "Find the equilibrium index but return distance from centre instead of index",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 53,
+    "topic": "Arrays",
+    "title": "Find pairs whose difference equals a given value K",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 54,
+    "topic": "Arrays",
+    "title": "Rotate an array by K positions using the reversal algorithm",
+    "difficulty": "Easy",
+    "pattern": "Reversal Trick",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 55,
+    "topic": "Arrays",
+    "title": "Find the maximum circular subarray sum",
+    "difficulty": "Medium",
+    "pattern": "Kadane Variant",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 56,
+    "topic": "Strings",
+    "title": "Reverse a string",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 57,
+    "topic": "Strings",
+    "title": "Check if a string is a palindrome",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 58,
+    "topic": "Strings",
+    "title": "Count vowels and consonants in a string",
+    "difficulty": "Easy",
+    "pattern": "Character Classification",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 59,
+    "topic": "Strings",
+    "title": "Remove all spaces from a string",
+    "difficulty": "Easy",
+    "pattern": "String Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 60,
+    "topic": "Strings",
+    "title": "Count the frequency of each character in a string",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 61,
+    "topic": "Strings",
+    "title": "Find duplicate characters in a string",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 62,
+    "topic": "Strings",
+    "title": "Convert a string to Pascal Case / Title Case",
+    "difficulty": "Easy",
+    "pattern": "String Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 63,
+    "topic": "Strings",
+    "title": "Check if a string contains only digits",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 64,
+    "topic": "Strings",
+    "title": "Count total number of characters (excluding spaces)",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 65,
+    "topic": "Strings",
+    "title": "Find the first non-repeating character in a string",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Frequency",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 66,
+    "topic": "Strings",
+    "title": "Find the first repeating character in a string",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 67,
+    "topic": "Strings",
+    "title": "Check if two strings are anagrams of each other",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Sorting",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 68,
+    "topic": "Strings",
+    "title": "Check if one string is a permutation of another",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Sorting",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 69,
+    "topic": "Strings",
+    "title": "Check if a string is a rotation of another string",
+    "difficulty": "Medium",
+    "pattern": "Substring / Concatenation Trick",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 70,
+    "topic": "Strings",
+    "title": "Reverse the words in a sentence (word-wise reversal)",
+    "difficulty": "Medium",
+    "pattern": "String Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 71,
+    "topic": "Strings",
+    "title": "Reverse only the vowels in a string",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 72,
+    "topic": "Strings",
+    "title": "Compress a string using counts of repeated characters (aabcc → a2bc2)",
+    "difficulty": "Medium",
+    "pattern": "String Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 73,
+    "topic": "Strings",
+    "title": "Find all permutations of a string",
+    "difficulty": "Medium",
+    "pattern": "Recursion / Backtracking",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 74,
+    "topic": "Strings",
+    "title": "Reduce a string by repeatedly removing K consecutive identical characters",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Actual Daffodil Software Question (Uploaded PDF)",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 75,
+    "topic": "Strings",
+    "title": "Reduce a string by repeatedly removing pairs (K = 2) of identical characters",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 76,
+    "topic": "Strings",
+    "title": "Reduce a string by repeatedly removing K consecutive identical characters where K varies per test case",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 77,
+    "topic": "Strings",
+    "title": "Reduce a string by repeatedly removing adjacent duplicate PAIRS only (Remove All Adjacent Duplicates)",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 78,
+    "topic": "Strings",
+    "title": "Find the final string after repeatedly removing K consecutive identical characters, and count total removals",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 79,
+    "topic": "Strings",
+    "title": "Find the longest substring without repeating characters",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 80,
+    "topic": "Strings",
+    "title": "Find the length of the longest substring with at most K distinct characters",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 81,
+    "topic": "Strings",
+    "title": "Find the longest palindromic substring in a string",
+    "difficulty": "Medium",
+    "pattern": "Expand Around Center / DP",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 82,
+    "topic": "Strings",
+    "title": "Count all palindromic substrings in a string",
+    "difficulty": "Medium",
+    "pattern": "Expand Around Center",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 83,
+    "topic": "Strings",
+    "title": "Find the minimum insertions required to make a string a palindrome (basic DP)",
+    "difficulty": "Medium",
+    "pattern": "String DP",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 84,
+    "topic": "Strings",
+    "title": "Check if a string can be rearranged to form a palindrome",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 85,
+    "topic": "Strings",
+    "title": "Find the longest common prefix among an array of strings",
+    "difficulty": "Easy",
+    "pattern": "Traversal / Sorting",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 86,
+    "topic": "Strings",
+    "title": "Group anagrams together from an array of strings",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 87,
+    "topic": "Strings",
+    "title": "Find the smallest window in a string that contains all characters of another string",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Strong Pattern Match",
+    "priority": "HIGH"
+  },
+  {
+    "id": 88,
+    "topic": "Strings",
+    "title": "Check if a string has a valid parenthesis pattern using a stack",
+    "difficulty": "Easy",
+    "pattern": "Stack",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 89,
+    "topic": "Strings",
+    "title": "Reduce a string by removing K consecutive identical characters, but return the count of characters removed instead of the string",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 90,
+    "topic": "Strings",
+    "title": "Reduce a string by removing K consecutive identical DIGITS only",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 91,
+    "topic": "Strings",
+    "title": "Check if the final reduced string (after K-removal) is empty",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 92,
+    "topic": "Strings",
+    "title": "Find the longest substring with exactly K distinct characters",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 93,
+    "topic": "Strings",
+    "title": "Valid Palindrome II — check palindrome after removing at most one character",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 94,
+    "topic": "Strings",
+    "title": "Find the length of the longest palindromic subsequence (basic DP)",
+    "difficulty": "Medium",
+    "pattern": "String DP",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 95,
+    "topic": "Strings",
+    "title": "Find all starting indices of anagrams of a pattern in a string",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 96,
+    "topic": "Linked List",
+    "title": "Create a singly linked list and traverse/print it",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 97,
+    "topic": "Linked List",
+    "title": "Insert a node at the beginning of a linked list",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 98,
+    "topic": "Linked List",
+    "title": "Insert a node at the end of a linked list",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 99,
+    "topic": "Linked List",
+    "title": "Insert a node at a given position in a linked list",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 100,
+    "topic": "Linked List",
+    "title": "Delete a node from the beginning of a linked list",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 101,
+    "topic": "Linked List",
+    "title": "Delete a node given its value",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 102,
+    "topic": "Linked List",
+    "title": "Search for a value in a linked list",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 103,
+    "topic": "Linked List",
+    "title": "Count the number of nodes in a linked list",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 104,
+    "topic": "Linked List",
+    "title": "Find the middle node of a linked list in one pass",
+    "difficulty": "Easy",
+    "pattern": "Fast & Slow Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 105,
+    "topic": "Linked List",
+    "title": "Reverse a linked list iteratively",
+    "difficulty": "Easy",
+    "pattern": "Iterative Pointer Manipulation",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 106,
+    "topic": "Linked List",
+    "title": "Reverse a linked list recursively",
+    "difficulty": "Easy",
+    "pattern": "Recursion",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 107,
+    "topic": "Linked List",
+    "title": "Detect a cycle in a linked list",
+    "difficulty": "Easy",
+    "pattern": "Floyd's Cycle Detection",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 108,
+    "topic": "Linked List",
+    "title": "Detect the starting node of a cycle in a linked list",
+    "difficulty": "Medium",
+    "pattern": "Floyd's Cycle Detection (Phase 2)",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 109,
+    "topic": "Linked List",
+    "title": "Remove a cycle from a linked list",
+    "difficulty": "Medium",
+    "pattern": "Floyd's Cycle Detection",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 110,
+    "topic": "Linked List",
+    "title": "Find the N-th node from the end of a linked list",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer (Gap Method)",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 111,
+    "topic": "Linked List",
+    "title": "Remove the N-th node from the end of a linked list",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer (Gap Method)",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 112,
+    "topic": "Linked List",
+    "title": "Merge two sorted linked lists into one sorted list",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 113,
+    "topic": "Linked List",
+    "title": "Remove duplicates from a sorted linked list",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 114,
+    "topic": "Linked List",
+    "title": "Remove duplicates from an unsorted linked list",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 115,
+    "topic": "Linked List",
+    "title": "Check if a linked list is a palindrome",
+    "difficulty": "Medium",
+    "pattern": "Fast & Slow Pointer + Reverse",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 116,
+    "topic": "Linked List",
+    "title": "Rotate a linked list to the right by K places",
+    "difficulty": "Medium",
+    "pattern": "Pointer Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 117,
+    "topic": "Linked List",
+    "title": "Find the intersection point of two linked lists",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 118,
+    "topic": "Linked List",
+    "title": "Swap every two adjacent nodes in a linked list",
+    "difficulty": "Medium",
+    "pattern": "Pointer Manipulation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 119,
+    "topic": "Linked List",
+    "title": "Reverse a linked list in groups of K (kept Medium-level)",
+    "difficulty": "Medium",
+    "pattern": "Pointer Manipulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 120,
+    "topic": "Linked List",
+    "title": "Add two numbers represented as linked lists (digit by digit)",
+    "difficulty": "Medium",
+    "pattern": "Traversal + Carry Simulation",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 121,
+    "topic": "Hashing",
+    "title": "Find a pair of numbers in an array that add up to a target (Two Sum)",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 122,
+    "topic": "Hashing",
+    "title": "Count the number of pairs in an array with a given sum",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 123,
+    "topic": "Hashing",
+    "title": "Find the majority element using a hash map",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 124,
+    "topic": "Hashing",
+    "title": "Remove duplicates from an array using a HashSet",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 125,
+    "topic": "Hashing",
+    "title": "Find a subarray with a given sum using prefix sum + hashing",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 126,
+    "topic": "Hashing",
+    "title": "Find pairs in an array with a given absolute difference K",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 127,
+    "topic": "Hashing",
+    "title": "Find the frequency of every word in a sentence",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 128,
+    "topic": "Hashing",
+    "title": "Find the intersection of two arrays using hashing",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 129,
+    "topic": "Hashing",
+    "title": "Find three numbers that sum to zero, verified with hashing",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 130,
+    "topic": "Hashing",
+    "title": "Check if two strings are anagrams using a frequency hash map",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 131,
+    "topic": "Hashing",
+    "title": "Find the longest consecutive sequence of numbers in an unsorted array",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 132,
+    "topic": "Hashing",
+    "title": "Group words that are anagrams of each other",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 133,
+    "topic": "Hashing",
+    "title": "Find the first element that repeats in an array",
+    "difficulty": "Easy",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 134,
+    "topic": "Hashing",
+    "title": "Count distinct elements in every window of size K",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 135,
+    "topic": "Hashing",
+    "title": "Find two elements whose sum is closest to a target value",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 136,
+    "topic": "Hashing",
+    "title": "Check if an array can be split into pairs with equal sums using a hash map",
+    "difficulty": "Medium",
+    "pattern": "Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 137,
+    "topic": "Binary Search",
+    "title": "Implement binary search iteratively on a sorted array",
+    "difficulty": "Easy",
+    "pattern": "Divide & Conquer",
+    "source": "Foundation / Prerequisite",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 138,
+    "topic": "Binary Search",
+    "title": "Implement binary search recursively on a sorted array",
+    "difficulty": "Easy",
+    "pattern": "Divide & Conquer",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 139,
+    "topic": "Binary Search",
+    "title": "Find the search insert position of a target in a sorted array",
+    "difficulty": "Easy",
+    "pattern": "Binary Search",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 140,
+    "topic": "Binary Search",
+    "title": "Find the first occurrence of a target in a sorted array with duplicates",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 141,
+    "topic": "Binary Search",
+    "title": "Find the last occurrence of a target in a sorted array with duplicates",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 142,
+    "topic": "Binary Search",
+    "title": "Find the first and last position of a target together (one function)",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 143,
+    "topic": "Binary Search",
+    "title": "Count the number of occurrences of a target in a sorted array",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 144,
+    "topic": "Binary Search",
+    "title": "Find the floor of a target value in a sorted array (largest ≤ target)",
+    "difficulty": "Easy",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 145,
+    "topic": "Binary Search",
+    "title": "Find the ceiling of a target value in a sorted array (smallest ≥ target)",
+    "difficulty": "Easy",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 146,
+    "topic": "Binary Search",
+    "title": "Search for a target in a rotated sorted array",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 147,
+    "topic": "Binary Search",
+    "title": "Find the minimum element in a rotated sorted array",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 148,
+    "topic": "Binary Search",
+    "title": "Find how many times a sorted array has been rotated",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 149,
+    "topic": "Binary Search",
+    "title": "Search for a target in a rotated sorted array that may contain duplicates",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 150,
+    "topic": "Binary Search",
+    "title": "Find a peak element in an array (element greater than both neighbours)",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 151,
+    "topic": "Binary Search",
+    "title": "Compute the integer square root of a number using binary search",
+    "difficulty": "Medium",
+    "pattern": "Binary Search",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 152,
+    "topic": "Binary Search",
+    "title": "Search a target in a fully row-major sorted 2D matrix",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on 2D Matrix",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 153,
+    "topic": "Binary Search",
+    "title": "Search a target in a matrix that is sorted row-wise and column-wise",
+    "difficulty": "Medium",
+    "pattern": "Matrix + Staircase Binary Search",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 154,
+    "topic": "Binary Search",
+    "title": "Find the single non-duplicate element in a sorted array (every other element appears twice)",
+    "difficulty": "Medium",
+    "pattern": "Modified Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 155,
+    "topic": "Binary Search",
+    "title": "Understand and apply the Binary Search on Answer template",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Foundation / Prerequisite",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 156,
+    "topic": "Binary Search",
+    "title": "Koko eats bananas — find the minimum eating speed to finish within H hours",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 157,
+    "topic": "Binary Search",
+    "title": "Find the minimum ship capacity to deliver all packages within D days",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Strong Pattern Match",
+    "priority": "HIGH"
+  },
+  {
+    "id": 158,
+    "topic": "Binary Search",
+    "title": "Find the smallest divisor of an array such that the sum stays ≤ a threshold",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Strong Pattern Match",
+    "priority": "HIGH"
+  },
+  {
+    "id": 159,
+    "topic": "Binary Search",
+    "title": "Allocate books to students minimizing the maximum pages assigned to a student",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 160,
+    "topic": "Binary Search",
+    "title": "Place cows in stalls maximizing the minimum distance between any two cows",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 161,
+    "topic": "Binary Search",
+    "title": "Find the minimum number of days to make M bouquets from adjacent flowers",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Answer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 162,
+    "topic": "Sorting",
+    "title": "Implement Bubble Sort and count the number of swaps",
+    "difficulty": "Easy",
+    "pattern": "Comparison + Swapping",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 163,
+    "topic": "Sorting",
+    "title": "Implement Insertion Sort",
+    "difficulty": "Easy",
+    "pattern": "Insertion + Shifting",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 164,
+    "topic": "Sorting",
+    "title": "Implement Selection Sort",
+    "difficulty": "Easy",
+    "pattern": "Selection + Swapping",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 165,
+    "topic": "Sorting",
+    "title": "Implement Merge Sort and explain its divide-and-conquer steps",
+    "difficulty": "Medium",
+    "pattern": "Divide & Conquer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 166,
+    "topic": "Sorting",
+    "title": "Count the number of inversions in an array using merge sort",
+    "difficulty": "Medium",
+    "pattern": "Divide & Conquer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 167,
+    "topic": "Sorting",
+    "title": "Implement Quick Sort and explain the partition step",
+    "difficulty": "Medium",
+    "pattern": "Divide & Conquer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 168,
+    "topic": "Sorting",
+    "title": "Sort an array containing only 0s, 1s and 2s in one pass",
+    "difficulty": "Medium",
+    "pattern": "Partition (3-way)",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 169,
+    "topic": "Sorting",
+    "title": "Sort an array by frequency of elements (most frequent first)",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Hashing",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 170,
+    "topic": "Sorting",
+    "title": "Merge two sorted arrays into a single sorted array without extra space",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 171,
+    "topic": "Sorting",
+    "title": "Find the intersection of two arrays using sorting",
+    "difficulty": "Easy",
+    "pattern": "Sorting + Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 172,
+    "topic": "Sorting",
+    "title": "Find duplicates in an array using sorting",
+    "difficulty": "Easy",
+    "pattern": "Sorting",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 173,
+    "topic": "Sorting",
+    "title": "Sort an array of intervals by start time and merge overlapping intervals",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Greedy",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 174,
+    "topic": "Sorting",
+    "title": "Find the K closest elements to a given value in a sorted array",
+    "difficulty": "Medium",
+    "pattern": "Sorting / Binary Search",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 175,
+    "topic": "Sorting",
+    "title": "Sort a nearly-sorted (K-sorted) array efficiently",
+    "difficulty": "Medium",
+    "pattern": "Sorting",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 176,
+    "topic": "Sorting",
+    "title": "Find the minimum number of swaps required to sort an array",
+    "difficulty": "Medium",
+    "pattern": "Sorting + Graph Cycle",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 177,
+    "topic": "Sorting",
+    "title": "Find the Kth smallest element in an array using sorting",
+    "difficulty": "Easy",
+    "pattern": "Sorting",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 178,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find a pair in a sorted array that sums to a target value",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 179,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Remove duplicates from a sorted array using two pointers",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 180,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Move all zeroes to the end of an array using two pointers",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 181,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Reverse an array or string using two pointers",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 182,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the container that holds the most water",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 183,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find three numbers in an array that sum to zero (3Sum)",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer (after sorting)",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 184,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find three numbers whose sum is closest to a target (3Sum Closest)",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 185,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Partition an array around a pivot value using two pointers",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 186,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Check if a string is a palindrome using two pointers",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 187,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Merge two sorted arrays using two pointers (no extra space)",
+    "difficulty": "Medium",
+    "pattern": "Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 188,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the pair with the minimum absolute difference in a sorted array",
+    "difficulty": "Easy",
+    "pattern": "Two Pointer",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 189,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum sum of any K consecutive elements (fixed window)",
+    "difficulty": "Easy",
+    "pattern": "Fixed Sliding Window",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 190,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the average of every K consecutive elements in an array",
+    "difficulty": "Easy",
+    "pattern": "Fixed Sliding Window",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 191,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Count the number of windows of size K whose sum equals a target",
+    "difficulty": "Medium",
+    "pattern": "Fixed Sliding Window",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 192,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum of every window of size K in an array (Sliding Window Maximum)",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Monotonic Deque",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 193,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the minimum of every window of size K in an array",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Monotonic Deque",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 194,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the first negative number in every window of size K",
+    "difficulty": "Medium",
+    "pattern": "Fixed Sliding Window",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 195,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the sum of the minimum and maximum of every window of size K",
+    "difficulty": "Medium",
+    "pattern": "Fixed Sliding Window + Monotonic Deque",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 196,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the length of the longest subarray with a sum less than or equal to a given value",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window",
+    "source": "Service-Based Common",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 197,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the smallest subarray with a sum greater than or equal to a target",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 198,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum number of vowels in any substring of length K (fixed window)",
+    "difficulty": "Easy",
+    "pattern": "Fixed Sliding Window",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 199,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Count the number of substrings with exactly K distinct characters (atMost(K) − atMost(K-1) trick)",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 200,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the smallest window in a string containing all characters of a pattern",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window + Hashing",
+    "source": "Strong Pattern Match",
+    "priority": "HIGH"
+  },
+  {
+    "id": 201,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum length of a substring after replacing at most K characters (Character Replacement)",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window + Hashing",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 202,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum number of fruits collectable from two types of trees in a row (2 distinct types window)",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 203,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Count the number of subarrays with sum exactly equal to K",
+    "difficulty": "Medium",
+    "pattern": "Sliding Window + Prefix Sum + Hashing",
+    "source": "Derived Variation",
+    "priority": "HIGH"
+  },
+  {
+    "id": 204,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the longest subarray with an equal number of 0s and 1s",
+    "difficulty": "Medium",
+    "pattern": "Prefix Sum + Hashing",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 205,
+    "topic": "Two Pointer & Sliding Window",
+    "title": "Find the maximum consecutive ones in a binary array after flipping at most K zeroes",
+    "difficulty": "Medium",
+    "pattern": "Variable Sliding Window",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 206,
+    "topic": "Stack & Queue",
+    "title": "Implement a stack using an array",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 207,
+    "topic": "Stack & Queue",
+    "title": "Implement a queue using an array",
+    "difficulty": "Easy",
+    "pattern": "Implementation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 208,
+    "topic": "Stack & Queue",
+    "title": "Implement a queue using two stacks",
+    "difficulty": "Medium",
+    "pattern": "Implementation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 209,
+    "topic": "Stack & Queue",
+    "title": "Check for balanced / valid parentheses in an expression",
+    "difficulty": "Easy",
+    "pattern": "Stack Validation",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 210,
+    "topic": "Stack & Queue",
+    "title": "Find the next greater element for every element in an array",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 211,
+    "topic": "Stack & Queue",
+    "title": "Find the next smaller element for every element in an array",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 212,
+    "topic": "Stack & Queue",
+    "title": "Find the previous greater element for every element in an array",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 213,
+    "topic": "Stack & Queue",
+    "title": "Implement the Stock Span problem (days since a higher price)",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Stack",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 214,
+    "topic": "Stack & Queue",
+    "title": "Design a Min Stack that returns the minimum element in O(1)",
+    "difficulty": "Medium",
+    "pattern": "Stack + Auxiliary Tracking",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 215,
+    "topic": "Stack & Queue",
+    "title": "Evaluate a postfix expression using a stack",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 216,
+    "topic": "Stack & Queue",
+    "title": "Reverse a string using a stack",
+    "difficulty": "Easy",
+    "pattern": "Stack",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 217,
+    "topic": "Stack & Queue",
+    "title": "Simplify a Unix-style absolute file path using a stack",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 218,
+    "topic": "Stack & Queue",
+    "title": "Find the maximum of every sliding window of size K using a deque",
+    "difficulty": "Medium",
+    "pattern": "Monotonic Deque",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 219,
+    "topic": "Stack & Queue",
+    "title": "Check if a queue can be sorted using an auxiliary stack",
+    "difficulty": "Medium",
+    "pattern": "Stack + Queue",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 220,
+    "topic": "Stack & Queue",
+    "title": "Find the minimum number of bracket reversals to balance an expression",
+    "difficulty": "Medium",
+    "pattern": "Stack",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 221,
+    "topic": "Recursion",
+    "title": "Print numbers from 1 to N using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion (Linear)",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 222,
+    "topic": "Recursion",
+    "title": "Print numbers from N to 1 using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion (Linear)",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 223,
+    "topic": "Recursion",
+    "title": "Find the factorial of a number using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion (Multiplicative)",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 224,
+    "topic": "Recursion",
+    "title": "Find the Nth Fibonacci number using plain recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion (Tree)",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 225,
+    "topic": "Recursion",
+    "title": "Find the Nth Fibonacci number using memoized recursion (top-down DP)",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Memoization",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 226,
+    "topic": "Recursion",
+    "title": "Find the sum of digits of a number using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 227,
+    "topic": "Recursion",
+    "title": "Find the sum of first N natural numbers using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 228,
+    "topic": "Recursion",
+    "title": "Reverse a string using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 229,
+    "topic": "Recursion",
+    "title": "Reverse an array using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 230,
+    "topic": "Recursion",
+    "title": "Check if a string is a palindrome using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion + Two Pointer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 231,
+    "topic": "Recursion",
+    "title": "Print all subsets (power set) of an array",
+    "difficulty": "Medium",
+    "pattern": "Recursion / Backtracking",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 232,
+    "topic": "Recursion",
+    "title": "Print all subsequences of a string",
+    "difficulty": "Medium",
+    "pattern": "Recursion / Backtracking",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 233,
+    "topic": "Recursion",
+    "title": "Compute x raised to the power n using recursion (fast power)",
+    "difficulty": "Easy",
+    "pattern": "Recursion (Divide & Conquer)",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 234,
+    "topic": "Recursion",
+    "title": "Check if an array is sorted using recursion",
+    "difficulty": "Easy",
+    "pattern": "Recursion",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 235,
+    "topic": "Matrix / 2D Array",
+    "title": "Traverse a 2D matrix row by row and print all elements",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 236,
+    "topic": "Matrix / 2D Array",
+    "title": "Find the sum of each row and each column of a matrix",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 237,
+    "topic": "Matrix / 2D Array",
+    "title": "Find the sum of the principal and secondary diagonals of a matrix",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 238,
+    "topic": "Matrix / 2D Array",
+    "title": "Find the transpose of a matrix",
+    "difficulty": "Easy",
+    "pattern": "Index Transformation",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 239,
+    "topic": "Matrix / 2D Array",
+    "title": "Rotate a square matrix by 90 degrees in place",
+    "difficulty": "Medium",
+    "pattern": "Transpose + Reverse",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 240,
+    "topic": "Matrix / 2D Array",
+    "title": "Print a matrix in spiral order",
+    "difficulty": "Medium",
+    "pattern": "Traversal Simulation",
+    "source": "Service-Based Common",
+    "priority": "HIGH"
+  },
+  {
+    "id": 241,
+    "topic": "Matrix / 2D Array",
+    "title": "Search for a target in a matrix that is fully sorted row-major order",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on 2D Matrix",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 242,
+    "topic": "Matrix / 2D Array",
+    "title": "Search for a target in a matrix sorted row-wise and column-wise",
+    "difficulty": "Medium",
+    "pattern": "Matrix + Staircase Binary Search",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 243,
+    "topic": "Matrix / 2D Array",
+    "title": "Set an entire row and column to zero if an element is zero",
+    "difficulty": "Medium",
+    "pattern": "Marking / In-place",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 244,
+    "topic": "Matrix / 2D Array",
+    "title": "Find the row with the maximum number of 1s in a binary sorted matrix",
+    "difficulty": "Medium",
+    "pattern": "Binary Search on Rows",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 245,
+    "topic": "Matrix / 2D Array",
+    "title": "Check if a given matrix is a Toeplitz matrix (diagonals have equal values)",
+    "difficulty": "Easy",
+    "pattern": "Traversal",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 246,
+    "topic": "Matrix / 2D Array",
+    "title": "Find all common elements in every row of a matrix",
+    "difficulty": "Medium",
+    "pattern": "Hashing / Traversal",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 247,
+    "topic": "Matrix / 2D Array",
+    "title": "Rotate a matrix by 90 degrees counter-clockwise",
+    "difficulty": "Medium",
+    "pattern": "Transpose + Reverse",
+    "source": "Derived Variation",
+    "priority": "Unranked"
+  },
+  {
+    "id": 248,
+    "topic": "Trees / BST",
+    "title": "Perform inorder traversal of a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 249,
+    "topic": "Trees / BST",
+    "title": "Perform preorder traversal of a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 250,
+    "topic": "Trees / BST",
+    "title": "Perform postorder traversal of a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 251,
+    "topic": "Trees / BST",
+    "title": "Perform level order (breadth-first) traversal of a binary tree",
+    "difficulty": "Easy",
+    "pattern": "BFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 252,
+    "topic": "Trees / BST",
+    "title": "Find the maximum depth (height) of a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 253,
+    "topic": "Trees / BST",
+    "title": "Count the total number of nodes in a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 254,
+    "topic": "Trees / BST",
+    "title": "Count the number of leaf nodes in a binary tree",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 255,
+    "topic": "Trees / BST",
+    "title": "Check if two binary trees are identical",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 256,
+    "topic": "Trees / BST",
+    "title": "Check if a binary tree is height-balanced",
+    "difficulty": "Medium",
+    "pattern": "DFS",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 257,
+    "topic": "Trees / BST",
+    "title": "Find the diameter of a binary tree (basic version)",
+    "difficulty": "Medium",
+    "pattern": "DFS",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 258,
+    "topic": "Trees / BST",
+    "title": "Search for a value in a Binary Search Tree",
+    "difficulty": "Easy",
+    "pattern": "BST Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 259,
+    "topic": "Trees / BST",
+    "title": "Find the minimum and maximum value in a Binary Search Tree",
+    "difficulty": "Easy",
+    "pattern": "BST Traversal",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 260,
+    "topic": "Trees / BST",
+    "title": "Insert a new node into a Binary Search Tree",
+    "difficulty": "Easy",
+    "pattern": "BST Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 261,
+    "topic": "Trees / BST",
+    "title": "Find the lowest common ancestor of two nodes in a Binary Search Tree",
+    "difficulty": "Medium",
+    "pattern": "BST Traversal",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 262,
+    "topic": "Trees / BST",
+    "title": "Print the top view of a binary tree",
+    "difficulty": "Medium",
+    "pattern": "BFS + Horizontal Distance Map",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 263,
+    "topic": "Trees / BST",
+    "title": "Convert a sorted array into a height-balanced Binary Search Tree",
+    "difficulty": "Medium",
+    "pattern": "Recursion / Divide & Conquer",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 264,
+    "topic": "Greedy / DP / Graph",
+    "title": "Best time to buy and sell a stock (single transaction)",
+    "difficulty": "Easy",
+    "pattern": "Kadane / Greedy",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 265,
+    "topic": "Greedy / DP / Graph",
+    "title": "Activity Selection — pick the maximum number of non-overlapping activities",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Sorting",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 266,
+    "topic": "Greedy / DP / Graph",
+    "title": "Jump Game — check if you can reach the last index",
+    "difficulty": "Easy",
+    "pattern": "Greedy",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 267,
+    "topic": "Greedy / DP / Graph",
+    "title": "Jump Game II — find the minimum number of jumps to reach the last index",
+    "difficulty": "Medium",
+    "pattern": "Greedy",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 268,
+    "topic": "Greedy / DP / Graph",
+    "title": "Merge overlapping intervals",
+    "difficulty": "Medium",
+    "pattern": "Greedy + Sorting",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 269,
+    "topic": "Greedy / DP / Graph",
+    "title": "Assign cookies to children to maximise satisfied children (Assign Cookies)",
+    "difficulty": "Easy",
+    "pattern": "Greedy + Sorting",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 270,
+    "topic": "Greedy / DP / Graph",
+    "title": "Find the Nth Fibonacci number using memoization and tabulation",
+    "difficulty": "Easy",
+    "pattern": "DP (1D)",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 271,
+    "topic": "Greedy / DP / Graph",
+    "title": "Climbing Stairs — count ways to reach the top taking 1 or 2 steps",
+    "difficulty": "Easy",
+    "pattern": "DP (1D)",
+    "source": "Foundation / Prerequisite",
+    "priority": "HIGH"
+  },
+  {
+    "id": 272,
+    "topic": "Greedy / DP / Graph",
+    "title": "House Robber — maximum sum without robbing two adjacent houses",
+    "difficulty": "Medium",
+    "pattern": "DP (1D)",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 273,
+    "topic": "Greedy / DP / Graph",
+    "title": "Find the Longest Common Subsequence between two strings",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)",
+    "source": "Actual Unthinkable Interview Question",
+    "priority": "TOP PRIORITY"
+  },
+  {
+    "id": 274,
+    "topic": "Greedy / DP / Graph",
+    "title": "Find the Longest Common Substring between two strings",
+    "difficulty": "Medium",
+    "pattern": "DP (Strings)",
+    "source": "Strong Pattern Match",
+    "priority": "Unranked"
+  },
+  {
+    "id": 275,
+    "topic": "Greedy / DP / Graph",
+    "title": "Coin Change — find the minimum number of coins to make a value",
+    "difficulty": "Medium",
+    "pattern": "DP (1D)",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 276,
+    "topic": "Greedy / DP / Graph",
+    "title": "0/1 Knapsack — basic version with small constraints",
+    "difficulty": "Medium",
+    "pattern": "DP (2D)",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 277,
+    "topic": "Greedy / DP / Graph",
+    "title": "Find the length of the Longest Increasing Subsequence (basic O(n²) DP)",
+    "difficulty": "Medium",
+    "pattern": "DP (1D)",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 278,
+    "topic": "Greedy / DP / Graph",
+    "title": "Perform BFS traversal of a graph",
+    "difficulty": "Easy",
+    "pattern": "BFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 279,
+    "topic": "Greedy / DP / Graph",
+    "title": "Perform DFS traversal of a graph",
+    "difficulty": "Easy",
+    "pattern": "DFS",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  },
+  {
+    "id": 280,
+    "topic": "Greedy / DP / Graph",
+    "title": "Count the number of connected components / islands in a grid",
+    "difficulty": "Medium",
+    "pattern": "DFS / BFS",
+    "source": "Foundation / Prerequisite",
+    "priority": "Unranked"
+  },
+  {
+    "id": 281,
+    "topic": "Greedy / DP / Graph",
+    "title": "Detect a cycle in an undirected graph using BFS or DFS",
+    "difficulty": "Medium",
+    "pattern": "BFS / DFS",
+    "source": "Service-Based Common",
+    "priority": "Unranked"
+  }
+]

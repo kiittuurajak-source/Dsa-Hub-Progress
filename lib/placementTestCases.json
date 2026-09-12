@@ -1,0 +1,7750 @@
+[
+  {
+    "id": 1,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": {
+          "sum": 6,
+          "average": 2
+        }
+      },
+      {
+        "input": [],
+        "expected": {
+          "sum": 0,
+          "average": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9
+        ],
+        "expected": 9
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -9
+        ],
+        "expected": -2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": {
+          "sum": 6,
+          "average": 2
+        }
+      },
+      {
+        "input": [],
+        "expected": {
+          "sum": 0,
+          "average": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9,
+          5
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          5,
+          5,
+          5,
+          4
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9,
+          5
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -9
+        ],
+        "expected": -5
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          1,
+          2
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          2,
+          3,
+          4,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "expected": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 5
+        },
+        "expected": [
+          3,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "expected": [
+          4,
+          5,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 3
+        },
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "testCases": [
+      {
+        "input": [
+          0,
+          1,
+          0,
+          3,
+          12
+        ],
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "testCases": [
+      {
+        "input": [
+          1,
+          -2,
+          3,
+          -4,
+          5
+        ],
+        "expected": [
+          1,
+          3,
+          5,
+          -2,
+          -4
+        ]
+      },
+      {
+        "input": [
+          -1,
+          -2
+        ],
+        "expected": [
+          -1,
+          -2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          1,
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "n": 5
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "n": 1
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          4,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "testCases": [
+      {
+        "input": [
+          -2,
+          0,
+          3,
+          -1,
+          0
+        ],
+        "expected": {
+          "positive": 1,
+          "negative": 2,
+          "zero": 2
+        }
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": {
+          "positive": 0,
+          "negative": 0,
+          "zero": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          2
+        ],
+        "expected": {
+          "1": 2,
+          "2": 3,
+          "3": 1
+        }
+      },
+      {
+        "input": [],
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "testCases": [
+      {
+        "input": [
+          3,
+          1,
+          9,
+          2
+        ],
+        "expected": 10
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": 10
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          5,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "testCases": [
+      {
+        "input": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          5,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          5,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "b": [
+            2,
+            4,
+            6
+          ]
+        },
+        "expected": [
+          2,
+          4
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1,
+            2
+          ],
+          "b": [
+            3,
+            4
+          ]
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            2,
+            4
+          ],
+          "b": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "input": {
+          "a": [],
+          "b": [
+            1
+          ]
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "b": [
+            2,
+            4,
+            6
+          ]
+        },
+        "expected": [
+          2,
+          4
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1,
+            2
+          ],
+          "b": [
+            3,
+            4
+          ]
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "testCases": [
+      {
+        "input": [
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        "expected": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "input": [
+          2,
+          1,
+          0
+        ],
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          -3,
+          -4,
+          5,
+          -6
+        ],
+        "expected": [
+          1,
+          -3,
+          2,
+          -4,
+          5,
+          -6
+        ]
+      },
+      {
+        "input": [
+          -1,
+          2
+        ],
+        "expected": [
+          -1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "expected": [
+          2,
+          4,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "input": [
+          2,
+          4
+        ],
+        "expected": [
+          2,
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            7,
+            11,
+            15
+          ],
+          "target": 9
+        },
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            3,
+            2,
+            4
+          ],
+          "target": 6
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            5,
+            7,
+            -1,
+            5
+          ],
+          "target": 6
+        },
+        "expected": [
+          [
+            -1,
+            7
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "target": 10
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "testCases": [
+      {
+        "input": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "testCases": [
+      {
+        "input": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -8
+        ],
+        "expected": -2
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "testCases": [
+      {
+        "input": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "expected": [
+          4,
+          -1,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          -3,
+          -2,
+          -1
+        ],
+        "expected": [
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "testCases": [
+      {
+        "input": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "testCases": [
+      {
+        "input": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            4,
+            20,
+            3,
+            10,
+            5
+          ],
+          "target": 33
+        },
+        "expected": [
+          2,
+          4
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "target": 7
+        },
+        "expected": [
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            10,
+            2,
+            -2,
+            -20,
+            10
+          ],
+          "target": -10
+        },
+        "expected": [
+          0,
+          3
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            -1,
+            2
+          ],
+          "target": 5
+        },
+        "expected": [
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "testCases": [
+      {
+        "input": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "input": [
+          0,
+          0,
+          0
+        ],
+        "expected": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "testCases": [
+      {
+        "input": [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ],
+        "expected": 49
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected": [
+          6,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          3,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "testCases": [
+      {
+        "input": [
+          16,
+          17,
+          4,
+          3,
+          5,
+          2
+        ],
+        "expected": [
+          17,
+          5,
+          2
+        ]
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": [
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "testCases": [
+      {
+        "input": {
+          "arrivals": [
+            900,
+            940,
+            950,
+            1100,
+            1500,
+            1800
+          ],
+          "departures": [
+            910,
+            1200,
+            1120,
+            1130,
+            1900,
+            2000
+          ]
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arrivals": [
+            900
+          ],
+          "departures": [
+            910
+          ]
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            3,
+            5
+          ],
+          "b": [
+            2,
+            4,
+            6
+          ]
+        },
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1
+          ],
+          "b": [
+            2
+          ]
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9,
+          5
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -9
+        ],
+        "expected": -5
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": {
+          "sum": 6,
+          "average": 2
+        }
+      },
+      {
+        "input": [],
+        "expected": {
+          "sum": 0,
+          "average": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9
+        ],
+        "expected": 9
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -9
+        ],
+        "expected": -2
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "testCases": [
+      {
+        "input": [
+          3,
+          7,
+          2,
+          9,
+          5
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -9
+        ],
+        "expected": -5
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          1,
+          2
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          2,
+          3,
+          4,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "expected": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 5
+        },
+        "expected": [
+          3,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": [
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "testCases": [
+      {
+        "input": "madam",
+        "expected": true
+      },
+      {
+        "input": "hello",
+        "expected": false
+      },
+      {
+        "input": "",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "testCases": [
+      {
+        "input": "Hello",
+        "expected": {
+          "vowels": 2,
+          "consonants": 3
+        }
+      },
+      {
+        "input": "aeio",
+        "expected": {
+          "vowels": 4,
+          "consonants": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "testCases": [
+      {
+        "input": "a b c",
+        "expected": "abc"
+      },
+      {
+        "input": " a ",
+        "expected": "a"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "testCases": [
+      {
+        "input": "aabcc",
+        "expected": {
+          "a": 2,
+          "b": 1,
+          "c": 2
+        }
+      },
+      {
+        "input": "",
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "testCases": [
+      {
+        "input": "program",
+        "expected": [
+          "r",
+          "g"
+        ]
+      },
+      {
+        "input": "abc",
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "Hello"
+      },
+      {
+        "input": "java dsa",
+        "expected": "Java Dsa"
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "testCases": [
+      {
+        "input": "12345",
+        "expected": true
+      },
+      {
+        "input": "12a45",
+        "expected": false
+      },
+      {
+        "input": "",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": 5
+      },
+      {
+        "input": "a b",
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "testCases": [
+      {
+        "input": "swiss",
+        "expected": "w"
+      },
+      {
+        "input": "aabb",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "testCases": [
+      {
+        "input": "swiss",
+        "expected": "s"
+      },
+      {
+        "input": "abcd",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "testCases": [
+      {
+        "input": {
+          "s1": "listen",
+          "s2": "silent"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "hello",
+          "s2": "world"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "testCases": [
+      {
+        "input": {
+          "s1": "listen",
+          "s2": "silent"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "hello",
+          "s2": "world"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "testCases": [
+      {
+        "input": {
+          "s1": "abcde",
+          "s2": "cdeab"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "abc",
+          "s2": "acb"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "testCases": [
+      {
+        "input": "I love you",
+        "expected": "you love I"
+      },
+      {
+        "input": "hello",
+        "expected": "hello"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "olleh"
+      },
+      {
+        "input": "a",
+        "expected": "a"
+      },
+      {
+        "input": "",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "testCases": [
+      {
+        "input": "madam",
+        "expected": true
+      },
+      {
+        "input": "hello",
+        "expected": false
+      },
+      {
+        "input": "",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "testCases": [
+      {
+        "input": "Hello",
+        "expected": {
+          "vowels": 2,
+          "consonants": 3
+        }
+      },
+      {
+        "input": "ae",
+        "expected": {
+          "vowels": 2,
+          "consonants": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "testCases": [
+      {
+        "input": "aBcD",
+        "expected": "AbCd"
+      },
+      {
+        "input": "Hello123",
+        "expected": "hELLO123"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "testCases": [
+      {
+        "input": {
+          "strings": [
+            "apple",
+            "app",
+            "apricot",
+            "banana"
+          ],
+          "prefix": "ap"
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "strings": [
+            "cat",
+            "dog"
+          ],
+          "prefix": "z"
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "HellO"
+      },
+      {
+        "input": "a bb",
+        "expected": "A BB"
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "testCases": [
+      {
+        "input": [
+          "I am here",
+          "Hi all"
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "testCases": [
+      {
+        "input": "aabcc",
+        "expected": {
+          "a": 2,
+          "b": 1,
+          "c": 2
+        }
+      },
+      {
+        "input": "",
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "testCases": [
+      {
+        "input": {
+          "s1": "listen",
+          "s2": "silent"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "hello",
+          "s2": "world"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "testCases": [
+      {
+        "input": "cat dog",
+        "expected": "cat dog"
+      },
+      {
+        "input": "zoo dog",
+        "expected": "dog zoo"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "testCases": [
+      {
+        "input": {
+          "s1": "abcde",
+          "s2": "cdeab"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "abc",
+          "s2": "acb"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          3,
+          1
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          3,
+          1
+        ],
+        "expected": {
+          "1": 2,
+          "2": 2,
+          "3": 1
+        }
+      },
+      {
+        "input": [],
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "testCases": [
+      {
+        "input": {
+          "jewels": "aA",
+          "stones": "aAAbbbb"
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "jewels": "z",
+          "stones": "ZZ"
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "testCases": [
+      {
+        "input": "abcxyz",
+        "expected": false
+      },
+      {
+        "input": "hello",
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "testCases": [
+      {
+        "input": "abccbaacz",
+        "expected": "c"
+      },
+      {
+        "input": "abc",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          1,
+          1,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "testCases": [
+      {
+        "input": {
+          "names": [
+            "Mary",
+            "John",
+            "Emma"
+          ],
+          "heights": [
+            180,
+            165,
+            170
+          ]
+        },
+        "expected": [
+          "Mary",
+          "Emma",
+          "John"
+        ]
+      },
+      {
+        "input": {
+          "names": [
+            "A"
+          ],
+          "heights": [
+            160
+          ]
+        },
+        "expected": [
+          "A"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "testCases": [
+      {
+        "input": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          4,
+          1
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          3,
+          5
+        ],
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "testCases": [
+      {
+        "input": {
+          "name": "Noah",
+          "n": 3
+        },
+        "expected": [
+          "Noah",
+          "Noah",
+          "Noah"
+        ]
+      },
+      {
+        "input": {
+          "name": "A",
+          "n": 0
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "input": 1,
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": 1,
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": 15
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "testCases": [
+      {
+        "input": "racecar",
+        "expected": true
+      },
+      {
+        "input": "hello",
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "testCases": [
+      {
+        "input": 7,
+        "expected": 13
+      },
+      {
+        "input": 0,
+        "expected": 0
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "testCases": [
+      {
+        "input": {
+          "a": 48,
+          "b": 18
+        },
+        "expected": 6
+      },
+      {
+        "input": {
+          "a": 7,
+          "b": 3
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "testCases": [
+      {
+        "input": [
+          24,
+          36,
+          60
+        ],
+        "expected": 12
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": 7
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "testCases": [
+      {
+        "input": {
+          "a": 12,
+          "b": 18
+        },
+        "expected": 36
+      },
+      {
+        "input": {
+          "a": 4,
+          "b": 6
+        },
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "testCases": [
+      {
+        "input": 12345,
+        "expected": 5
+      },
+      {
+        "input": 0,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "expected": 2.5
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "testCases": [
+      {
+        "input": 121,
+        "expected": true
+      },
+      {
+        "input": 123,
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "testCases": [
+      {
+        "input": 12,
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          12
+        ]
+      },
+      {
+        "input": 1,
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "testCases": [
+      {
+        "input": 29,
+        "expected": true
+      },
+      {
+        "input": 1,
+        "expected": false
+      },
+      {
+        "input": 2,
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "testCases": [
+      {
+        "input": 10,
+        "expected": 4
+      },
+      {
+        "input": 1,
+        "expected": 0
+      },
+      {
+        "input": 2,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "testCases": [
+      {
+        "input": {
+          "n": 12,
+          "k": 5
+        },
+        "expected": 6
+      },
+      {
+        "input": {
+          "n": 12,
+          "k": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "testCases": [
+      {
+        "input": 17,
+        "expected": 4
+      },
+      {
+        "input": 16,
+        "expected": 4
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "testCases": [
+      {
+        "input": {
+          "x": 2,
+          "n": 10
+        },
+        "expected": 1024
+      },
+      {
+        "input": {
+          "x": 5,
+          "n": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "testCases": [
+      {
+        "input": 16,
+        "expected": true
+      },
+      {
+        "input": 18,
+        "expected": false
+      },
+      {
+        "input": 0,
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "testCases": [
+      {
+        "input": {
+          "nums1": [
+            1,
+            2,
+            3,
+            0,
+            0,
+            0
+          ],
+          "m": 3,
+          "nums2": [
+            2,
+            5,
+            6
+          ],
+          "n": 3
+        },
+        "expected": [
+          1,
+          2,
+          2,
+          3,
+          5,
+          6
+        ]
+      },
+      {
+        "input": {
+          "nums1": [
+            0
+          ],
+          "m": 0,
+          "nums2": [
+            1
+          ],
+          "n": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": [
+          0,
+          0,
+          1
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "testCases": [
+      {
+        "input": [
+          1,
+          0,
+          2,
+          3,
+          0,
+          4,
+          5,
+          0
+        ],
+        "expected": [
+          1,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0,
+          4
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "testCases": [
+      {
+        "input": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          2,
+          1
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "testCases": [
+      {
+        "input": [
+          17,
+          18,
+          5,
+          4,
+          6,
+          1
+        ],
+        "expected": [
+          18,
+          6,
+          6,
+          6,
+          1,
+          -1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "testCases": [
+      {
+        "input": [
+          -4,
+          -1,
+          0,
+          3,
+          10
+        ],
+        "expected": [
+          0,
+          1,
+          9,
+          16,
+          100
+        ]
+      },
+      {
+        "input": [
+          -2
+        ],
+        "expected": [
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "testCases": [
+      {
+        "input": [
+          0,
+          1,
+          0,
+          3,
+          12
+        ],
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "testCases": [
+      {
+        "input": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "expected": [
+          2,
+          4,
+          3,
+          1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "testCases": [
+      {
+        "input": 7,
+        "expected": 13
+      },
+      {
+        "input": 0,
+        "expected": 0
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            7,
+            11,
+            15
+          ],
+          "target": 9
+        },
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            3,
+            2,
+            4
+          ],
+          "target": 6
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          1,
+          3,
+          6,
+          10
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "testCases": [
+      {
+        "input": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          3,
+          1
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "testCases": [
+      {
+        "input": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          -5,
+          -2,
+          -8
+        ],
+        "expected": -2
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            5,
+            3,
+            4,
+            2
+          ],
+          "k": 2
+        },
+        "expected": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 5
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "testCases": [
+      {
+        "input": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "input": [
+          0,
+          0,
+          0
+        ],
+        "expected": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "testCases": [
+      {
+        "input": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "testCases": [
+      {
+        "input": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "testCases": [
+      {
+        "input": {
+          "s1": "listen",
+          "s2": "silent"
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "s1": "hello",
+          "s2": "world"
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "testCases": [
+      {
+        "input": [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ],
+        "expected": 49
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "testCases": [
+      {
+        "input": [
+          3,
+          0,
+          1,
+          1,
+          9,
+          7,
+          8,
+          2,
+          5,
+          3
+        ],
+        "expected": 8
+      },
+      {
+        "input": [
+          3,
+          2,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "testCases": [
+      {
+        "input": [
+          4,
+          3,
+          2,
+          7,
+          8,
+          2,
+          3,
+          1
+        ],
+        "expected": [
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          2,
+          4
+        ],
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "testCases": [
+      {
+        "input": [
+          4,
+          3,
+          2,
+          7,
+          8,
+          2,
+          3,
+          1
+        ],
+        "expected": [
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          4,
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "testCases": [
+      {
+        "input": [
+          3,
+          4,
+          -1,
+          1
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          7,
+          8,
+          9,
+          11,
+          12
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            9,
+            7,
+            5,
+            3,
+            1
+          ],
+          "target": 5
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            5
+          ],
+          "target": 5
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "target": 5
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            5
+          ],
+          "target": 4
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "testCases": [
+      {
+        "input": {
+          "n": 10,
+          "pick": 6,
+          "guess": 6
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "n": 10,
+          "pick": 6,
+          "guess": 4
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            5,
+            6
+          ],
+          "target": 5
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            5,
+            6
+          ],
+          "target": 2
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            3,
+            5,
+            9
+          ],
+          "target": 7
+        },
+        "expected": 9
+      },
+      {
+        "input": {
+          "arr": [
+            2,
+            3
+          ],
+          "target": 1
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            3,
+            5,
+            9
+          ],
+          "target": 7
+        },
+        "expected": 5
+      },
+      {
+        "input": {
+          "arr": [
+            2,
+            3
+          ],
+          "target": 9
+        },
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "testCases": [
+      {
+        "input": {
+          "letters": [
+            "c",
+            "f",
+            "j"
+          ],
+          "target": "a"
+        },
+        "expected": "c"
+      },
+      {
+        "input": {
+          "letters": [
+            "c",
+            "f",
+            "j"
+          ],
+          "target": "j"
+        },
+        "expected": "c"
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "testCases": [
+      {
+        "input": 16,
+        "expected": true
+      },
+      {
+        "input": 14,
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "testCases": [
+      {
+        "input": {
+          "n": 10,
+          "pick": 6,
+          "guess": 6
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "n": 10,
+          "pick": 6,
+          "guess": 4
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            5,
+            7,
+            7,
+            8,
+            8,
+            10
+          ],
+          "target": 8
+        },
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "target": 1
+        },
+        "expected": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            2,
+            2,
+            3
+          ],
+          "target": 2
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            1
+          ],
+          "target": 2
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          3,
+          1
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          1,
+          2,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "testCases": [
+      {
+        "input": 8,
+        "expected": 2
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "testCases": [
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "target": 9
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "target": 4
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "testCases": [
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              4,
+              7
+            ],
+            [
+              2,
+              5,
+              8
+            ],
+            [
+              3,
+              6,
+              9
+            ]
+          ],
+          "target": 5
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "target": 6
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          4
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          1,
+          2
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "limit": 9
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arr": [
+            5,
+            5
+          ],
+          "limit": 5
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "testCases": [
+      {
+        "input": {
+          "piles": [
+            3,
+            6,
+            7,
+            11
+          ],
+          "h": 8
+        },
+        "expected": 4
+      },
+      {
+        "input": {
+          "piles": [
+            30,
+            11,
+            23,
+            4,
+            20
+          ],
+          "h": 5
+        },
+        "expected": 30
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "testCases": [
+      {
+        "input": {
+          "weights": [
+            1,
+            2,
+            3,
+            1,
+            1
+          ],
+          "days": 4
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "weights": [
+            3,
+            2,
+            2,
+            4,
+            1,
+            4
+          ],
+          "days": 3
+        },
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            5,
+            9
+          ],
+          "threshold": 6
+        },
+        "expected": 5
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "threshold": 6
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "testCases": [
+      {
+        "input": {
+          "pages": [
+            12,
+            34,
+            67,
+            90
+          ],
+          "students": 2
+        },
+        "expected": 113
+      },
+      {
+        "input": {
+          "pages": [
+            10
+          ],
+          "students": 1
+        },
+        "expected": 10
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "testCases": [
+      {
+        "input": {
+          "stalls": [
+            1,
+            2,
+            4,
+            8,
+            9
+          ],
+          "cows": 3
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "stalls": [
+            1,
+            2
+          ],
+          "cows": 2
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "testCases": [
+      {
+        "input": {
+          "bloomDay": [
+            1,
+            10,
+            3,
+            10,
+            2
+          ],
+          "m": 3,
+          "k": 1
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "bloomDay": [
+            1,
+            10,
+            3,
+            10,
+            2
+          ],
+          "m": 3,
+          "k": 2
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "testCases": [
+      {
+        "input": [
+          5,
+          1,
+          4,
+          2,
+          8
+        ],
+        "expected": {
+          "array": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ],
+          "swaps": 4
+        }
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": {
+          "array": [
+            1,
+            2,
+            3
+          ],
+          "swaps": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "testCases": [
+      {
+        "input": [
+          5,
+          2,
+          4,
+          6,
+          1,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "testCases": [
+      {
+        "input": [
+          5,
+          2,
+          4,
+          6,
+          1,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "testCases": [
+      {
+        "input": [
+          5,
+          2,
+          4,
+          6,
+          1,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "testCases": [
+      {
+        "input": [
+          5,
+          2,
+          4,
+          6,
+          1,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "testCases": [
+      {
+        "input": [
+          10,
+          7,
+          8,
+          9,
+          1,
+          5
+        ],
+        "expected": [
+          1,
+          5,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "testCases": [
+      {
+        "input": [
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        "expected": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "input": [
+          2,
+          1,
+          0
+        ],
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "testCases": [
+      {
+        "input": [
+          4,
+          4,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "expected": [
+          2,
+          2,
+          2,
+          4,
+          4,
+          1,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          2
+        ],
+        "expected": [
+          2,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            3,
+            5
+          ],
+          "b": [
+            2,
+            4,
+            6
+          ]
+        },
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1
+          ],
+          "b": [
+            2
+          ]
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "b": [
+            2,
+            2,
+            4
+          ]
+        },
+        "expected": [
+          2
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1
+          ],
+          "b": [
+            2
+          ]
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "b": [
+            2,
+            2,
+            4
+          ]
+        },
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1
+          ],
+          "b": [
+            2
+          ]
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            5
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 4,
+          "x": 3
+        },
+        "expected": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1,
+          "x": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            6,
+            5,
+            3,
+            2,
+            8,
+            10,
+            9
+          ],
+          "k": 3
+        },
+        "expected": [
+          2,
+          3,
+          5,
+          6,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 176,
+    "testCases": [
+      {
+        "input": [
+          1,
+          5,
+          4,
+          3,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            3,
+            2,
+            1,
+            5,
+            6,
+            4
+          ],
+          "k": 2
+        },
+        "expected": 5
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "target": 6
+        },
+        "expected": [
+          1,
+          5
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2
+          ],
+          "target": 10
+        },
+        "expected": [
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "testCases": [
+      {
+        "input": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          1,
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "testCases": [
+      {
+        "input": [
+          0,
+          1,
+          0,
+          3,
+          12
+        ],
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "olleh"
+      },
+      {
+        "input": "a",
+        "expected": "a"
+      },
+      {
+        "input": "",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "testCases": [
+      {
+        "input": [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ],
+        "expected": 49
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "testCases": [
+      {
+        "input": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "input": [
+          0,
+          0,
+          0
+        ],
+        "expected": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            -1,
+            2,
+            1,
+            -4
+          ],
+          "target": 1
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            0,
+            0,
+            0
+          ],
+          "target": 1
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            4,
+            3,
+            2,
+            5,
+            2
+          ],
+          "pivot": 3
+        },
+        "expected": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2
+          ],
+          "pivot": 0
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "testCases": [
+      {
+        "input": "madam",
+        "expected": true
+      },
+      {
+        "input": "hello",
+        "expected": false
+      },
+      {
+        "input": "",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 187,
+    "testCases": [
+      {
+        "input": {
+          "a": [
+            1,
+            3,
+            5
+          ],
+          "b": [
+            2,
+            4,
+            6
+          ]
+        },
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": {
+          "a": [
+            1
+          ],
+          "b": [
+            2
+          ]
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": 188,
+    "testCases": [
+      {
+        "input": [
+          1,
+          3,
+          4,
+          8,
+          13,
+          17,
+          19
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          1,
+          10
+        ],
+        "expected": 9
+      }
+    ]
+  },
+  {
+    "id": 189,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            1,
+            5,
+            1,
+            3,
+            2
+          ],
+          "k": 3
+        },
+        "expected": 9
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 2
+        },
+        "expected": [
+          1.5,
+          2.5,
+          3.5,
+          4.5
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            5
+          ],
+          "k": 1
+        },
+        "expected": [
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          "k": 2,
+          "target": 3
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            1
+          ],
+          "k": 2,
+          "target": 3
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 192,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            -1,
+            -3,
+            5,
+            3,
+            6,
+            7
+          ],
+          "k": 3
+        },
+        "expected": [
+          3,
+          3,
+          5,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            -1,
+            -3,
+            5,
+            3,
+            6,
+            7
+          ],
+          "k": 3
+        },
+        "expected": [
+          -1,
+          -3,
+          -3,
+          -3,
+          3,
+          3
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 194,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            12,
+            -1,
+            -7,
+            8,
+            -15,
+            30,
+            16,
+            28
+          ],
+          "k": 3
+        },
+        "expected": [
+          -1,
+          -1,
+          -7,
+          -15,
+          -15,
+          -1
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2
+          ],
+          "k": 2
+        },
+        "expected": [
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            5,
+            -1,
+            7,
+            -3,
+            -1,
+            -2
+          ],
+          "k": 4
+        },
+        "expected": 4
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 2
+        },
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "id": 196,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "limit": 8
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arr": [
+            10
+          ],
+          "limit": 5
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            2,
+            3,
+            1,
+            2,
+            4,
+            3
+          ],
+          "target": 7
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            1
+          ],
+          "target": 3
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "testCases": [
+      {
+        "input": {
+          "s": "abciiidef",
+          "k": 3
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "s": "aeiou",
+          "k": 2
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "testCases": [
+      {
+        "input": {
+          "s": "abcba",
+          "k": 2
+        },
+        "expected": 5
+      },
+      {
+        "input": {
+          "s": "aa",
+          "k": 1
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "testCases": [
+      {
+        "input": {
+          "s": "ADOBECODE",
+          "pattern": "ABC"
+        },
+        "expected": "BEC"
+      },
+      {
+        "input": {
+          "s": "a",
+          "pattern": "a"
+        },
+        "expected": "a"
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "testCases": [
+      {
+        "input": {
+          "s": "ABAB",
+          "k": 2
+        },
+        "expected": 4
+      },
+      {
+        "input": {
+          "s": "AABABBA",
+          "k": 1
+        },
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": 202,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          1
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          2,
+          3,
+          2,
+          2
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "arr": [
+            1,
+            2,
+            3
+          ],
+          "k": 3
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "testCases": [
+      {
+        "input": [
+          0,
+          1,
+          0
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "expected": 6
+      },
+      {
+        "input": {
+          "arr": [
+            0,
+            0
+          ],
+          "k": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "testCases": [
+      {
+        "input": {
+          "ops": [
+            "push 1",
+            "push 2",
+            "pop",
+            "peek"
+          ]
+        },
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": {
+          "ops": [
+            "pop"
+          ]
+        },
+        "expected": [
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "id": 207,
+    "testCases": [
+      {
+        "input": {
+          "ops": [
+            "enqueue 1",
+            "enqueue 2",
+            "dequeue",
+            "peek"
+          ]
+        },
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": {
+          "ops": [
+            "dequeue"
+          ]
+        },
+        "expected": [
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "id": 208,
+    "testCases": [
+      {
+        "input": {
+          "ops": [
+            "push 1",
+            "push 2",
+            "pop",
+            "peek"
+          ]
+        },
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "input": {
+          "ops": [
+            "pop"
+          ]
+        },
+        "expected": [
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "id": 209,
+    "testCases": [
+      {
+        "input": "({[]})",
+        "expected": true
+      },
+      {
+        "input": "(]",
+        "expected": false
+      },
+      {
+        "input": "",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "testCases": [
+      {
+        "input": [
+          4,
+          5,
+          2,
+          10,
+          8
+        ],
+        "expected": [
+          5,
+          10,
+          10,
+          -1,
+          -1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 211,
+    "testCases": [
+      {
+        "input": [
+          4,
+          5,
+          2,
+          10,
+          8
+        ],
+        "expected": [
+          2,
+          2,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 212,
+    "testCases": [
+      {
+        "input": [
+          4,
+          5,
+          2,
+          10,
+          8
+        ],
+        "expected": [
+          -1,
+          -1,
+          5,
+          -1,
+          10
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 213,
+    "testCases": [
+      {
+        "input": [
+          100,
+          80,
+          60,
+          70,
+          60,
+          75,
+          85
+        ],
+        "expected": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          4,
+          6
+        ]
+      },
+      {
+        "input": [
+          10,
+          20,
+          30
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "testCases": [
+      {
+        "input": {
+          "ops": [
+            "push 3",
+            "push 1",
+            "push 2",
+            "getMin",
+            "pop",
+            "getMin"
+          ]
+        },
+        "expected": [
+          1,
+          1
+        ]
+      },
+      {
+        "input": {
+          "ops": [
+            "push 5",
+            "getMin"
+          ]
+        },
+        "expected": [
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": 215,
+    "testCases": [
+      {
+        "input": "2 1 + 3 *",
+        "expected": 9
+      },
+      {
+        "input": "4 13 5 / +",
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": 216,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "olleh"
+      },
+      {
+        "input": "a",
+        "expected": "a"
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "testCases": [
+      {
+        "input": "/a/./c/",
+        "expected": "/a/c"
+      },
+      {
+        "input": "/home//",
+        "expected": "/home"
+      }
+    ]
+  },
+  {
+    "id": 218,
+    "testCases": [
+      {
+        "input": {
+          "arr": [
+            1,
+            3,
+            -1,
+            -3,
+            5,
+            3,
+            6,
+            7
+          ],
+          "k": 3
+        },
+        "expected": [
+          3,
+          3,
+          5,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "input": {
+          "arr": [
+            1
+          ],
+          "k": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 219,
+    "testCases": [
+      {
+        "input": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          1,
+          2
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 220,
+    "testCases": [
+      {
+        "input": "}}{{",
+        "expected": 2
+      },
+      {
+        "input": "{{{{",
+        "expected": 2
+      },
+      {
+        "input": "{{",
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 221,
+    "testCases": [
+      {
+        "input": {
+          "name": "Noah",
+          "n": 3
+        },
+        "expected": [
+          "Noah",
+          "Noah",
+          "Noah"
+        ]
+      },
+      {
+        "input": {
+          "name": "A",
+          "n": 0
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 222,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": 0
+      },
+      {
+        "input": [],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 223,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 224,
+    "testCases": [
+      {
+        "input": 7,
+        "expected": 13
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 225,
+    "testCases": [
+      {
+        "input": 7,
+        "expected": 13
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "testCases": [
+      {
+        "input": 123,
+        "expected": 6
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 227,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": 15
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "testCases": [
+      {
+        "input": "hello",
+        "expected": "olleh"
+      },
+      {
+        "input": "",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": 229,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 230,
+    "testCases": [
+      {
+        "input": "racecar",
+        "expected": true
+      },
+      {
+        "input": "hello",
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 231,
+    "testCases": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "input": [],
+        "expected": [
+          []
+        ]
+      }
+    ]
+  },
+  {
+    "id": 232,
+    "testCases": [
+      {
+        "input": "abc",
+        "expected": [
+          "",
+          "a",
+          "b",
+          "c",
+          "ab",
+          "ac",
+          "bc",
+          "abc"
+        ]
+      },
+      {
+        "input": "a",
+        "expected": [
+          "",
+          "a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 233,
+    "testCases": [
+      {
+        "input": {
+          "x": 2,
+          "n": 10
+        },
+        "expected": 1024
+      },
+      {
+        "input": {
+          "x": 5,
+          "n": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "testCases": [
+      {
+        "input": {
+          "arrivals": [
+            900,
+            940,
+            950,
+            1100,
+            1500,
+            1800
+          ],
+          "departures": [
+            910,
+            1200,
+            1120,
+            1130,
+            1900,
+            2000
+          ]
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "arrivals": [
+            900
+          ],
+          "departures": [
+            910
+          ]
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 235,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "input": [
+          [
+            5
+          ]
+        ],
+        "expected": [
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": 236,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": {
+          "rowSums": [
+            3,
+            7
+          ],
+          "colSums": [
+            4,
+            6
+          ]
+        }
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": {
+          "rowSums": [
+            1
+          ],
+          "colSums": [
+            1
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 237,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "expected": {
+          "principal": 15,
+          "secondary": 15
+        }
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": {
+          "principal": 1,
+          "secondary": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 238,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 239,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 240,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          6,
+          9,
+          8,
+          7,
+          4,
+          5
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": 241,
+    "testCases": [
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "target": 9
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "target": 4
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 242,
+    "testCases": [
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              4,
+              7
+            ],
+            [
+              2,
+              5,
+              8
+            ],
+            [
+              3,
+              6,
+              9
+            ]
+          ],
+          "target": 5
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "matrix": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "target": 6
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 243,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": [
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 244,
+    "testCases": [
+      {
+        "input": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 245,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            1,
+            5
+          ],
+          [
+            6,
+            4,
+            1
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 246,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            1,
+            3
+          ],
+          [
+            1,
+            5,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 247,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 248,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": [
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "input": null,
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 249,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": null,
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 250,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": [
+          2,
+          3,
+          1
+        ]
+      },
+      {
+        "input": null,
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 251,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "input": null,
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 252,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": {
+              "val": 4,
+              "left": null,
+              "right": null
+            }
+          }
+        },
+        "expected": 3
+      },
+      {
+        "input": null,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 253,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": 3
+      },
+      {
+        "input": null,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 254,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": 2
+      },
+      {
+        "input": null,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 255,
+    "testCases": [
+      {
+        "input": {
+          "a": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          },
+          "b": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          }
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "a": null,
+          "b": null
+        },
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 256,
+    "testCases": [
+      {
+        "input": {
+          "a": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          },
+          "b": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          }
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "a": null,
+          "b": null
+        },
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": 257,
+    "testCases": [
+      {
+        "input": {
+          "a": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          },
+          "b": {
+            "val": 1,
+            "left": {
+              "val": 2,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 3,
+              "left": null,
+              "right": null
+            }
+          }
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "a": null,
+          "b": null
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 258,
+    "testCases": [
+      {
+        "input": {
+          "root": {
+            "val": 5,
+            "left": {
+              "val": 3,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 7,
+              "left": null,
+              "right": null
+            }
+          },
+          "target": 7
+        },
+        "expected": true
+      },
+      {
+        "input": {
+          "root": {
+            "val": 5,
+            "left": {
+              "val": 3,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 7,
+              "left": null,
+              "right": null
+            }
+          },
+          "target": 4
+        },
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 259,
+    "testCases": [
+      {
+        "input": {
+          "val": 5,
+          "left": {
+            "val": 3,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 7,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": {
+          "min": 3,
+          "max": 7
+        }
+      },
+      {
+        "input": {
+          "val": 1,
+          "left": null,
+          "right": null
+        },
+        "expected": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 260,
+    "testCases": [
+      {
+        "input": {
+          "root": {
+            "val": 5,
+            "left": {
+              "val": 3,
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "val": 7,
+              "left": null,
+              "right": null
+            }
+          },
+          "value": 6
+        },
+        "expected": {
+          "val": 5,
+          "left": {
+            "val": 3,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 7,
+            "left": {
+              "val": 6,
+              "left": null,
+              "right": null
+            },
+            "right": null
+          }
+        }
+      },
+      {
+        "input": {
+          "root": null,
+          "value": 1
+        },
+        "expected": {
+          "val": 1,
+          "left": null,
+          "right": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 261,
+    "testCases": [
+      {
+        "input": {
+          "root": {
+            "val": 6,
+            "left": {
+              "val": 2,
+              "left": {
+                "val": 1,
+                "left": null,
+                "right": null
+              },
+              "right": {
+                "val": 4,
+                "left": null,
+                "right": null
+              }
+            },
+            "right": {
+              "val": 8,
+              "left": null,
+              "right": null
+            }
+          },
+          "p": 2,
+          "q": 4
+        },
+        "expected": 2
+      },
+      {
+        "input": {
+          "root": {
+            "val": 6,
+            "left": {
+              "val": 2,
+              "left": {
+                "val": 1,
+                "left": null,
+                "right": null
+              },
+              "right": {
+                "val": 4,
+                "left": null,
+                "right": null
+              }
+            },
+            "right": {
+              "val": 8,
+              "left": null,
+              "right": null
+            }
+          },
+          "p": 1,
+          "q": 8
+        },
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": 262,
+    "testCases": [
+      {
+        "input": {
+          "val": 1,
+          "left": {
+            "val": 2,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "val": 3,
+            "left": null,
+            "right": null
+          }
+        },
+        "expected": [
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "input": null,
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": 263,
+    "testCases": [
+      {
+        "input": [
+          -10,
+          -3,
+          0,
+          5,
+          9
+        ],
+        "expected": {
+          "val": 0,
+          "left": {
+            "val": -3,
+            "left": {
+              "val": -10,
+              "left": null,
+              "right": null
+            },
+            "right": null
+          },
+          "right": {
+            "val": 9,
+            "left": {
+              "val": 5,
+              "left": null,
+              "right": null
+            },
+            "right": null
+          }
+        }
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": {
+          "val": 1,
+          "left": null,
+          "right": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 264,
+    "testCases": [
+      {
+        "input": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 265,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 266,
+    "testCases": [
+      {
+        "input": [
+          2,
+          3,
+          1,
+          1,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          2,
+          1,
+          0,
+          4
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": 267,
+    "testCases": [
+      {
+        "input": [
+          2,
+          3,
+          1,
+          1,
+          4
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          2,
+          3,
+          0,
+          1,
+          4
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 268,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "input": [
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            5
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": 269,
+    "testCases": [
+      {
+        "input": {
+          "g": [
+            1,
+            2,
+            3
+          ],
+          "s": [
+            1,
+            1
+          ]
+        },
+        "expected": 1
+      },
+      {
+        "input": {
+          "g": [
+            1,
+            2
+          ],
+          "s": [
+            1,
+            2
+          ]
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": 270,
+    "testCases": [
+      {
+        "input": 7,
+        "expected": 13
+      },
+      {
+        "input": 0,
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 271,
+    "testCases": [
+      {
+        "input": 5,
+        "expected": 8
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 0,
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 272,
+    "testCases": [
+      {
+        "input": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "expected": 12
+      },
+      {
+        "input": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": 273,
+    "testCases": [
+      {
+        "input": {
+          "a": "abcde",
+          "b": "ace"
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "a": "abc",
+          "b": "def"
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 274,
+    "testCases": [
+      {
+        "input": {
+          "a": "abcdgh",
+          "b": "acdghr"
+        },
+        "expected": 4
+      },
+      {
+        "input": {
+          "a": "abc",
+          "b": "xyz"
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 275,
+    "testCases": [
+      {
+        "input": {
+          "coins": [
+            1,
+            2,
+            5
+          ],
+          "amount": 11
+        },
+        "expected": 3
+      },
+      {
+        "input": {
+          "coins": [
+            2
+          ],
+          "amount": 3
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": 276,
+    "testCases": [
+      {
+        "input": {
+          "weights": [
+            1,
+            3,
+            4
+          ],
+          "values": [
+            15,
+            20,
+            30
+          ],
+          "capacity": 4
+        },
+        "expected": 35
+      },
+      {
+        "input": {
+          "weights": [
+            2
+          ],
+          "values": [
+            10
+          ],
+          "capacity": 1
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 277,
+    "testCases": [
+      {
+        "input": [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          3,
+          3,
+          3
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": 278,
+    "testCases": [
+      {
+        "input": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "start": 0
+        },
+        "expected": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": {
+          "n": 1,
+          "edges": [],
+          "start": 0
+        },
+        "expected": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "testCases": [
+      {
+        "input": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "start": 0
+        },
+        "expected": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": {
+          "n": 1,
+          "edges": [],
+          "start": 0
+        },
+        "expected": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": 280,
+    "testCases": [
+      {
+        "input": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            0
+          ]
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": 281,
+    "testCases": [
+      {
+        "input": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "expected": false
+      },
+      {
+        "input": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        "expected": true
+      }
+    ]
+  }
+]
