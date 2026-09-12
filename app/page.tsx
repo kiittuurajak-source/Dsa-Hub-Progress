@@ -42,12 +42,15 @@ function loadOutbox(uid:string):OutboxItem[]{ try{ return JSON.parse(localStorag
 function saveOutbox(uid:string,items:OutboxItem[]){ try{ localStorage.setItem(outboxKey(uid),JSON.stringify(items)); }catch{} }
 function queueWrite(uid:string,table:string,row:any){
   const items=loadOutbox(uid);
-  // de-dupe on the same table+row-identity key so repeated offline toggles of
-  // the same question collapse into one pending write, not a growing queue
+  // Merge (not replace) queued writes for the same table+row so that, e.g., an
+  // offline hint/solved toggle and a separately-queued code save for the same
+  // question both survive as one consolidated upsert instead of one clobbering
+  // the other.
   const idKey=`${table}:${row.question_id ?? row.date}`;
-  const filtered=items.filter(i=>`${i.table}:${i.row.question_id ?? i.row.date}`!==idKey);
-  filtered.push({key:idKey,table,row,ts:Date.now()});
-  saveOutbox(uid,filtered);
+  const existingIdx=items.findIndex(i=>`${i.table}:${i.row.question_id ?? i.row.date}`===idKey);
+  if(existingIdx>=0){ items[existingIdx]={key:idKey,table,row:{...items[existingIdx].row,...row},ts:Date.now()}; }
+  else { items.push({key:idKey,table,row,ts:Date.now()}); }
+  saveOutbox(uid,items);
 }
 function isOfflineError(error:any):boolean{
   if(typeof navigator!=='undefined' && !navigator.onLine) return true;
@@ -198,8 +201,9 @@ export default function Home(){
         // Conflict guard: if another device already wrote a NEWER version of
         // this same row while we were offline, drop our stale queued write
         // instead of clobbering it — the upcoming load(uid) will pick up
-        // whatever the server currently has.
-        const tsCol = item.table.endsWith('_notes') ? 'updated_at' : (item.table.endsWith('_progress') ? 'last_viewed_at' : null);
+        // whatever the server currently has. Code writes are timestamped via
+        // code_updated_at independently of the row's other progress fields.
+        const tsCol = item.row.code!==undefined ? 'code_updated_at' : (item.table.endsWith('_notes') ? 'updated_at' : (item.table.endsWith('_progress') ? 'last_viewed_at' : null));
         if(tsCol && item.row.question_id!==undefined){
           const {data:serverRow}=await supa.from(item.table).select(tsCol).eq('user_id',uid).eq('question_id',item.row.question_id).maybeSingle();
           const serverTs=(serverRow as any)?.[tsCol];
@@ -230,8 +234,8 @@ export default function Home(){
         supa!.from('custom_question_progress').select('*').eq('user_id',uid)
       ]);
       if(profile.data?.display_name) setDisplayName(profile.data.display_name);
-      const nextProgress=Object.fromEntries((dprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at}] ));
-      const nextPlacementProgress=Object.fromEntries((pprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at}] ));
+      const nextProgress=Object.fromEntries((dprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
+      const nextPlacementProgress=Object.fromEntries((pprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
       const nextActivity=Object.fromEntries((dact.data||[]).map((r:any)=>[r.date,r.dsa_solved_count]));
       const nextPlacementActivity=Object.fromEntries((pact.data||[]).map((r:any)=>[r.date,r.placement_solved_count]));
       const nextNotes=Object.fromEntries([...(dnotes.data||[]).map((r:any)=>[`dsa-${r.question_id}`,r.note_text]),...(pnotes.data||[]).map((r:any)=>[`placement-${r.question_id}`,r.note_text])]);
@@ -274,19 +278,32 @@ export default function Home(){
     if(key==='solved') await syncActivity(type, old.solved, next, old.solved_at);
     setNotice(next?'Updated':'Updated'); setTimeout(()=>setNotice(''),1400);
   }
-  async function markSolved(type:'dsa'|'placement'|'custom',id:string){
+  async function markSolved(type:'dsa'|'placement'|'custom',id:string,code?:string){
     if(!session) return;
     const source=type==='dsa'?progress:type==='placement'?placementProgress:customProgress;
     const old=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
-    if(old.solved) return;
     const now=new Date().toISOString();
-    const row={user_id:session.user.id,question_id:type==='custom'?id:Number(id),solved:true,hint_used:false,solution_seen:false,solved_at:now,last_viewed_at:now};
+    if(old.solved && code===undefined) return;
+    const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),solved:true,hint_used:false,solution_seen:false,solved_at:old.solved_at||now,last_viewed_at:now};
+    if(code!==undefined && code.trim()!==''){ row.code=code; row.code_updated_at=now; }
     const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
-    const nextRow:any={question_id:id,solved:true,hint_used:false,solution_seen:false,solved_at:now,last_viewed_at:now};
+    const nextRow:any={...old,question_id:id,solved:true,hint_used:false,solution_seen:false,solved_at:row.solved_at,last_viewed_at:now,...(row.code!==undefined?{code:row.code,code_updated_at:row.code_updated_at}:{})};
     if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
     const {error}=await supa!.from(table).upsert(row);
     if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); else setNotice(error.message); }
-    await syncActivity(type, old.solved, true, old.solved_at);
+    if(!old.solved) await syncActivity(type, old.solved, true, old.solved_at);
+  }
+  async function saveCode(type:'dsa'|'placement',id:string,code:string){
+    if(!session || !code || !code.trim()) return;
+    const table=type==='dsa'?'dsa_progress':'placement_progress';
+    const now=new Date().toISOString();
+    const source=type==='dsa'?progress:placementProgress;
+    const old=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
+    const row:any={user_id:session.user.id,question_id:Number(id),code,code_updated_at:now};
+    const nextRow:any={...old,question_id:id,code,code_updated_at:now};
+    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else setPlacementProgress(v=>({...v,[id]:nextRow}));
+    const {error}=await supa!.from(table).upsert(row);
+    if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); }
   }
   async function syncActivity(type:'dsa'|'placement'|'custom',oldSolved:boolean,newSolved:boolean,oldSolvedAt:string|null){
     if(type==='custom' || oldSolved===newSolved) return;
@@ -364,7 +381,7 @@ export default function Home(){
     {selectedQuestion && notesOpen && <NotesDrawer selected={selected!} q={selectedQuestion as any} initial={notes[`${selected!.type}-${selected!.id}`]||''} onClose={()=>{setNotesOpen(false);setSelected(null)}} onSave={saveNote}/>}
     {editOpen && selected?.type==='custom' && selectedQuestion && <EditQuestion q={selectedQuestion as CustomQuestion} onClose={()=>setEditOpen(false)} onSave={async(values:any)=>{const {data,error}=await supa!.from('custom_questions').update(values).eq('id',selected.id).eq('user_id',session.user.id).select().single();if(error){setNotice(error.message);return;}setCustom(v=>v.map(x=>x.id===selected.id?data:x));setEditOpen(false);setNotice('Question updated');setTimeout(()=>setNotice(''),1400)}} onDelete={async()=>{const {error}=await supa!.from('custom_questions').delete().eq('id',selected.id).eq('user_id',session.user.id);if(error){setNotice(error.message);return;}setCustom(v=>v.filter(x=>x.id!==selected.id));setEditOpen(false);setSelected(null);setNotice('Question deleted');setTimeout(()=>setNotice(''),1400)}}/>}
     {addOpen && <AddQuestion onClose={()=>setAddOpen(false)} onSave={async(q:any)=>{const {data,error}=await supa!.from('custom_questions').insert({...q,user_id:session.user.id}).select().single();if(error){setNotice(error.message);return;}setCustom(v=>[data,...v]);setAddOpen(false);setNotice('Question added');setTimeout(()=>setNotice(''),1500)}}/>}
-    {editorSel && (editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) && <CodeEditorDrawer q={(editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) as any} qType={editorSel.type} testCases={(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSubmitSolved={async()=>{ await markSolved(editorSel.type,editorSel.id); setEditorSel(null); }}/>}
+    {editorSel && (editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) && <CodeEditorDrawer q={(editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) as any} qType={editorSel.type} p={(editorSel.type==='dsa'?progress:placementProgress)[editorSel.id]} testCases={(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }}/>}
   </div>
 }
 
@@ -478,7 +495,7 @@ self.postMessage({ok:true,logs:__logs});
     worker.onerror=(e)=>finish({ok:false,logs:[],error:e.message,stack:e.filename?`:${e.lineno}:${e.colno}`:''});
   });
 }
-function CodeEditorDrawer({q,qType,testCases,theme,userId,onClose,onSubmitSolved}:{q:any;qType:'dsa'|'placement';testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSubmitSolved:()=>void}){
+function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved}:{q:any;qType:'dsa'|'placement';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void}){
   const storageKey=`${qType}_editor_${userId}_${q.id}`;
   const examples=testCases.slice(0,3);
   const sampleCase=testCases[0];
@@ -494,16 +511,37 @@ function CodeEditorDrawer({q,qType,testCases,theme,userId,onClose,onSubmitSolved
   const [confirmReset,setConfirmReset]=useState(false);
   const hints=useMemo(()=>hintsFor(q),[q]);
   const editorRef=useRef<any>(null);
+  const skipNextSaveRef=useRef(true);
+  // Resolve the correct starting code ONCE per question: compare the last
+  // Supabase-synced code (p.code / p.code_updated_at, from any device) against
+  // this browser's own unsynced local draft, and use whichever is newer.
+  // Never falls back to the starter template while either a server or local
+  // saved value exists — avoids the "saved code disappears" class of bugs.
   useEffect(()=>{
-    const saved=typeof window!=='undefined'?localStorage.getItem(storageKey):null;
-    setCode(saved ?? starterCodeFor(q,sampleCase));
+    let draft:{code:string;updatedAt:string}|null=null;
+    try{ const raw=localStorage.getItem(storageKey); draft=raw?JSON.parse(raw):null; }catch{ draft=null; }
+    const serverCode=p?.code||null; const serverTs=p?.code_updated_at||null;
+    let initial:string;
+    if(serverCode && draft?.code){
+      initial=(serverTs && draft.updatedAt && new Date(serverTs)>new Date(draft.updatedAt))?serverCode:draft.code;
+    } else if(serverCode){ initial=serverCode; }
+    else if(draft?.code){ initial=draft.code; }
+    else { initial=starterCodeFor(q,sampleCase); }
+    skipNextSaveRef.current=true;
+    setCode(initial);
     setOutput(null); setLastRunCode(null); setHintIndex(0);
     setLoaded(true);
   },[storageKey]);
   useEffect(()=>{
     if(!loaded) return;
+    if(skipNextSaveRef.current){ skipNextSaveRef.current=false; return; }
     setSaveState('saving');
-    const t=setTimeout(()=>{ try{ localStorage.setItem(storageKey,code); }catch{} setSaveState('saved'); },500);
+    const t=setTimeout(()=>{
+      const now=new Date().toISOString();
+      try{ localStorage.setItem(storageKey,JSON.stringify({code,updatedAt:now})); }catch{}
+      if(code.trim()) onSaveCode(code);
+      setSaveState('saved');
+    },700);
     return ()=>clearTimeout(t);
   },[code,loaded,storageKey]);
   const run=async()=>{
@@ -511,7 +549,12 @@ function CodeEditorDrawer({q,qType,testCases,theme,userId,onClose,onSubmitSolved
     const res=await runInWorker(code);
     setOutput(res); setLastRunCode(code); setRunning(false);
   };
-  const doReset=()=>{ setCode(starterCodeFor(q,sampleCase)); try{localStorage.removeItem(storageKey)}catch{} setOutput(null); setLastRunCode(null); setConfirmReset(false); };
+  const doReset=()=>{
+    const starter=starterCodeFor(q,sampleCase);
+    skipNextSaveRef.current=true;
+    setCode(starter); setOutput(null); setLastRunCode(null); setConfirmReset(false);
+    try{ localStorage.setItem(storageKey,JSON.stringify({code:starter,updatedAt:new Date().toISOString()})); }catch{}
+  };
   const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({noSemanticValidation:false,noSyntaxValidation:false}); };
   const monacoThemeName=MONACO_THEME_MAP[theme]?.name||'dph-sepia';
   const matched=output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false;
@@ -538,7 +581,7 @@ function CodeEditorDrawer({q,qType,testCases,theme,userId,onClose,onSubmitSolved
       </div>
       <div className="editor-shell">
         <MonacoEditor
-          height="360px"
+          height="100%"
           language="javascript"
           theme={monacoThemeName}
           value={code}
@@ -563,7 +606,7 @@ function CodeEditorDrawer({q,qType,testCases,theme,userId,onClose,onSubmitSolved
           {hintIndex<hints.length && <button className="notes-btn" onClick={()=>setHintIndex(v=>v+1)}><Lightbulb size={14}/> Show next hint ({hintIndex}/{hints.length})</button>}
           {!confirmReset && <button className="notes-btn" onClick={()=>setConfirmReset(true)}><RotateCcw size={14}/> Reset Code</button>}
           {confirmReset && <span className="reset-confirm">Reset your code? <button className="notes-btn" onClick={()=>setConfirmReset(false)}>Cancel</button><button className="danger-btn" onClick={doReset}>Reset</button></span>}
-          <button className="primary submit-btn" disabled={!matched} title={matched?'Mark this question solved':'Run your code and match the expected output first'} onClick={onSubmitSolved}><Check size={15}/> Submit</button>
+          <button className="primary submit-btn" disabled={!matched} title={matched?'Mark this question solved':'Run your code and match the expected output first'} onClick={()=>onSubmitSolved(code)}><Check size={15}/> Submit</button>
         </div>
       </div>
     </div>
