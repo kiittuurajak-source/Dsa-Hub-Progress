@@ -558,7 +558,11 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
   const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({noSemanticValidation:false,noSyntaxValidation:false}); };
   const monacoThemeName=MONACO_THEME_MAP[theme]?.name||'dph-sepia';
   const matched=output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false;
-  return <div className="overlay editor-overlay"><div className="editor-modal">
+  const [mobileView,setMobileView]=useState<'problem'|'code'>('problem');
+  return <div className="overlay editor-overlay"><div className="editor-modal" data-mobile-view={mobileView}>
+    <button className="mobile-view-toggle" onClick={()=>setMobileView(v=>v==='problem'?'code':'problem')}>
+      {mobileView==='problem' ? <><Code2 size={15}/> Open Code Editor</> : <><ArrowLeft size={15}/> View Problem</>}
+    </button>
     <button className="close editor-modal-close" onClick={onClose}><X size={18}/></button>
     <div className="editor-left">
       <div className="eyebrow">Q{q.id} · {q.difficulty?.toUpperCase()}</div>
