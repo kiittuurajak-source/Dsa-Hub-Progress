@@ -38,6 +38,9 @@ function cacheKey(uid:string){ return `dph_cache_${uid}`; }
 function outboxKey(uid:string){ return `dph_outbox_${uid}`; }
 function saveCache(uid:string,data:any){ try{ localStorage.setItem(cacheKey(uid),JSON.stringify(data)); }catch{} }
 function loadCache(uid:string):any|null{ try{ const raw=localStorage.getItem(cacheKey(uid)); return raw?JSON.parse(raw):null; }catch{ return null; } }
+function saveLastUser(u:any){ try{ localStorage.setItem('dph_last_user',JSON.stringify({id:u.id,email:u.email||''})); }catch{} }
+function loadLastUser():{id:string;email:string}|null{ try{ const raw=localStorage.getItem('dph_last_user'); return raw?JSON.parse(raw):null; }catch{ return null; } }
+function clearLastUser(){ try{ localStorage.removeItem('dph_last_user'); }catch{} }
 function loadOutbox(uid:string):OutboxItem[]{ try{ return JSON.parse(localStorage.getItem(outboxKey(uid))||'[]'); }catch{ return []; } }
 function saveOutbox(uid:string,items:OutboxItem[]){ try{ localStorage.setItem(outboxKey(uid),JSON.stringify(items)); }catch{} }
 function queueWrite(uid:string,table:string,row:any){
@@ -155,39 +158,107 @@ export default function Home(){
   const placement=placementQuestions as unknown as PlacementQuestion[];
 
   useEffect(()=>{ document.documentElement.dataset.theme=theme; localStorage.setItem('dph-theme',theme); },[theme]);
+  const sessionRef=useRef<any>(null); sessionRef.current=session;
+  const uidRef=useRef<string|null>(null);       // user we have already bootstrapped data for
+  const hydrated=useRef(false);                 // true once state holds real (cached or fetched) data
+  const pullingRef=useRef(false);
+  const lastPullRef=useRef(0);
+
+  function applyCache(c:any){
+    setDisplayName(c.displayName||'Student'); setProgress(c.progress||{}); setPlacementProgress(c.placementProgress||{}); setActivity(c.activity||{}); setPlacementActivity(c.placementActivity||{}); setNotes(c.notes||{}); setCustom(c.custom||[]); setCustomProgress(c.customProgress||{});
+  }
+
+  // Keep the local saved copy in sync with every change (including offline
+  // edits), but never before real data has been loaded — so it can never be
+  // overwritten with the empty initial state.
+  useEffect(()=>{
+    const uid=session?.user?.id;
+    if(!uid || !hydrated.current) return;
+    saveCache(uid,{displayName,progress,placementProgress,activity,placementActivity,notes,custom,customProgress});
+  },[displayName,progress,placementProgress,activity,placementActivity,notes,custom,customProgress]);
+
   useEffect(()=>{
     if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').catch(()=>{}); }
     setOnline(navigator.onLine);
-    const goOnline=()=>{ setOnline(true); if(session?.user?.id) syncPull(session.user.id); };
+    const goOnline=()=>{
+      setOnline(true);
+      const cur=sessionRef.current;
+      if(cur?.offline && supa){
+        // we were running on the saved local session — try to get a real one now
+        supa.auth.getSession().then(({data}:any)=>{ if(data.session){ setSession(data.session); saveLastUser(data.session.user); syncPull(data.session.user.id,true); } });
+      } else if(cur?.user?.id){ syncPull(cur.user.id,true); }
+    };
     const goOffline=()=>setOnline(false);
     window.addEventListener('online',goOnline); window.addEventListener('offline',goOffline);
-    // Cross-device sync: pull the latest server state whenever the tab/app
-    // regains focus (e.g. switching from phone back to laptop) and on a
-    // background interval while online, so both devices converge without
-    // needing a manual refresh.
-    const onFocus=()=>{ if(navigator.onLine && session?.user?.id) syncPull(session.user.id); };
+    // Cross-device sync: quietly pull the latest data when the tab regains focus
+    // and on a background interval while online. Never shows the loading screen.
+    const onFocus=()=>{ const cur=sessionRef.current; if(navigator.onLine && cur?.user?.id && !cur.offline) syncPull(cur.user.id); };
     const onVisible=()=>{ if(document.visibilityState==='visible') onFocus(); };
     window.addEventListener('focus',onFocus);
     document.addEventListener('visibilitychange',onVisible);
-    const interval=setInterval(()=>{ if(navigator.onLine && session?.user?.id) syncPull(session.user.id); },45000);
+    const interval=setInterval(onFocus,45000);
     return ()=>{
       window.removeEventListener('online',goOnline); window.removeEventListener('offline',goOffline);
       window.removeEventListener('focus',onFocus); document.removeEventListener('visibilitychange',onVisible);
       clearInterval(interval);
     };
-  },[session?.user?.id]);
+  },[]);
+
   useEffect(()=>{
     if(!supa){setLoading(false);return;}
-    supa.auth.getSession().then(({data}:any)=>{setSession(data.session); if(data.session){load(data.session.user.id); flushOutbox(data.session.user.id);} else setLoading(false);});
-    const {data:listener}=supa.auth.onAuthStateChange((_e:any,s:any)=>{setSession(s); if(s){load(s.user.id); flushOutbox(s.user.id);}});
+    // 1) Instant start: if this device has a saved copy from the last login, show it
+    //    immediately (no loading screen) and refresh from the network in the background.
+    const last=loadLastUser();
+    if(last){
+      const cached=loadCache(last.id);
+      if(cached){ applyCache(cached); hydrated.current=true; uidRef.current=last.id; setSession({user:{id:last.id,email:last.email},offline:true}); setLoading(false); }
+    }
+    // 2) Real session check
+    supa.auth.getSession().then(({data,error}:any)=>{
+      if(data.session){
+        saveLastUser(data.session.user);
+        setSession((prev:any)=>prev&&!prev.offline&&prev.user?.id===data.session.user.id?prev:data.session);
+        bootstrap(data.session.user.id);
+      } else if(last && uidRef.current===last.id && (!navigator.onLine || isOfflineError(error))){
+        // offline (or token refresh impossible without network): stay on the saved local session
+        setLoading(false);
+      } else {
+        clearLastUser(); uidRef.current=null; hydrated.current=false; setSession(null); setLoading(false);
+      }
+    });
+    // 3) Auth changes. Supabase fires SIGNED_IN / TOKEN_REFRESHED every time the tab
+    //    regains focus — for the SAME user we must not reload everything (that was
+    //    the "Loading your workspace…" flash).
+    const {data:listener}=supa.auth.onAuthStateChange((event:any,s:any)=>{
+      if(!s){
+        if(event==='SIGNED_OUT' && navigator.onLine){ clearLastUser(); uidRef.current=null; hydrated.current=false; setSession(null); setLoading(false); }
+        return;
+      }
+      saveLastUser(s.user);
+      if(uidRef.current===s.user.id){ setSession((prev:any)=>prev&&!prev.offline&&prev.user?.id===s.user.id?prev:s); return; }
+      uidRef.current=s.user.id; setSession(s); bootstrap(s.user.id);
+    });
     return ()=>listener.subscription.unsubscribe();
   },[]);
+
+  // First load for a user: push anything saved offline, then fetch fresh data.
+  // Silent (no loading screen) whenever we already have data on screen.
+  async function bootstrap(uid:string){
+    await flushOutbox(uid);
+    await load(uid,{silent:hydrated.current});
+  }
 
   // Pull-sync: if we have pending local changes, push them first (flushOutbox
   // already refetches after a successful push); otherwise just pull the
   // latest server state so a change made on another device shows up here.
-  async function syncPull(uid:string){
-    if(loadOutbox(uid).length>0){ await flushOutbox(uid); } else { await load(uid,{silent:true}); }
+  async function syncPull(uid:string,force?:boolean){
+    const now=Date.now();
+    if(pullingRef.current || (!force && now-lastPullRef.current<4000)) return;
+    pullingRef.current=true; lastPullRef.current=now;
+    try{
+      if(loadOutbox(uid).length>0){ await flushOutbox(uid); }
+      await load(uid,{silent:true});
+    } finally { pullingRef.current=false; }
   }
 
   async function flushOutbox(uid:string){
@@ -205,7 +276,8 @@ export default function Home(){
         // code_updated_at independently of the row's other progress fields.
         const tsCol = item.row.code!==undefined ? 'code_updated_at' : (item.table.endsWith('_notes') ? 'updated_at' : (item.table.endsWith('_progress') ? 'last_viewed_at' : null));
         if(tsCol && item.row.question_id!==undefined){
-          const {data:serverRow}=await supa.from(item.table).select(tsCol).eq('user_id',uid).eq('question_id',item.row.question_id).maybeSingle();
+          const {data:serverRow,error:selErr}=await supa.from(item.table).select(tsCol).eq('user_id',uid).eq('question_id',item.row.question_id).maybeSingle();
+          if(selErr && isOfflineError(selErr)){ remaining.push(item); continue; }
           const serverTs=(serverRow as any)?.[tsCol];
           const localTs=item.row[tsCol];
           if(serverTs && localTs && new Date(serverTs) > new Date(localTs)){ continue; }
@@ -216,13 +288,16 @@ export default function Home(){
     }
     saveOutbox(uid,remaining);
     if(anySynced){ setNotice('Synced offline changes'); setTimeout(()=>setNotice(''),1500); }
-    if(anySynced || remaining.length<items.length){ load(uid); }
   }
 
+  // Loads everything from Supabase. If ANY request fails because there is no
+  // connection, nothing on screen and nothing in the saved copy is touched
+  // (Supabase does not throw on network failure — it returns { error }, so the
+  // errors have to be checked explicitly).
   async function load(uid:string,opts?:{silent?:boolean}){
     if(!opts?.silent) setLoading(true);
     try{
-      const [profile,dprog,pprog,dact,pact,dnotes,pnotes,cq,cp]=await Promise.all([
+      const results=await Promise.all([
         supa!.from('profiles').select('*').eq('id',uid).maybeSingle(),
         supa!.from('dsa_progress').select('*').eq('user_id',uid),
         supa!.from('placement_progress').select('*').eq('user_id',uid),
@@ -233,7 +308,8 @@ export default function Home(){
         supa!.from('custom_questions').select('*').eq('user_id',uid).order('created_at',{ascending:false}),
         supa!.from('custom_question_progress').select('*').eq('user_id',uid)
       ]);
-      if(profile.data?.display_name) setDisplayName(profile.data.display_name);
+      const [profile,dprog,pprog,dact,pact,dnotes,pnotes,cq,cp]=results as any[];
+      if(results.some((r:any)=>r.error && isOfflineError(r.error))) throw new Error('offline');
       const nextProgress=Object.fromEntries((dprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
       const nextPlacementProgress=Object.fromEntries((pprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
       const nextActivity=Object.fromEntries((dact.data||[]).map((r:any)=>[r.date,r.dsa_solved_count]));
@@ -241,15 +317,17 @@ export default function Home(){
       const nextNotes=Object.fromEntries([...(dnotes.data||[]).map((r:any)=>[`dsa-${r.question_id}`,r.note_text]),...(pnotes.data||[]).map((r:any)=>[`placement-${r.question_id}`,r.note_text])]);
       const nextCustom=cq.data||[];
       const nextCustomProgress=Object.fromEntries((cp.data||[]).map((r:any)=>[r.question_id,r]));
-      setDisplayName(profile.data?.display_name||displayName);
+      const name=profile.data?.display_name||displayName;
+      hydrated.current=true;
+      setDisplayName(name);
       setProgress(nextProgress); setPlacementProgress(nextPlacementProgress); setActivity(nextActivity); setPlacementActivity(nextPlacementActivity); setNotes(nextNotes); setCustom(nextCustom); setCustomProgress(nextCustomProgress);
-      saveCache(uid,{displayName:profile.data?.display_name||displayName,progress:nextProgress,placementProgress:nextPlacementProgress,activity:nextActivity,placementActivity:nextPlacementActivity,notes:nextNotes,custom:nextCustom,customProgress:nextCustomProgress});
+      saveCache(uid,{displayName:name,progress:nextProgress,placementProgress:nextPlacementProgress,activity:nextActivity,placementActivity:nextPlacementActivity,notes:nextNotes,custom:nextCustom,customProgress:nextCustomProgress});
     }catch(e){
-      // offline or network failure — fall back to last synced local copy so the app stays usable
-      const cached=loadCache(uid);
-      if(cached){
-        setDisplayName(cached.displayName||'Student'); setProgress(cached.progress||{}); setPlacementProgress(cached.placementProgress||{}); setActivity(cached.activity||{}); setPlacementActivity(cached.placementActivity||{}); setNotes(cached.notes||{}); setCustom(cached.custom||[]); setCustomProgress(cached.customProgress||{});
-        if(!opts?.silent){ setNotice('Offline — showing your last synced data'); setTimeout(()=>setNotice(''),2000); }
+      // No connection: keep what is on screen. Only when nothing is on screen yet
+      // (first paint) restore the saved copy. The saved copy is never overwritten here.
+      if(!hydrated.current){
+        const cached=loadCache(uid);
+        if(cached){ applyCache(cached); hydrated.current=true; if(!opts?.silent){ setNotice('Offline — showing your last synced data'); setTimeout(()=>setNotice(''),2000); } }
       }
     }
     if(!opts?.silent) setLoading(false);
@@ -332,7 +410,7 @@ export default function Home(){
     else setNotice('Saved');
     setTimeout(()=>setNotice(''),1400);
   }
-  async function logout(){await supa?.auth.signOut();setSession(null);}
+  async function logout(){clearLastUser();uidRef.current=null;hydrated.current=false;applyCache({});await supa?.auth.signOut();setSession(null);}
 
   const dsaSolved=dsa.filter(q=>progress[String(q.id)]?.solved).length;
   const placementSolved=placement.filter(q=>placementProgress[String(q.id)]?.solved).length;
