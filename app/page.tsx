@@ -145,7 +145,7 @@ export default function Home(){
   const [notice,setNotice]=useState('');
   const [selected,setSelected]=useState<{type:'dsa'|'placement'|'custom';id:string}|null>(null);
   const [notesOpen,setNotesOpen]=useState(false);
-  const [editorSel,setEditorSel]=useState<{type:'dsa'|'placement';id:string}|null>(null);
+  const [editorSel,setEditorSel]=useState<{type:'dsa'|'placement'|'custom';id:string}|null>(null);
   const [addOpen,setAddOpen]=useState(false);
   const [editOpen,setEditOpen]=useState(false);
   const [mobileOpen,setMobileOpen]=useState(false);
@@ -289,19 +289,24 @@ export default function Home(){
     const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
     const nextRow:any={...old,question_id:id,solved:true,hint_used:false,solution_seen:false,solved_at:row.solved_at,last_viewed_at:now,...(row.code!==undefined?{code:row.code,code_updated_at:row.code_updated_at}:{})};
     if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
-    const {error}=await supa!.from(table).upsert(row);
+    let {error}=await supa!.from(table).upsert(row);
+    if(error && row.code!==undefined && /code/i.test(error.message||'')){
+      // code columns missing in DB (schema not updated yet) — still save the solved status
+      const {code:_c,code_updated_at:_t,...rest}=row; ({error}=await supa!.from(table).upsert(rest));
+      if(!error){ setNotice('Solved saved — run the new SQL to also sync code'); }
+    }
     if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); else setNotice(error.message); }
     if(!old.solved) await syncActivity(type, old.solved, true, old.solved_at);
   }
-  async function saveCode(type:'dsa'|'placement',id:string,code:string){
+  async function saveCode(type:'dsa'|'placement'|'custom',id:string,code:string){
     if(!session || !code || !code.trim()) return;
-    const table=type==='dsa'?'dsa_progress':'placement_progress';
+    const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
     const now=new Date().toISOString();
-    const source=type==='dsa'?progress:placementProgress;
+    const source=type==='dsa'?progress:type==='placement'?placementProgress:customProgress;
     const old=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
-    const row:any={user_id:session.user.id,question_id:Number(id),code,code_updated_at:now};
+    const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),code,code_updated_at:now};
     const nextRow:any={...old,question_id:id,code,code_updated_at:now};
-    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else setPlacementProgress(v=>({...v,[id]:nextRow}));
+    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
     const {error}=await supa!.from(table).upsert(row);
     if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); }
   }
@@ -338,7 +343,11 @@ export default function Home(){
 
   const dsaFiltered=useMemo(()=>filterQuestions(dsa,filters,progress,'dsa'),[filters,progress]);
   const pFiltered=useMemo(()=>filterQuestions(placement,placementFilters,placementProgress,'placement'),[placementFilters,placementProgress]);
-  const cFiltered=useMemo(()=>filterCustom(custom,filters,customProgress),[custom,filters,customProgress]);
+  // Sr. No. for My Questions: assigned automatically by creation order (oldest = Q1)
+  const customNumbered=useMemo(()=>{const order=[...custom].sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at)));const rank:Record<string,number>={};order.forEach((c,i)=>{rank[c.id]=i+1});return custom.map(c=>({...c,serial:rank[c.id]}));},[custom]);
+  const cFiltered=useMemo(()=>filterCustom(customNumbered,filters,customProgress),[customNumbered,filters,customProgress]);
+  const editorQuestion=editorSel?(editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):editorSel.type==='placement'?placement.find(x=>String(x.id)===editorSel.id):customNumbered.find(x=>x.id===editorSel.id)):null;
+  const editorProgress=editorSel?(editorSel.type==='dsa'?progress:editorSel.type==='placement'?placementProgress:customProgress)[editorSel.id]:undefined;
 
   const dsaChart=sectionChart(dsa,progress,'section'); const pChart=sectionChart(placement,placementProgress,'topic');
   const combinedActivity:Record<string,number>={};Object.keys({...activity,...placementActivity}).forEach(k=>{combinedActivity[k]=(activity[k]||0)+(placementActivity[k]||0)});
@@ -370,7 +379,7 @@ export default function Home(){
         {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule}/>}        
         {module==='dsa' && <ProblemPage title="DSA Problems" subtitle="355 curated" questions={dsaFiltered} progress={progress} filters={filters} setFilters={setFilters} type="dsa" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'dsa',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('dsa',String(id))} onEditor={(id:any)=>setEditorSel({type:'dsa',id:String(id)})}/>} 
         {module==='placement' && <ProblemPage title="Placement Preparation" subtitle="Unthinkable Solutions LLP • Daffodil Software" badge="281 curated questions" questions={pFiltered} progress={placementProgress} filters={placementFilters} setFilters={setPlacementFilters} type="placement" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'placement',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('placement',String(id))} onEditor={(id:any)=>setEditorSel({type:'placement',id:String(id)})}/>} 
-        {module==='my' && <ProblemPage title="My Questions" subtitle="Practice and track any additional questions you want to add." badge={`${custom.length} total`} questions={cFiltered} progress={customProgress} filters={filters} setFilters={setFilters} type="custom" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'custom',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('custom',String(id))} addQuestion={()=>setAddOpen(true)}/>} 
+        {module==='my' && <ProblemPage title="My Questions" subtitle="Practice and track any additional questions you want to add." badge={`${custom.length} total`} questions={cFiltered} progress={customProgress} filters={filters} setFilters={setFilters} type="custom" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'custom',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('custom',String(id))} onEditor={(id:any)=>setEditorSel({type:'custom',id:String(id)})} addQuestion={()=>setAddOpen(true)}/>} 
         {module==='notes' && <NotesPage dsa={dsa} placement={placement} custom={custom} progress={progress} placementProgress={placementProgress} customProgress={customProgress} notes={notes} onOpen={(type:any,id:any)=>{setSelected({type,id:String(id)});setNotesOpen(true)}}/>}
         {module==='progress' && <ProgressPage dsa={dsa} placement={placement} progress={progress} placementProgress={placementProgress} activity={activity} placementActivity={placementActivity} />}
         {module==='settings' && <SettingsPage theme={theme} setTheme={setTheme} displayName={displayName}/>}      
@@ -381,7 +390,7 @@ export default function Home(){
     {selectedQuestion && notesOpen && <NotesDrawer selected={selected!} q={selectedQuestion as any} initial={notes[`${selected!.type}-${selected!.id}`]||''} onClose={()=>{setNotesOpen(false);setSelected(null)}} onSave={saveNote}/>}
     {editOpen && selected?.type==='custom' && selectedQuestion && <EditQuestion q={selectedQuestion as CustomQuestion} onClose={()=>setEditOpen(false)} onSave={async(values:any)=>{const {data,error}=await supa!.from('custom_questions').update(values).eq('id',selected.id).eq('user_id',session.user.id).select().single();if(error){setNotice(error.message);return;}setCustom(v=>v.map(x=>x.id===selected.id?data:x));setEditOpen(false);setNotice('Question updated');setTimeout(()=>setNotice(''),1400)}} onDelete={async()=>{const {error}=await supa!.from('custom_questions').delete().eq('id',selected.id).eq('user_id',session.user.id);if(error){setNotice(error.message);return;}setCustom(v=>v.filter(x=>x.id!==selected.id));setEditOpen(false);setSelected(null);setNotice('Question deleted');setTimeout(()=>setNotice(''),1400)}}/>}
     {addOpen && <AddQuestion onClose={()=>setAddOpen(false)} onSave={async(q:any)=>{const {data,error}=await supa!.from('custom_questions').insert({...q,user_id:session.user.id}).select().single();if(error){setNotice(error.message);return;}setCustom(v=>[data,...v]);setAddOpen(false);setNotice('Question added');setTimeout(()=>setNotice(''),1500)}}/>}
-    {editorSel && (editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) && <CodeEditorDrawer q={(editorSel.type==='dsa'?dsa.find(x=>String(x.id)===editorSel.id):placement.find(x=>String(x.id)===editorSel.id)) as any} qType={editorSel.type} p={(editorSel.type==='dsa'?progress:placementProgress)[editorSel.id]} testCases={(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }}/>}
+    {editorSel && editorQuestion && <CodeEditorDrawer q={editorQuestion as any} qType={editorSel.type} p={editorProgress} testCases={editorSel.type==='custom'?[]:(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }}/>}
   </div>
 }
 
@@ -408,7 +417,7 @@ function ChartCard({title,subtitle,data}:any){return <section className="panel c
 
 function ProblemPage({title,subtitle,badge,questions,progress,filters,setFilters,type,onToggle,onNotes,onDetail,onEditor,addQuestion}:any){const topics=[...new Set(questions.map((q:any)=>q.section||q.topic))] as string[];const patterns=[...new Set(questions.map((q:any)=>q.pattern))] as string[];const sources=(type==='placement'?[...new Set(questions.map((q:any)=>q.source))]:[]) as string[];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">{type==='placement'?'COMPANY TRACK':'PRACTICE TRACK'}</div><h1>{title}</h1><p>{subtitle}</p></div><div className="title-actions">{badge&&<Badge tone="purple">{badge}</Badge>}{addQuestion&&<button className="primary" onClick={addQuestion}><Plus size={17}/> Add Question</button>}</div></div><section className="panel filters"><div className="filter-search"><Search size={17}/><input placeholder="Search title, topic, pattern…" value={filters.search} onChange={e=>setFilters((v:any)=>({...v,search:e.target.value}))}/></div><Select label="Difficulty" value={filters.difficulty} options={['All','Easy','Medium','Hard']} onChange={(v)=>setFilters((x:any)=>({...x,difficulty:v}))}/><Select label={type==='placement'?'Topic':'Section'} value={filters.section} options={['All',...topics]} onChange={(v)=>setFilters((x:any)=>({...x,section:v}))}/><Select label="Pattern" value={filters.pattern} options={['All',...patterns]} onChange={(v)=>setFilters((x:any)=>({...x,pattern:v}))}/>{type==='placement'&&<Select label="Source" value={filters.source} options={['All',...sources]} onChange={(v)=>setFilters((x:any)=>({...x,source:v}))}/>}{type==='placement'&&<Select label="Priority" value={filters.priority} options={['All','TOP PRIORITY','HIGH','MEDIUM','LOW']} onChange={(v)=>setFilters((x:any)=>({...x,priority:v}))}/>}<Select label="Status" value={filters.status} options={['All','Unsolved','Solved','Hint Used','Solution Seen']} onChange={(v)=>setFilters((x:any)=>({...x,status:v}))}/><button className="icon-reset" onClick={()=>setFilters(EMPTY_FILTERS)} title="Reset filters"><RefreshCw size={16}/></button></section><div className="list-meta"><span>{questions.length} results</span><span><Filter size={14}/> filters combine live</span></div><section className="panel question-list">{questions.length===0?<div className="empty">No questions match your filters.</div>:questions.map((q:any)=><QuestionRow key={q.id} q={q} p={progress[String(q.id)]} type={type} onToggle={onToggle} onNotes={onNotes} onDetail={onDetail} onEditor={onEditor}/>)}</section></div>}
 function Select({label,value,options,onChange}:{label:string;value:string;options:string[];onChange:(v:string)=>void}){return <label className="select-wrap"><span>{label}</span><select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=><option key={o}>{o}</option>)}</select><ChevronDown size={14}/></label>}
-function QuestionRow({q,p,type,onToggle,onNotes,onDetail,onEditor}:any){const rowClass=`question-row ${(type==='placement'||type==='dsa')?'has-editor':''} ${p?.solved?'solved-row':p?.solution_seen?'solution-seen':p?.hint_used?'hint-seen':''}`;return <div className={rowClass}><StatusButtons p={p} onToggle={(k)=>onToggle(type,String(q.id),k)}/><div className="qid">{type==='custom'?String(q.id).slice(0,8):`Q${q.id}`}</div><div className="qmain"><strong>{q.title}</strong><div className="chips"><Badge tone="muted">{q.section||q.topic}</Badge><Badge>{q.pattern}</Badge>{type==='placement'&&<Badge tone="purple">{q.source}</Badge>}{type==='custom'&&q.source&&<Badge tone="purple">{q.source}</Badge>}</div></div>{type==='placement'?<PriorityBadge priority={q.priority}/>:<span/>}<Badge tone={q.difficulty==='Easy'?'green':q.difficulty==='Medium'?'amber':'red'}>{q.difficulty}</Badge><div className="row-actions"><button className="notes-btn" onClick={()=>onNotes(q.id)}><NotebookPen size={15}/> Notes</button>{(type==='placement'||type==='dsa')&&<button className="notes-btn editor-btn" onClick={()=>onEditor(q.id)}><Code2 size={15}/> Editor</button>}</div><button className="row-arrow" onClick={()=>onDetail(q.id)}><ArrowRight size={16}/></button></div>}
+function QuestionRow({q,p,type,onToggle,onNotes,onDetail,onEditor}:any){const rowClass=`question-row ${(type==='placement'||type==='dsa')?'has-editor':''} ${p?.solved?'solved-row':p?.solution_seen?'solution-seen':p?.hint_used?'hint-seen':''}`;return <div className={rowClass}><StatusButtons p={p} onToggle={(k)=>onToggle(type,String(q.id),k)}/><div className="qid">{type==='custom'?`Q${q.serial??''}`:`Q${q.id}`}</div><div className="qmain"><strong>{q.title}</strong><div className="chips"><Badge tone="muted">{q.section||q.topic}</Badge><Badge>{q.pattern}</Badge>{type==='placement'&&<Badge tone="purple">{q.source}</Badge>}{type==='custom'&&q.source&&<Badge tone="purple">{q.source}</Badge>}</div></div>{type==='placement'?<PriorityBadge priority={q.priority}/>:<span/>}<Badge tone={q.difficulty==='Easy'?'green':q.difficulty==='Medium'?'amber':'red'}>{q.difficulty}</Badge><div className="row-actions"><button className="notes-btn" onClick={()=>onNotes(q.id)}><NotebookPen size={15}/> Notes</button>{onEditor&&<button className="notes-btn editor-btn" onClick={()=>onEditor(q.id)}><Code2 size={15}/> Editor</button>}</div><button className="row-arrow" onClick={()=>onDetail(q.id)}><ArrowRight size={16}/></button></div>}
 
 function NotesPage({dsa,placement,custom,progress,placementProgress,customProgress,notes,onOpen}:any){const rows=[...dsa.filter((q:any)=>notes[`dsa-${q.id}`]).map((q:any)=>({type:'dsa',id:q.id,title:q.title,meta:q.section})),...placement.filter((q:any)=>notes[`placement-${q.id}`]).map((q:any)=>({type:'placement',id:q.id,title:q.title,meta:q.topic})),...custom.filter((q:any)=>notes[`custom-${q.id}`]).map((q:any)=>({type:'custom',id:q.id,title:q.title,meta:q.topic}))];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">PRIVATE WORKSPACE</div><h1>Bookmarks / Notes</h1><p>Your saved notes across DSA, Placement and My Questions.</p></div></div><section className="panel notes-list">{rows.length===0?<div className="empty">No saved notes yet. Open any question and start writing.</div>:rows.map(r=><button key={`${r.type}-${r.id}`} className="saved-note" onClick={()=>onOpen(r.type,r.id)}><NotebookPen size={17}/><div><strong>{r.title}</strong><span>{r.meta}</span></div><ArrowRight size={16}/></button>)}</section></div>}
 function ProgressPage({dsa,placement,progress,placementProgress,activity,placementActivity}:any){const easy=dsa.filter((q:any)=>q.difficulty==='Easy'&&progress[String(q.id)]?.solved).length;const med=dsa.filter((q:any)=>q.difficulty==='Medium'&&progress[String(q.id)]?.solved).length;const hard=dsa.filter((q:any)=>q.difficulty==='Hard'&&progress[String(q.id)]?.solved).length;const pe=placement.filter((q:any)=>placementProgress[String(q.id)]?.solved).length;return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">ANALYTICS</div><h1>Progress</h1><p>Official DSA and Placement metrics stay completely independent.</p></div></div><div className="stats-grid"><StatCard title="DSA solved" value={`${Object.values(progress).filter((p:any)=>p.solved).length} / 355`} meta={`${Math.round(Object.values(progress).filter((p:any)=>p.solved).length/355*100)}%`} icon={<Target/>} tone="purple"/><StatCard title="Easy / Medium / Hard" value={`${easy} / ${med} / ${hard}`} meta="DSA solved by difficulty" icon={<ListFilter/>} tone="green"/><StatCard title="Placement solved" value={`${pe} / 281`} meta={`${Math.round(pe/281*100)}%`} icon={<Flame/>} tone="amber"/><StatCard title="Active days" value={`${Object.values(activity).filter(Boolean).length} / ${Object.values(placementActivity).filter(Boolean).length}`} meta="DSA / Placement" icon={<Zap/>} tone="red"/></div><div className="two-col"><section className="panel"><div className="panel-head"><div><h2>DSA completion by section</h2><p>Real-time from your progress rows.</p></div></div><ProgressBars items={dsa} progress={progress}/></section><section className="panel"><div className="panel-head"><div><h2>Placement completion by topic</h2><p>Real-time from your placement rows.</p></div></div><ProgressBars items={placement} placement progress={placementProgress}/></section></div></div>}
@@ -495,12 +504,12 @@ self.postMessage({ok:true,logs:__logs});
     worker.onerror=(e)=>finish({ok:false,logs:[],error:e.message,stack:e.filename?`:${e.lineno}:${e.colno}`:''});
   });
 }
-function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved}:{q:any;qType:'dsa'|'placement';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void}){
+function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved}:{q:any;qType:'dsa'|'placement'|'custom';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void}){
   const storageKey=`${qType}_editor_${userId}_${q.id}`;
   const examples=testCases.slice(0,3);
   const sampleCase=testCases[0];
-  const description=qType==='dsa'?DSA_DESCRIPTIONS[Number(q.id)]:PLACEMENT_DESCRIPTIONS[Number(q.id)];
-  const howSteps=useMemo(()=>parseHowSteps(qType==='dsa'?DSA_HOW[Number(q.id)]:PLACEMENT_HOW[Number(q.id)]),[qType,q.id]);
+  const description=qType==='dsa'?DSA_DESCRIPTIONS[Number(q.id)]:qType==='placement'?PLACEMENT_DESCRIPTIONS[Number(q.id)]:(q.statement||'');
+  const howSteps=useMemo(()=>qType==='custom'?[]:parseHowSteps(qType==='dsa'?DSA_HOW[Number(q.id)]:PLACEMENT_HOW[Number(q.id)]),[qType,q.id]);
   const [code,setCode]=useState<string>('');
   const [loaded,setLoaded]=useState(false);
   const [output,setOutput]=useState<{ok:boolean;logs:string[];error?:string;line?:number|null}|null>(null);
@@ -557,7 +566,7 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
   };
   const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({noSemanticValidation:false,noSyntaxValidation:false}); };
   const monacoThemeName=MONACO_THEME_MAP[theme]?.name||'dph-sepia';
-  const matched=output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false;
+  const matched=qType==='custom' ? !!(output?.ok && code===lastRunCode) : (output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false);
   const [mobileView,setMobileView]=useState<'problem'|'code'>('problem');
   return <div className="overlay editor-overlay"><div className="editor-modal" data-mobile-view={mobileView}>
     <button className="mobile-view-toggle" onClick={()=>setMobileView(v=>v==='problem'?'code':'problem')}>
@@ -565,12 +574,12 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
     </button>
     <button className="close editor-modal-close" onClick={onClose}><X size={18}/></button>
     <div className="editor-left">
-      <div className="eyebrow">Q{q.id} · {q.difficulty?.toUpperCase()}</div>
+      <div className="eyebrow">Q{qType==='custom'?q.serial:q.id} · {q.difficulty?.toUpperCase()}</div>
       <h2>{q.title}</h2>
-      <div className="chips editor-left-chips">{qType==='placement'&&<PriorityBadge priority={q.priority}/>}<Badge>{q.topic||q.section}</Badge><Badge>{q.pattern}</Badge>{q.source&&<Badge tone="purple">{q.source}</Badge>}</div>
+      <div className="chips editor-left-chips">{qType==='placement'&&<PriorityBadge priority={q.priority}/>}{(q.topic||q.section)&&<Badge>{q.topic||q.section}</Badge>}{q.pattern&&<Badge>{q.pattern}</Badge>}{q.source&&<Badge tone="purple">{q.source}</Badge>}</div>
       {description && <p className="editor-description">{description}</p>}
       <WhatToDo steps={howSteps}/>
-      {examples.length===0 && <div className="info-box"><span className="ghost">No sample examples available for this question yet.</span></div>}
+      {examples.length===0 && qType!=='custom' && <div className="info-box"><span className="ghost">No sample examples available for this question yet.</span></div>}
       {examples.map((ex,i)=><div className="info-box example-box" key={i}>
         <div className="info-label">EXAMPLE {i+1}</div>
         <div className="example-line"><strong>Input:</strong> <code>{JSON.stringify(ex.input)}</code></div>
@@ -596,7 +605,7 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
         />
       </div>
       <div className="editor-io-panel">
-        <div className="editor-io-label">OUTPUT {matched && <span className="match-tick"><Check size={13}/> Matches expected output</span>}</div>
+        <div className="editor-io-label">OUTPUT {matched && <span className="match-tick"><Check size={13}/> {qType==='custom'?'Ran successfully':'Matches expected output'}</span>}</div>
         <div className="editor-io-box editor-output">
           {!output && <span className="ghost">Run your code to see output here.</span>}
           {output && output.ok && <><div className={`output-status ${matched?'ok':''}`}>{matched?<><Check size={13}/> Code executed successfully</>:'Code executed'}</div>{output.logs.length===0?<div className="ghost">(no console output — use console.log to print your answer)</div>:output.logs.map((l,i)=><div key={i}>{l}</div>)}</>}
