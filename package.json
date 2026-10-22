@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/copy-monaco.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-monaco.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "postinstall": "node scripts/copy-monaco.mjs"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
@@ -16,6 +19,7 @@
     "@supabase/supabase-js": "^2.57.0",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.468.0",
+    "monaco-editor": "0.55.1",
     "next": "^15.5.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
