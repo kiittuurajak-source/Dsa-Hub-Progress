@@ -6,6 +6,7 @@
 // online/offline + outbox handling.
 
 const SHELL_CACHE = 'dph-shell-v1';
+const EDITOR_CACHE = 'dph-editor-v1'; // self-hosted Monaco editor files (public/monaco)
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -14,7 +15,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((names) =>
-      Promise.all(names.filter((n) => n !== SHELL_CACHE).map((n) => caches.delete(n)))
+      Promise.all(names.filter((n) => n !== SHELL_CACHE && n !== EDITOR_CACHE).map((n) => caches.delete(n)))
     ).then(() => self.clients.claim())
   );
 });
@@ -26,6 +27,21 @@ self.addEventListener('fetch', (event) => {
   // Only handle GET requests to our own origin. Everything else (Supabase,
   // POST/PUT/DELETE, third-party) passes straight through to the network.
   if (req.method !== 'GET' || url.origin !== self.location.origin) return;
+
+  // Code editor (Monaco) files: cache-first, so the editor keeps working offline
+  // after it has been opened (or pre-loaded in the background) once while online.
+  if (url.pathname.startsWith('/monaco/')) {
+    event.respondWith(
+      caches.open(EDITOR_CACHE).then(async (cache) => {
+        const cached = await cache.match(req);
+        if (cached) return cached;
+        const res = await fetch(req);
+        if (res && res.status === 200) cache.put(req, res.clone());
+        return res;
+      })
+    );
+    return;
+  }
 
   // Build assets are content-hashed and immutable — cache-first.
   if (url.pathname.startsWith('/_next/static/')) {
