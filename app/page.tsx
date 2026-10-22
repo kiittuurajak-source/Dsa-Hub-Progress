@@ -28,7 +28,49 @@ import {
   NotebookPen, Play, Plus, RefreshCw, RotateCcw, Search, Settings, Sparkles, Target, WifiOff, X, Zap
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
-const MonacoEditor=dynamic(()=>import('@monaco-editor/react'),{ssr:false,loading:()=><div className="editor-loading">Loading editor…</div>});
+// The code editor (Monaco) is served from this app (public/monaco, copied on npm install)
+// instead of a CDN, so the service worker can cache it and it works offline.
+// Falls back to the CDN only if the local files are missing (404).
+let monacoSetup:Promise<void>|null=null;
+function setupMonaco(loader:any){
+  if(!monacoSetup){
+    monacoSetup=(async()=>{
+      try{ const r=await fetch('/monaco/vs/loader.js'); if(r.ok) loader.config({paths:{vs:'/monaco/vs'}}); }
+      catch{ loader.config({paths:{vs:'/monaco/vs'}}); }
+    })();
+  }
+  return monacoSetup;
+}
+const MonacoEditor:any=dynamic(async()=>{ const m:any=await import('@monaco-editor/react'); await setupMonaco(m.loader); return m.default; },{ssr:false,loading:()=><div className="editor-loading">Loading editor…</div>});
+// Quietly pre-loads the editor once (online, idle) so the service worker caches every
+// file it needs. After that the editor opens offline.
+async function warmUpEditor(){
+  try{
+    if(typeof window==='undefined' || !navigator.onLine) return;
+    if((navigator as any).connection?.saveData) return;
+    if(!('serviceWorker' in navigator)) return;
+    const KEY='dph_editor_warm_v1';
+    if(localStorage.getItem(KEY)==='1') return;
+    await navigator.serviceWorker.ready;
+    if(!navigator.serviceWorker.controller) return;
+    const m:any=await import('@monaco-editor/react');
+    await setupMonaco(m.loader);
+    const monaco:any=await m.loader.init();
+    const host=document.createElement('div');
+    host.style.cssText='position:fixed;left:-9999px;top:0;width:300px;height:120px;overflow:hidden';
+    document.body.appendChild(host);
+    const model=monaco.editor.createModel('let a = [1, 2, 3];\nconsole.log(a.map(x => x * 2));','javascript');
+    const ed=monaco.editor.create(host,{model,minimap:{enabled:false},automaticLayout:false});
+    try{
+      const ts=monaco.languages?.typescript ?? monaco.typescript;
+      const getW=await ts.getJavaScriptWorker(); const w=await getW(model.uri);
+      await w.getSyntacticDiagnostics(model.uri.toString());
+      await w.getCompletionsAtPosition(model.uri.toString(),20);
+    }catch{}
+    ed.dispose(); model.dispose(); host.remove();
+    localStorage.setItem(KEY,'1');
+  }catch{}
+}
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 type Module = 'dashboard'|'dsa'|'placement'|'notes'|'progress'|'settings'|'my';
@@ -203,6 +245,12 @@ export default function Home(){
       clearInterval(interval);
     };
   },[]);
+
+  useEffect(()=>{
+    if(!session?.user?.id || session.offline) return;
+    const t=setTimeout(()=>{ warmUpEditor(); },6000);
+    return ()=>clearTimeout(t);
+  },[session?.user?.id,session?.offline]);
 
   useEffect(()=>{
     if(!supa){setLoading(false);return;}
@@ -642,7 +690,7 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
     setCode(starter); setOutput(null); setLastRunCode(null); setConfirmReset(false);
     try{ localStorage.setItem(storageKey,JSON.stringify({code:starter,updatedAt:new Date().toISOString()})); }catch{}
   };
-  const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({noSemanticValidation:false,noSyntaxValidation:false}); };
+  const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); const ts=monaco.languages?.typescript ?? monaco.typescript; ts?.javascriptDefaults?.setDiagnosticsOptions?.({noSemanticValidation:false,noSyntaxValidation:false}); };
   const monacoThemeName=MONACO_THEME_MAP[theme]?.name||'dph-sepia';
   const matched=qType==='custom' ? !!(output?.ok && code===lastRunCode) : (output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false);
   const [mobileView,setMobileView]=useState<'problem'|'code'>('problem');
