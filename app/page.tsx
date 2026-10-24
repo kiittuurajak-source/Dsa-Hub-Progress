@@ -24,7 +24,7 @@ import type { CustomQuestion, DsaQuestion, PlacementQuestion, ProgressRow, TestC
 import { format, subDays } from 'date-fns';
 import {
   Archive, ArrowLeft, ArrowRight, BookOpen, Check, ChevronDown, ClipboardList,
-  Code2, Eye, Filter, Flame, Grid2X2, Lightbulb, ListFilter, LogOut, Menu, Palette,
+  Code2, Download, Eye, Filter, Flame, Grid2X2, Lightbulb, ListFilter, LogOut, Menu, Palette,
   NotebookPen, Play, Plus, RefreshCw, RotateCcw, Search, Settings, Sparkles, Target, WifiOff, X, Zap
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -44,15 +44,15 @@ function setupMonaco(loader:any){
 const MonacoEditor:any=dynamic(async()=>{ const m:any=await import('@monaco-editor/react'); await setupMonaco(m.loader); return m.default; },{ssr:false,loading:()=><div className="editor-loading">Loading editor…</div>});
 // Quietly pre-loads the editor once (online, idle) so the service worker caches every
 // file it needs. After that the editor opens offline.
-async function warmUpEditor(){
+async function warmUpEditor(force?:boolean):Promise<boolean>{
   try{
-    if(typeof window==='undefined' || !navigator.onLine) return;
-    if((navigator as any).connection?.saveData) return;
-    if(!('serviceWorker' in navigator)) return;
+    if(typeof window==='undefined' || !navigator.onLine) return false;
+    if(!force && (navigator as any).connection?.saveData) return false;
+    if(!('serviceWorker' in navigator)) return false;
     const KEY='dph_editor_warm_v1';
-    if(localStorage.getItem(KEY)==='1') return;
+    if(!force && localStorage.getItem(KEY)==='1') return true;
     await navigator.serviceWorker.ready;
-    if(!navigator.serviceWorker.controller) return;
+    if(!navigator.serviceWorker.controller) return false;
     const m:any=await import('@monaco-editor/react');
     await setupMonaco(m.loader);
     const monaco:any=await m.loader.init();
@@ -69,7 +69,17 @@ async function warmUpEditor(){
     }catch{}
     ed.dispose(); model.dispose(); host.remove();
     localStorage.setItem(KEY,'1');
-  }catch{}
+    return true;
+  }catch{ return false; }
+}
+// true when the service worker's editor cache really holds the Monaco files
+async function editorFilesCached():Promise<boolean>{
+  try{
+    if(typeof caches==='undefined') return false;
+    const cache=await caches.open('dph-editor-v1');
+    const keys=await cache.keys();
+    return keys.length>=8 && keys.some(k=>k.url.includes('/monaco/vs/loader.js'));
+  }catch{ return false; }
 }
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -109,9 +119,9 @@ function priorityTone(p?:string){return p==='TOP PRIORITY'?'top':p==='HIGH'?'hig
 
 
 function themeFromLocal():Theme { if(typeof window==='undefined') return 'sepia'; const v=localStorage.getItem('dph-theme'); return (THEMES.includes(v as Theme)?v:'sepia') as Theme; }
-type Theme='light'|'mist'|'sepia'|'coffee'|'dark';
-const THEMES:Theme[]=['light','mist','sepia','coffee','dark'];
-const THEME_LABEL:Record<Theme,string>={light:'Light',mist:'Mist',sepia:'Sepia',coffee:'Coffee',dark:'Dark'};
+type Theme='light'|'mist'|'sepia'|'coffee'|'dark'|'space';
+const THEMES:Theme[]=['light','mist','sepia','coffee','dark','space'];
+const THEME_LABEL:Record<Theme,string>={light:'Light',mist:'Mist',sepia:'Sepia',coffee:'Coffee',dark:'Dark',space:'Space'};
 function ThemeSwatches({current,onPick}:{current:Theme;onPick:(t:Theme)=>void}){return <div className="theme-swatch-grid">{THEMES.map(t=><button key={t} className={`theme-swatch swatch-${t} ${current===t?'active':''}`} onClick={()=>onPick(t)}><span className="swatch-preview"/><span className="swatch-name">{THEME_LABEL[t]}</span>{current===t&&<Check size={13} className="swatch-check"/>}</button>)}</div>}
 function ThemeMenu({current,onPick,onClose}:{current:Theme;onPick:(t:Theme)=>void;onClose:()=>void}){return <><div className="theme-menu-backdrop" onClick={onClose}/><div className="theme-menu"><div className="theme-menu-head"><strong>Appearance</strong><span>Tap to apply</span></div><ThemeSwatches current={current} onPick={onPick}/></div></>}
 
@@ -196,6 +206,8 @@ export default function Home(){
   const [mobileOpen,setMobileOpen]=useState(false);
   const [displayName,setDisplayName]=useState('Student');
   const [online,setOnline]=useState(true);
+  const [offlineStatus,setOfflineStatus]=useState<{data:boolean;editor:boolean;pending:number;savedAt:string|null}>({data:false,editor:false,pending:0,savedAt:null});
+  const [savingOffline,setSavingOffline]=useState(false);
   const dsa=dsaQuestions as unknown as DsaQuestion[];
   const placement=placementQuestions as unknown as PlacementQuestion[];
 
@@ -243,6 +255,57 @@ export default function Home(){
       window.removeEventListener('online',goOnline); window.removeEventListener('offline',goOffline);
       window.removeEventListener('focus',onFocus); document.removeEventListener('visibilitychange',onVisible);
       clearInterval(interval);
+    };
+  },[]);
+
+  useEffect(()=>{
+    if(!session?.user?.id) return;
+    refreshOfflineStatus();
+    const t=setTimeout(()=>{ refreshOfflineStatus(); },9000);
+    return ()=>clearTimeout(t);
+  },[session?.user?.id,online]);
+
+  // Animated cursor: a dot + a trailing ring (grows over clickable things, ripples on click,
+  // leaves a tiny star trail in the Space theme). The normal cursor stays visible.
+  useEffect(()=>{
+    if(typeof window==='undefined' || typeof window.matchMedia!=='function') return;
+    if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const dot=document.createElement('div'); dot.className='cfx-dot';
+    const ring=document.createElement('div'); ring.className='cfx-ring';
+    document.body.appendChild(ring); document.body.appendChild(dot);
+    let x=-100,y=-100,rx=-100,ry=-100,raf=0,shown=false,lastStar=0,stars=0;
+    const interactive='a,button,[role="button"],input,select,textarea,label,summary,.heat,.nav-button,.notes-btn,.row-arrow,.status';
+    const tick=()=>{ rx+=(x-rx)*0.18; ry+=(y-ry)*0.18; ring.style.transform=`translate3d(${rx}px,${ry}px,0)`; raf=(Math.abs(x-rx)>0.1||Math.abs(y-ry)>0.1)?requestAnimationFrame(tick):0; };
+    const onMove=(e:MouseEvent)=>{
+      x=e.clientX; y=e.clientY; dot.style.transform=`translate3d(${x}px,${y}px,0)`;
+      if(!shown){ shown=true; rx=x; ry=y; ring.classList.add('on'); dot.classList.add('on'); }
+      const hot=!!(e.target as Element|null)?.closest?.(interactive);
+      ring.classList.toggle('hot',hot); dot.classList.toggle('hot',hot);
+      if(!raf) raf=requestAnimationFrame(tick);
+      if(document.documentElement.dataset.theme==='space' && stars<24){
+        const now=performance.now();
+        if(now-lastStar>45){
+          lastStar=now; stars++;
+          const st=document.createElement('div'); st.className='cfx-star';
+          st.style.left=x+'px'; st.style.top=y+'px';
+          st.style.setProperty('--dx',(Math.random()*36-18)+'px'); st.style.setProperty('--dy',(Math.random()*36-6)+'px');
+          st.addEventListener('animationend',()=>{ st.remove(); stars--; });
+          document.body.appendChild(st);
+        }
+      }
+    };
+    const onDown=()=>{
+      ring.classList.add('down');
+      const r=document.createElement('div'); r.className='cfx-ripple'; r.style.left=x+'px'; r.style.top=y+'px';
+      r.addEventListener('animationend',()=>r.remove()); document.body.appendChild(r);
+    };
+    const onUp=()=>ring.classList.remove('down');
+    const onLeave=()=>{ shown=false; ring.classList.remove('on'); dot.classList.remove('on'); };
+    window.addEventListener('mousemove',onMove); window.addEventListener('mousedown',onDown); window.addEventListener('mouseup',onUp); document.addEventListener('mouseleave',onLeave);
+    return ()=>{
+      window.removeEventListener('mousemove',onMove); window.removeEventListener('mousedown',onDown); window.removeEventListener('mouseup',onUp); document.removeEventListener('mouseleave',onLeave);
+      if(raf) cancelAnimationFrame(raf); ring.remove(); dot.remove();
     };
   },[]);
 
@@ -342,7 +405,8 @@ export default function Home(){
   // connection, nothing on screen and nothing in the saved copy is touched
   // (Supabase does not throw on network failure — it returns { error }, so the
   // errors have to be checked explicitly).
-  async function load(uid:string,opts?:{silent?:boolean}){
+  async function load(uid:string,opts?:{silent?:boolean}):Promise<boolean>{
+    let ok=true;
     if(!opts?.silent) setLoading(true);
     try{
       const results=await Promise.all([
@@ -371,6 +435,7 @@ export default function Home(){
       setProgress(nextProgress); setPlacementProgress(nextPlacementProgress); setActivity(nextActivity); setPlacementActivity(nextPlacementActivity); setNotes(nextNotes); setCustom(nextCustom); setCustomProgress(nextCustomProgress);
       saveCache(uid,{displayName:name,progress:nextProgress,placementProgress:nextPlacementProgress,activity:nextActivity,placementActivity:nextPlacementActivity,notes:nextNotes,custom:nextCustom,customProgress:nextCustomProgress});
     }catch(e){
+      ok=false;
       // No connection: keep what is on screen. Only when nothing is on screen yet
       // (first paint) restore the saved copy. The saved copy is never overwritten here.
       if(!hydrated.current){
@@ -379,6 +444,27 @@ export default function Home(){
       }
     }
     if(!opts?.silent) setLoading(false);
+    return ok;
+  }
+
+  // ---- "Save for offline" button: push pending changes, pull the latest data, make sure the editor files are cached ----
+  async function refreshOfflineStatus(){
+    const uid=sessionRef.current?.user?.id; if(!uid) return;
+    const editor=await editorFilesCached();
+    setOfflineStatus({data:!!loadCache(uid),editor,pending:loadOutbox(uid).length,savedAt:localStorage.getItem('dph_offline_saved_at')});
+  }
+  async function saveForOffline(){
+    const uid=session?.user?.id; if(!uid || savingOffline) return;
+    if(!navigator.onLine){ setNotice('Connect to the internet first, then tap Save for offline'); setTimeout(()=>setNotice(''),2500); return; }
+    setSavingOffline(true);
+    try{
+      await flushOutbox(uid);
+      const ok=await load(uid,{silent:true});
+      if(!ok){ setNotice('Could not reach the server — try again'); setTimeout(()=>setNotice(''),2500); return; }
+      await warmUpEditor(true);
+      localStorage.setItem('dph_offline_saved_at',new Date().toISOString());
+      setNotice('Saved for offline ✓'); setTimeout(()=>setNotice(''),1800);
+    } finally { setSavingOffline(false); await refreshOfflineStatus(); }
   }
 
   async function toggleStatus(type:'dsa'|'placement'|'custom',id:string,key:'solved'|'hint_used'|'solution_seen'){
@@ -502,7 +588,7 @@ export default function Home(){
     <main className="main">
       <header className="topbar"><button className="mobile-menu" onClick={()=>setMobileOpen(v=>!v)}><Menu size={21}/></button><div className="crumb">{module==='dashboard'?'Overview':module==='dsa'?'DSA Problems':module==='placement'?'Placement Preparation':module==='my'?'My Questions':module==='progress'?'Progress':module==='notes'?'Bookmarks / Notes':'Settings'}</div><div className="topbar-actions">{!online && <span className="offline-badge" title="You're offline — changes are saved locally and will sync automatically"><WifiOff size={13}/> Offline</span>}<span className="user-pill">{session.user.email}</span><div className="theme-menu-wrap"><button className="icon-btn" onClick={()=>setThemeOpen(v=>!v)} title="Appearance"><Palette size={17}/></button>{themeOpen && <ThemeMenu current={theme} onPick={(t)=>{setTheme(t);setThemeOpen(false)}} onClose={()=>setThemeOpen(false)}/>}</div><div className="avatar">{displayName.slice(0,2).toUpperCase()}</div></div></header>
       <div className="content">
-        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule}/>}        
+        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule} theme={theme} offlineStatus={offlineStatus} savingOffline={savingOffline} onSaveOffline={saveForOffline}/>}        
         {module==='dsa' && <ProblemPage title="DSA Problems" subtitle="355 curated" questions={dsaFiltered} progress={progress} filters={filters} setFilters={setFilters} type="dsa" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'dsa',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('dsa',String(id))} onEditor={(id:any)=>setEditorSel({type:'dsa',id:String(id)})}/>} 
         {module==='placement' && <ProblemPage title="Placement Preparation" subtitle="Unthinkable Solutions LLP • Daffodil Software" badge="281 curated questions" questions={pFiltered} progress={placementProgress} filters={placementFilters} setFilters={setPlacementFilters} type="placement" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'placement',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('placement',String(id))} onEditor={(id:any)=>setEditorSel({type:'placement',id:String(id)})}/>} 
         {module==='my' && <ProblemPage title="My Questions" subtitle="Practice and track any additional questions you want to add." badge={`${custom.length} total`} questions={cFiltered} progress={customProgress} filters={filters} setFilters={setFilters} type="custom" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'custom',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('custom',String(id))} onEditor={(id:any)=>setEditorSel({type:'custom',id:String(id)})} addQuestion={()=>setAddOpen(true)}/>} 
@@ -531,15 +617,31 @@ function filterQuestions(qs:any[],f:Filters,ps:Record<string,ProgressRow>,type:'
 function filterCustom(qs:CustomQuestion[],f:Filters,ps:Record<string,ProgressRow>){return qs.filter(q=>{const p=ps[q.id];if(f.difficulty!=='All'&&q.difficulty!==f.difficulty)return false;if(f.section!=='All'&&q.topic!==f.section)return false;if(f.pattern!=='All'&&q.pattern!==f.pattern)return false;if(f.status==='Solved'&&!p?.solved)return false;if(f.status==='Unsolved'&&p?.solved)return false;if(f.status==='Hint Used'&&!p?.hint_used)return false;if(f.status==='Solution Seen'&&!p?.solution_seen)return false;const hay=[q.title,q.topic,q.pattern,q.statement,(q.tags||[]).join(' ')].join(' ').toLowerCase();return !f.search||hay.includes(f.search.toLowerCase())});}
 
 function NavButton({active,icon,text,onClick}:{active:boolean;icon:React.ReactNode;text:string;onClick:()=>void}){return <button className={`nav-button ${active?'active':''}`} onClick={onClick}>{icon}<span>{text}</span></button>}
-function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule}:any){return <div className="page-stack">
-  <section className="hero"><div><div className="eyebrow">DAILY PROGRESS</div><h1>Welcome back, {displayName}!</h1><p>Track your DSA preparation, placement readiness, and consistency from one workspace.</p></div><div className="hero-date"><span>Today</span><strong>{format(new Date(),'dd MMM yyyy')}</strong></div></section>
+const CHART_COLORS:Record<Theme,{solved:string;remaining:string}>={
+  light:{solved:'#1f5c3f',remaining:'#e3e8dc'},
+  mist:{solved:'#2b5f8a',remaining:'#cfdaea'},
+  sepia:{solved:'#1f5c3f',remaining:'#ece2c9'},
+  coffee:{solved:'#e0a868',remaining:'#4a3526'},
+  dark:{solved:'#31c07a',remaining:'#2b352b'},
+  space:{solved:'#8b9cff',remaining:'#2a3170'},
+};
+function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule,theme,offlineStatus,savingOffline,onSaveOffline}:any){
+  const st=offlineStatus||{data:false,editor:false,pending:0,savedAt:null};
+  const ready=st.data&&st.editor&&st.pending===0;
+  const when=st.savedAt?` · ${format(new Date(st.savedAt),'dd MMM, hh:mm a')}`:'';
+  const statusText=(ready?`Offline ready ✓${when}`:st.data?`Data saved ✓${when} · editor files not saved yet`:'Not saved for offline yet')+(st.pending>0?` · ${st.pending} change${st.pending>1?'s':''} waiting to sync`:'');
+  const colors=CHART_COLORS[(theme as Theme)]||CHART_COLORS.sepia;
+  return <div className="page-stack">
+  <section className="hero"><div><div className="eyebrow">DAILY PROGRESS</div><h1>Welcome back, {displayName}!</h1><p>Track your DSA preparation, placement readiness, and consistency from one workspace.</p></div><div className="hero-side"><div className="hero-date"><span>Today</span><strong>{format(new Date(),'dd MMM yyyy')}</strong></div>
+    <button className="offline-save-btn" disabled={savingOffline} onClick={onSaveOffline}>{savingOffline?<><span className="mini-spin"/> Saving…</>:<><Download size={15}/> Save for offline</>}</button>
+    <div className={`offline-status ${ready?'ok':''}`}>{statusText}</div></div></section>
   <div className="stats-grid"><StatCard title="DSA Problems Solved" value={`${dsaSolved} / 355`} meta={`${Math.round(dsaSolved/355*100)}% complete`} icon={<Target/>} tone="purple"/><StatCard title="Placement Solved" value={`${placementSolved} / 281`} meta={`${Math.round(placementSolved/281*100)}% complete`} icon={<Flame/>} tone="amber"/><StatCard title="DSA Streak" value={`${dsaStreak} days`} meta="active-day streak" icon={<Zap/>} tone="green"/><StatCard title="Placement Streak" value={`${placementStreak} days`} meta="active-day streak" icon={<Sparkles/>} tone="red"/></div>
-  <div className="two-col"><ChartCard title="DSA Problem Overview" subtitle="Solved vs remaining by section" data={dsaChart}/><ChartCard title="Placement Overview" subtitle="Solved vs remaining by topic" data={pChart}/></div>
+  <div className="two-col"><ChartCard title="DSA Problem Overview" subtitle="Solved vs remaining by section" data={dsaChart} colors={colors}/><ChartCard title="Placement Overview" subtitle="Solved vs remaining by topic" data={pChart} colors={colors}/></div>
   <section className="panel"><div className="panel-head"><div><h2>Activity</h2><p>Combined DSA + Placement — 11 Sep 2026 to 1 Sep 2027</p></div><Badge>Less → More</Badge></div><Heatmap activity={combinedActivity}/></section>
   <section className="panel recent"><div className="panel-head"><div><h2>Continue where you left off</h2><p>Latest solved item across both tracks</p></div><button className="ghost" onClick={()=>setModule(lastPlacement?'placement':'dsa')}>Open track <ArrowRight size={15}/></button></div><div className="recent-grid">{lastDsa && <div className="recent-item"><Badge tone="purple">DSA</Badge><strong>Q{lastDsa.id} · {lastDsa.title}</strong><span>{lastDsa.section}</span></div>}{lastPlacement && <div className="recent-item"><Badge tone="amber">Placement</Badge><strong>Q{lastPlacement.id} · {lastPlacement.title}</strong><span>{lastPlacement.topic}</span></div>}{!lastDsa&&!lastPlacement&&<div className="empty">Solve your first question to populate this stream.</div>}</div></section>
 </div>}
 function StatCard({title,value,meta,icon,tone}:{title:string;value:string;meta:string;icon:React.ReactNode;tone:string}){return <div className={`stat-card tone-${tone}`}><div className="stat-icon">{icon}</div><div><span>{title}</span><strong>{value}</strong><small>{meta}</small></div></div>}
-function ChartCard({title,subtitle,data}:any){return <section className="panel chart-panel"><div className="panel-head"><div><h2>{title}</h2><p>{subtitle}</p></div></div><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{left:-16,right:12,top:8,bottom:30}}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" angle={-30} textAnchor="end" height={55} tick={{fontSize:10}}/><YAxis tick={{fontSize:10}}/><Tooltip/><Bar dataKey="solved" stackId="a" name="Solved" fill="#1f5c3f" radius={[5,5,0,0]}/><Bar dataKey="remaining" stackId="a" name="Remaining" fill="#ece2c9" radius={[5,5,0,0]}/></BarChart></ResponsiveContainer></div></section>}
+function ChartCard({title,subtitle,data,colors}:any){return <section className="panel chart-panel"><div className="panel-head"><div><h2>{title}</h2><p>{subtitle}</p></div></div><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{left:-16,right:12,top:8,bottom:30}}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" angle={-30} textAnchor="end" height={55} tick={{fontSize:10}}/><YAxis tick={{fontSize:10}}/><Tooltip/><Bar dataKey="solved" stackId="a" name="Solved" fill={colors?.solved||"#1f5c3f"} radius={[5,5,0,0]}/><Bar dataKey="remaining" stackId="a" name="Remaining" fill={colors?.remaining||"#ece2c9"} radius={[5,5,0,0]}/></BarChart></ResponsiveContainer></div></section>}
 
 function ProblemPage({title,subtitle,badge,questions,progress,filters,setFilters,type,onToggle,onNotes,onDetail,onEditor,addQuestion}:any){const topics=[...new Set(questions.map((q:any)=>q.section||q.topic))] as string[];const patterns=[...new Set(questions.map((q:any)=>q.pattern))] as string[];const sources=(type==='placement'?[...new Set(questions.map((q:any)=>q.source))]:[]) as string[];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">{type==='placement'?'COMPANY TRACK':'PRACTICE TRACK'}</div><h1>{title}</h1><p>{subtitle}</p></div><div className="title-actions">{badge&&<Badge tone="purple">{badge}</Badge>}{addQuestion&&<button className="primary" onClick={addQuestion}><Plus size={17}/> Add Question</button>}</div></div><section className="panel filters"><div className="filter-search"><Search size={17}/><input placeholder="Search title, topic, pattern…" value={filters.search} onChange={e=>setFilters((v:any)=>({...v,search:e.target.value}))}/></div><Select label="Difficulty" value={filters.difficulty} options={['All','Easy','Medium','Hard']} onChange={(v)=>setFilters((x:any)=>({...x,difficulty:v}))}/><Select label={type==='placement'?'Topic':'Section'} value={filters.section} options={['All',...topics]} onChange={(v)=>setFilters((x:any)=>({...x,section:v}))}/><Select label="Pattern" value={filters.pattern} options={['All',...patterns]} onChange={(v)=>setFilters((x:any)=>({...x,pattern:v}))}/>{type==='placement'&&<Select label="Source" value={filters.source} options={['All',...sources]} onChange={(v)=>setFilters((x:any)=>({...x,source:v}))}/>}{type==='placement'&&<Select label="Priority" value={filters.priority} options={['All','TOP PRIORITY','HIGH','MEDIUM','LOW']} onChange={(v)=>setFilters((x:any)=>({...x,priority:v}))}/>}<Select label="Status" value={filters.status} options={['All','Unsolved','Solved','Hint Used','Solution Seen']} onChange={(v)=>setFilters((x:any)=>({...x,status:v}))}/><button className="icon-reset" onClick={()=>setFilters(EMPTY_FILTERS)} title="Reset filters"><RefreshCw size={16}/></button></section><div className="list-meta"><span>{questions.length} results</span><span><Filter size={14}/> filters combine live</span></div><section className="panel question-list">{questions.length===0?<div className="empty">No questions match your filters.</div>:questions.map((q:any)=><QuestionRow key={q.id} q={q} p={progress[String(q.id)]} type={type} onToggle={onToggle} onNotes={onNotes} onDetail={onDetail} onEditor={onEditor}/>)}</section></div>}
 function Select({label,value,options,onChange}:{label:string;value:string;options:string[];onChange:(v:string)=>void}){return <label className="select-wrap"><span>{label}</span><select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=><option key={o}>{o}</option>)}</select><ChevronDown size={14}/></label>}
@@ -570,6 +672,7 @@ const MONACO_THEME_MAP:Record<Theme,{base:'vs'|'vs-dark';name:string;colors:Reco
   sepia:{base:'vs',name:'dph-sepia',colors:{'editor.background':'#fffdf7','editor.foreground':'#26291f'}},
   coffee:{base:'vs-dark',name:'dph-coffee',colors:{'editor.background':'#2e2018','editor.foreground':'#f1e4d0'}},
   dark:{base:'vs-dark',name:'dph-dark',colors:{'editor.background':'#171c17','editor.foreground':'#eef1ea'}},
+  space:{base:'vs-dark',name:'dph-space',colors:{'editor.background':'#0d1130','editor.foreground':'#e9ecff'}},
 };
 function starterCodeFor(q:any,sampleCase?:TestCase){
   const cat=q.topic||q.section;
