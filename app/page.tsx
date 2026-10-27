@@ -119,9 +119,39 @@ function priorityTone(p?:string){return p==='TOP PRIORITY'?'top':p==='HIGH'?'hig
 
 
 function themeFromLocal():Theme { if(typeof window==='undefined') return 'sepia'; const v=localStorage.getItem('dph-theme'); return (THEMES.includes(v as Theme)?v:'sepia') as Theme; }
-type Theme='light'|'mist'|'sepia'|'coffee'|'dark'|'space';
-const THEMES:Theme[]=['light','mist','sepia','coffee','dark','space'];
-const THEME_LABEL:Record<Theme,string>={light:'Light',mist:'Mist',sepia:'Sepia',coffee:'Coffee',dark:'Dark',space:'Space'};
+type Theme='light'|'mist'|'sepia'|'coffee'|'dark'|'space'|'universe';
+const THEMES:Theme[]=['light','mist','sepia','coffee','dark','space','universe'];
+const THEME_LABEL:Record<Theme,string>={light:'Light',mist:'Mist',sepia:'Sepia',coffee:'Coffee',dark:'Dark',space:'Space',universe:'SpaceVerse'};
+// SpaceVerse background: parallax nebula + stars + textured planets. Pure CSS transforms (GPU), no WebGL / Three.js.
+// It is only mounted while the theme is SpaceVerse AND animations are ON; in Performance Mode it is not rendered at all.
+function UniverseScene({paused}:{paused:boolean}){
+  const ref=useRef<HTMLDivElement>(null);
+  const [hidden,setHidden]=useState(false);
+  useEffect(()=>{
+    const el=ref.current; if(!el) return;
+    const fine=typeof window.matchMedia==='function' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    let raf=0,tx=0,ty=0;
+    const apply=()=>{ raf=0; el.style.setProperty('--mx',tx.toFixed(3)); el.style.setProperty('--my',ty.toFixed(3)); };
+    const onMove=(e:MouseEvent)=>{ tx=(e.clientX/window.innerWidth-.5)*2; ty=(e.clientY/window.innerHeight-.5)*2; if(!raf) raf=requestAnimationFrame(apply); };
+    const onVis=()=>setHidden(document.hidden);
+    if(fine) window.addEventListener('mousemove',onMove,{passive:true});
+    document.addEventListener('visibilitychange',onVis);
+    return ()=>{ window.removeEventListener('mousemove',onMove); document.removeEventListener('visibilitychange',onVis); if(raf) cancelAnimationFrame(raf); };
+  },[]);
+  const d=(n:number)=>({'--d':n} as React.CSSProperties);
+  const Sphere=({children}:{children?:React.ReactNode})=><div className="uv-sphere"><div className="uv-tex"/><div className="uv-shade"/>{children}</div>;
+  return <div ref={ref} className={`uv-scene${(paused||hidden)?' uv-paused':''}`} aria-hidden="true">
+    <div className="uv-layer" style={d(-6)}><div className="uv-nebula"/></div>
+    <div className="uv-layer" style={d(-10)}><div className="uv-stars uv-s1"/></div>
+    <div className="uv-layer" style={d(-20)}><div className="uv-stars uv-s2"/></div>
+    <div className="uv-layer" style={d(-34)}><div className="uv-stars uv-s3"/></div>
+    <div className="uv-layer" style={d(-52)}><div className="uv-planet uv-gas"><div className="uv-ring uv-ring-back"/><Sphere/><div className="uv-ring uv-ring-front"/></div></div>
+    <div className="uv-layer" style={d(-30)}><div className="uv-planet uv-earth"><Sphere/><div className="uv-atmo"/><div className="uv-orbit"><div className="uv-moon"><Sphere/></div></div></div></div>
+    <div className="uv-layer uv-purple-layer" style={d(-22)}><div className="uv-planet uv-purple"><Sphere/></div></div>
+    <div className="uv-comet"/>
+    <div className="uv-vignette"/>
+  </div>;
+}
 function ThemeSwatches({current,onPick}:{current:Theme;onPick:(t:Theme)=>void}){return <div className="theme-swatch-grid">{THEMES.map(t=><button key={t} className={`theme-swatch swatch-${t} ${current===t?'active':''}`} onClick={()=>onPick(t)}><span className="swatch-preview"/><span className="swatch-name">{THEME_LABEL[t]}</span>{current===t&&<Check size={13} className="swatch-check"/>}</button>)}</div>}
 function ThemeMenu({current,onPick,onClose}:{current:Theme;onPick:(t:Theme)=>void;onClose:()=>void}){return <><div className="theme-menu-backdrop" onClick={onClose}/><div className="theme-menu"><div className="theme-menu-head"><strong>Appearance</strong><span>Tap to apply</span></div><ThemeSwatches current={current} onPick={onPick}/></div></>}
 
@@ -186,6 +216,22 @@ export default function Home(){
   const [session,setSession]=useState<any>(null);
   const [module,setModule]=useState<Module>('dashboard');
   const [theme,setTheme]=useState<Theme>(themeFromLocal());
+  // Animation Effects: 'on' (default) or 'off' (Performance Mode). Saved in localStorage, instant, and
+  // always off while the device has "reduce motion" enabled.
+  const [animPref,setAnimPref]=useState<'on'|'off'>('on');
+  const [reducedMotion,setReducedMotion]=useState(false);
+  const animations=animPref==='on' && !reducedMotion;
+  useEffect(()=>{
+    try{ if(localStorage.getItem('dph-anim')==='off') setAnimPref('off'); }catch{}
+    if(typeof window.matchMedia!=='function') return;
+    const mq=window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const h=(e:any)=>setReducedMotion(e.matches);
+    mq.addEventListener?.('change',h);
+    return ()=>mq.removeEventListener?.('change',h);
+  },[]);
+  useEffect(()=>{ document.documentElement.dataset.motion=animations?'on':'off'; },[animations]);
+  function changeAnim(v:'on'|'off'){ setAnimPref(v); try{ localStorage.setItem('dph-anim',v); }catch{} }
   const [themeOpen,setThemeOpen]=useState(false);
   const [filters,setFilters]=useState<Filters>(EMPTY_FILTERS);
   const [placementFilters,setPlacementFilters]=useState<Filters>(EMPTY_FILTERS);
@@ -268,6 +314,7 @@ export default function Home(){
   // Animated cursor: a dot + a trailing ring (grows over clickable things, ripples on click,
   // leaves a tiny star trail in the Space theme). The normal cursor stays visible.
   useEffect(()=>{
+    if(!animations) return;
     if(typeof window==='undefined' || typeof window.matchMedia!=='function') return;
     if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -283,7 +330,7 @@ export default function Home(){
       const hot=!!(e.target as Element|null)?.closest?.(interactive);
       ring.classList.toggle('hot',hot); dot.classList.toggle('hot',hot);
       if(!raf) raf=requestAnimationFrame(tick);
-      if(document.documentElement.dataset.theme==='space' && stars<24){
+      if((document.documentElement.dataset.theme==='space' || document.documentElement.dataset.theme==='universe') && stars<24){
         const now=performance.now();
         if(now-lastStar>45){
           lastStar=now; stars++;
@@ -307,7 +354,7 @@ export default function Home(){
       window.removeEventListener('mousemove',onMove); window.removeEventListener('mousedown',onDown); window.removeEventListener('mouseup',onUp); document.removeEventListener('mouseleave',onLeave);
       if(raf) cancelAnimationFrame(raf); ring.remove(); dot.remove();
     };
-  },[]);
+  },[animations]);
 
   useEffect(()=>{
     if(!session?.user?.id || session.offline) return;
@@ -447,6 +494,23 @@ export default function Home(){
     return ok;
   }
 
+  // ---- Change display name (Settings) ----
+  async function saveDisplayName(raw:string):Promise<string|null>{
+    const name=raw.trim().replace(/\s+/g,' ');
+    if(!name) return 'Name cannot be empty';
+    if(name.length>40) return 'Name can be at most 40 characters';
+    const uid=session?.user?.id; if(!uid || !supa) return 'Please log in again';
+    setDisplayName(name);
+    const row={id:uid,display_name:name,avatar_initials:name.slice(0,2).toUpperCase()};
+    const {error}=await supa.from('profiles').upsert(row);
+    if(error){
+      if(isOfflineError(error)){ queueWrite(uid,'profiles',row); setNotice('Name saved on this device — it will sync when you are online'); setTimeout(()=>setNotice(''),2200); return null; }
+      setNotice(error.message); return error.message;
+    }
+    setNotice('Name updated'); setTimeout(()=>setNotice(''),1500);
+    return null;
+  }
+
   // ---- "Save for offline" button: push pending changes, pull the latest data, make sure the editor files are cached ----
   async function refreshOfflineStatus(){
     const uid=sessionRef.current?.user?.id; if(!uid) return;
@@ -564,14 +628,15 @@ export default function Home(){
   const dsaChart=sectionChart(dsa,progress,'section'); const pChart=sectionChart(placement,placementProgress,'topic');
   const combinedActivity:Record<string,number>={};Object.keys({...activity,...placementActivity}).forEach(k=>{combinedActivity[k]=(activity[k]||0)+(placementActivity[k]||0)});
 
-  if(!supa) return <AuthRequired onRefresh={()=>location.reload()}/>;
-  if(!session) return <Login supa={supa}/>;
-  if(loading) return <div className="loading-screen"><div className="spinner"/>Loading your workspace…</div>;
+  const sceneEl=(theme==='universe' && animations)?<UniverseScene paused={!!editorSel}/>:null;
+  if(!supa) return <>{sceneEl}<AuthRequired onRefresh={()=>location.reload()}/></>;
+  if(!session) return <>{sceneEl}<Login supa={supa}/></>;
+  if(loading) return <>{sceneEl}<div className="loading-screen"><div className="spinner"/>Loading your workspace…</div></>;
 
   function openDetail(type:'dsa'|'placement'|'custom',id:string){setSelected({type,id});}
   const selectedQuestion=selected ? (selected.type==='dsa'?dsa.find(x=>String(x.id)===selected.id):selected.type==='placement'?placement.find(x=>String(x.id)===selected.id):custom.find(x=>x.id===selected.id)) : null;
 
-  return <div className="app-shell">
+  return <>{sceneEl}<div className="app-shell">
     <aside className={`sidebar ${mobileOpen?'open':''}`}>
       <div className="brand"><div className="brand-mark"><Sparkles size={17}/></div><div><strong>DSA Progress Hub</strong><small>Placement-ready practice</small></div></div>
       <nav>
@@ -588,13 +653,13 @@ export default function Home(){
     <main className="main">
       <header className="topbar"><button className="mobile-menu" onClick={()=>setMobileOpen(v=>!v)}><Menu size={21}/></button><div className="crumb">{module==='dashboard'?'Overview':module==='dsa'?'DSA Problems':module==='placement'?'Placement Preparation':module==='my'?'My Questions':module==='progress'?'Progress':module==='notes'?'Bookmarks / Notes':'Settings'}</div><div className="topbar-actions">{!online && <span className="offline-badge" title="You're offline — changes are saved locally and will sync automatically"><WifiOff size={13}/> Offline</span>}<span className="user-pill">{session.user.email}</span><div className="theme-menu-wrap"><button className="icon-btn" onClick={()=>setThemeOpen(v=>!v)} title="Appearance"><Palette size={17}/></button>{themeOpen && <ThemeMenu current={theme} onPick={(t)=>{setTheme(t);setThemeOpen(false)}} onClose={()=>setThemeOpen(false)}/>}</div><div className="avatar">{displayName.slice(0,2).toUpperCase()}</div></div></header>
       <div className="content">
-        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule} theme={theme} offlineStatus={offlineStatus} savingOffline={savingOffline} onSaveOffline={saveForOffline}/>}        
+        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule} theme={theme} animations={animations} offlineStatus={offlineStatus} savingOffline={savingOffline} onSaveOffline={saveForOffline}/>}        
         {module==='dsa' && <ProblemPage title="DSA Problems" subtitle="355 curated" questions={dsaFiltered} progress={progress} filters={filters} setFilters={setFilters} type="dsa" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'dsa',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('dsa',String(id))} onEditor={(id:any)=>setEditorSel({type:'dsa',id:String(id)})}/>} 
         {module==='placement' && <ProblemPage title="Placement Preparation" subtitle="Unthinkable Solutions LLP • Daffodil Software" badge="281 curated questions" questions={pFiltered} progress={placementProgress} filters={placementFilters} setFilters={setPlacementFilters} type="placement" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'placement',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('placement',String(id))} onEditor={(id:any)=>setEditorSel({type:'placement',id:String(id)})}/>} 
         {module==='my' && <ProblemPage title="My Questions" subtitle="Practice and track any additional questions you want to add." badge={`${custom.length} total`} questions={cFiltered} progress={customProgress} filters={filters} setFilters={setFilters} type="custom" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'custom',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('custom',String(id))} onEditor={(id:any)=>setEditorSel({type:'custom',id:String(id)})} addQuestion={()=>setAddOpen(true)}/>} 
         {module==='notes' && <NotesPage dsa={dsa} placement={placement} custom={custom} progress={progress} placementProgress={placementProgress} customProgress={customProgress} notes={notes} onOpen={(type:any,id:any)=>{setSelected({type,id:String(id)});setNotesOpen(true)}}/>}
         {module==='progress' && <ProgressPage dsa={dsa} placement={placement} progress={progress} placementProgress={placementProgress} activity={activity} placementActivity={placementActivity} />}
-        {module==='settings' && <SettingsPage theme={theme} setTheme={setTheme} displayName={displayName}/>}      
+        {module==='settings' && <SettingsPage theme={theme} setTheme={setTheme} displayName={displayName} animPref={animPref} reducedMotion={reducedMotion} onAnimChange={changeAnim} onSaveName={saveDisplayName}/>}      
       </div>
     </main>
     {notice && <div className="toast"><Zap size={15}/>{notice}</div>}
@@ -602,8 +667,8 @@ export default function Home(){
     {selectedQuestion && notesOpen && <NotesDrawer selected={selected!} q={selectedQuestion as any} initial={notes[`${selected!.type}-${selected!.id}`]||''} onClose={()=>{setNotesOpen(false);setSelected(null)}} onSave={saveNote}/>}
     {editOpen && selected?.type==='custom' && selectedQuestion && <EditQuestion q={selectedQuestion as CustomQuestion} onClose={()=>setEditOpen(false)} onSave={async(values:any)=>{const {data,error}=await supa!.from('custom_questions').update(values).eq('id',selected.id).eq('user_id',session.user.id).select().single();if(error){setNotice(error.message);return;}setCustom(v=>v.map(x=>x.id===selected.id?data:x));setEditOpen(false);setNotice('Question updated');setTimeout(()=>setNotice(''),1400)}} onDelete={async()=>{const {error}=await supa!.from('custom_questions').delete().eq('id',selected.id).eq('user_id',session.user.id);if(error){setNotice(error.message);return;}setCustom(v=>v.filter(x=>x.id!==selected.id));setEditOpen(false);setSelected(null);setNotice('Question deleted');setTimeout(()=>setNotice(''),1400)}}/>}
     {addOpen && <AddQuestion onClose={()=>setAddOpen(false)} onSave={async(q:any)=>{const {data,error}=await supa!.from('custom_questions').insert({...q,user_id:session.user.id}).select().single();if(error){setNotice(error.message);return;}setCustom(v=>[data,...v]);setAddOpen(false);setNotice('Question added');setTimeout(()=>setNotice(''),1500)}}/>}
-    {editorSel && editorQuestion && <CodeEditorDrawer q={editorQuestion as any} qType={editorSel.type} p={editorProgress} testCases={editorSel.type==='custom'?[]:(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }}/>}
-  </div>
+    {editorSel && editorQuestion && <CodeEditorDrawer q={editorQuestion as any} qType={editorSel.type} p={editorProgress} testCases={editorSel.type==='custom'?[]:(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }} animations={animations}/>}
+  </div></>
 }
 
 function streak(activity:Record<string,number>){
@@ -624,8 +689,9 @@ const CHART_COLORS:Record<Theme,{solved:string;remaining:string}>={
   coffee:{solved:'#e0a868',remaining:'#4a3526'},
   dark:{solved:'#31c07a',remaining:'#2b352b'},
   space:{solved:'#8b9cff',remaining:'#2a3170'},
+  universe:{solved:'#7aa2ff',remaining:'#232a66'},
 };
-function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule,theme,offlineStatus,savingOffline,onSaveOffline}:any){
+function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule,theme,animations,offlineStatus,savingOffline,onSaveOffline}:any){
   const st=offlineStatus||{data:false,editor:false,pending:0,savedAt:null};
   const ready=st.data&&st.editor&&st.pending===0;
   const when=st.savedAt?` · ${format(new Date(st.savedAt),'dd MMM, hh:mm a')}`:'';
@@ -636,12 +702,12 @@ function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStr
     <button className="offline-save-btn" disabled={savingOffline} onClick={onSaveOffline}>{savingOffline?<><span className="mini-spin"/> Saving…</>:<><Download size={15}/> Save for offline</>}</button>
     <div className={`offline-status ${ready?'ok':''}`}>{statusText}</div></div></section>
   <div className="stats-grid"><StatCard title="DSA Problems Solved" value={`${dsaSolved} / 355`} meta={`${Math.round(dsaSolved/355*100)}% complete`} icon={<Target/>} tone="purple"/><StatCard title="Placement Solved" value={`${placementSolved} / 281`} meta={`${Math.round(placementSolved/281*100)}% complete`} icon={<Flame/>} tone="amber"/><StatCard title="DSA Streak" value={`${dsaStreak} days`} meta="active-day streak" icon={<Zap/>} tone="green"/><StatCard title="Placement Streak" value={`${placementStreak} days`} meta="active-day streak" icon={<Sparkles/>} tone="red"/></div>
-  <div className="two-col"><ChartCard title="DSA Problem Overview" subtitle="Solved vs remaining by section" data={dsaChart} colors={colors}/><ChartCard title="Placement Overview" subtitle="Solved vs remaining by topic" data={pChart} colors={colors}/></div>
+  <div className="two-col"><ChartCard title="DSA Problem Overview" subtitle="Solved vs remaining by section" data={dsaChart} colors={colors} animate={animations}/><ChartCard title="Placement Overview" subtitle="Solved vs remaining by topic" data={pChart} colors={colors} animate={animations}/></div>
   <section className="panel"><div className="panel-head"><div><h2>Activity</h2><p>Combined DSA + Placement — 11 Sep 2026 to 1 Sep 2027</p></div><Badge>Less → More</Badge></div><Heatmap activity={combinedActivity}/></section>
   <section className="panel recent"><div className="panel-head"><div><h2>Continue where you left off</h2><p>Latest solved item across both tracks</p></div><button className="ghost" onClick={()=>setModule(lastPlacement?'placement':'dsa')}>Open track <ArrowRight size={15}/></button></div><div className="recent-grid">{lastDsa && <div className="recent-item"><Badge tone="purple">DSA</Badge><strong>Q{lastDsa.id} · {lastDsa.title}</strong><span>{lastDsa.section}</span></div>}{lastPlacement && <div className="recent-item"><Badge tone="amber">Placement</Badge><strong>Q{lastPlacement.id} · {lastPlacement.title}</strong><span>{lastPlacement.topic}</span></div>}{!lastDsa&&!lastPlacement&&<div className="empty">Solve your first question to populate this stream.</div>}</div></section>
 </div>}
 function StatCard({title,value,meta,icon,tone}:{title:string;value:string;meta:string;icon:React.ReactNode;tone:string}){return <div className={`stat-card tone-${tone}`}><div className="stat-icon">{icon}</div><div><span>{title}</span><strong>{value}</strong><small>{meta}</small></div></div>}
-function ChartCard({title,subtitle,data,colors}:any){return <section className="panel chart-panel"><div className="panel-head"><div><h2>{title}</h2><p>{subtitle}</p></div></div><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{left:-16,right:12,top:8,bottom:30}}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" angle={-30} textAnchor="end" height={55} tick={{fontSize:10}}/><YAxis tick={{fontSize:10}}/><Tooltip/><Bar dataKey="solved" stackId="a" name="Solved" fill={colors?.solved||"#1f5c3f"} radius={[5,5,0,0]}/><Bar dataKey="remaining" stackId="a" name="Remaining" fill={colors?.remaining||"#ece2c9"} radius={[5,5,0,0]}/></BarChart></ResponsiveContainer></div></section>}
+function ChartCard({title,subtitle,data,colors,animate}:any){return <section className="panel chart-panel"><div className="panel-head"><div><h2>{title}</h2><p>{subtitle}</p></div></div><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{left:-16,right:12,top:8,bottom:30}}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" angle={-30} textAnchor="end" height={55} tick={{fontSize:10}}/><YAxis tick={{fontSize:10}}/><Tooltip isAnimationActive={!!animate}/><Bar isAnimationActive={!!animate} dataKey="solved" stackId="a" name="Solved" fill={colors?.solved||"#1f5c3f"} radius={[5,5,0,0]}/><Bar isAnimationActive={!!animate} dataKey="remaining" stackId="a" name="Remaining" fill={colors?.remaining||"#ece2c9"} radius={[5,5,0,0]}/></BarChart></ResponsiveContainer></div></section>}
 
 function ProblemPage({title,subtitle,badge,questions,progress,filters,setFilters,type,onToggle,onNotes,onDetail,onEditor,addQuestion}:any){const topics=[...new Set(questions.map((q:any)=>q.section||q.topic))] as string[];const patterns=[...new Set(questions.map((q:any)=>q.pattern))] as string[];const sources=(type==='placement'?[...new Set(questions.map((q:any)=>q.source))]:[]) as string[];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">{type==='placement'?'COMPANY TRACK':'PRACTICE TRACK'}</div><h1>{title}</h1><p>{subtitle}</p></div><div className="title-actions">{badge&&<Badge tone="purple">{badge}</Badge>}{addQuestion&&<button className="primary" onClick={addQuestion}><Plus size={17}/> Add Question</button>}</div></div><section className="panel filters"><div className="filter-search"><Search size={17}/><input placeholder="Search title, topic, pattern…" value={filters.search} onChange={e=>setFilters((v:any)=>({...v,search:e.target.value}))}/></div><Select label="Difficulty" value={filters.difficulty} options={['All','Easy','Medium','Hard']} onChange={(v)=>setFilters((x:any)=>({...x,difficulty:v}))}/><Select label={type==='placement'?'Topic':'Section'} value={filters.section} options={['All',...topics]} onChange={(v)=>setFilters((x:any)=>({...x,section:v}))}/><Select label="Pattern" value={filters.pattern} options={['All',...patterns]} onChange={(v)=>setFilters((x:any)=>({...x,pattern:v}))}/>{type==='placement'&&<Select label="Source" value={filters.source} options={['All',...sources]} onChange={(v)=>setFilters((x:any)=>({...x,source:v}))}/>}{type==='placement'&&<Select label="Priority" value={filters.priority} options={['All','TOP PRIORITY','HIGH','MEDIUM','LOW']} onChange={(v)=>setFilters((x:any)=>({...x,priority:v}))}/>}<Select label="Status" value={filters.status} options={['All','Unsolved','Solved','Hint Used','Solution Seen']} onChange={(v)=>setFilters((x:any)=>({...x,status:v}))}/><button className="icon-reset" onClick={()=>setFilters(EMPTY_FILTERS)} title="Reset filters"><RefreshCw size={16}/></button></section><div className="list-meta"><span>{questions.length} results</span><span><Filter size={14}/> filters combine live</span></div><section className="panel question-list">{questions.length===0?<div className="empty">No questions match your filters.</div>:questions.map((q:any)=><QuestionRow key={q.id} q={q} p={progress[String(q.id)]} type={type} onToggle={onToggle} onNotes={onNotes} onDetail={onDetail} onEditor={onEditor}/>)}</section></div>}
 function Select({label,value,options,onChange}:{label:string;value:string;options:string[];onChange:(v:string)=>void}){return <label className="select-wrap"><span>{label}</span><select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=><option key={o}>{o}</option>)}</select><ChevronDown size={14}/></label>}
@@ -650,7 +716,25 @@ function QuestionRow({q,p,type,onToggle,onNotes,onDetail,onEditor}:any){const ro
 function NotesPage({dsa,placement,custom,progress,placementProgress,customProgress,notes,onOpen}:any){const rows=[...dsa.filter((q:any)=>notes[`dsa-${q.id}`]).map((q:any)=>({type:'dsa',id:q.id,title:q.title,meta:q.section})),...placement.filter((q:any)=>notes[`placement-${q.id}`]).map((q:any)=>({type:'placement',id:q.id,title:q.title,meta:q.topic})),...custom.filter((q:any)=>notes[`custom-${q.id}`]).map((q:any)=>({type:'custom',id:q.id,title:q.title,meta:q.topic}))];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">PRIVATE WORKSPACE</div><h1>Bookmarks / Notes</h1><p>Your saved notes across DSA, Placement and My Questions.</p></div></div><section className="panel notes-list">{rows.length===0?<div className="empty">No saved notes yet. Open any question and start writing.</div>:rows.map(r=><button key={`${r.type}-${r.id}`} className="saved-note" onClick={()=>onOpen(r.type,r.id)}><NotebookPen size={17}/><div><strong>{r.title}</strong><span>{r.meta}</span></div><ArrowRight size={16}/></button>)}</section></div>}
 function ProgressPage({dsa,placement,progress,placementProgress,activity,placementActivity}:any){const easy=dsa.filter((q:any)=>q.difficulty==='Easy'&&progress[String(q.id)]?.solved).length;const med=dsa.filter((q:any)=>q.difficulty==='Medium'&&progress[String(q.id)]?.solved).length;const hard=dsa.filter((q:any)=>q.difficulty==='Hard'&&progress[String(q.id)]?.solved).length;const pe=placement.filter((q:any)=>placementProgress[String(q.id)]?.solved).length;return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">ANALYTICS</div><h1>Progress</h1><p>Official DSA and Placement metrics stay completely independent.</p></div></div><div className="stats-grid"><StatCard title="DSA solved" value={`${Object.values(progress).filter((p:any)=>p.solved).length} / 355`} meta={`${Math.round(Object.values(progress).filter((p:any)=>p.solved).length/355*100)}%`} icon={<Target/>} tone="purple"/><StatCard title="Easy / Medium / Hard" value={`${easy} / ${med} / ${hard}`} meta="DSA solved by difficulty" icon={<ListFilter/>} tone="green"/><StatCard title="Placement solved" value={`${pe} / 281`} meta={`${Math.round(pe/281*100)}%`} icon={<Flame/>} tone="amber"/><StatCard title="Active days" value={`${Object.values(activity).filter(Boolean).length} / ${Object.values(placementActivity).filter(Boolean).length}`} meta="DSA / Placement" icon={<Zap/>} tone="red"/></div><div className="two-col"><section className="panel"><div className="panel-head"><div><h2>DSA completion by section</h2><p>Real-time from your progress rows.</p></div></div><ProgressBars items={dsa} progress={progress}/></section><section className="panel"><div className="panel-head"><div><h2>Placement completion by topic</h2><p>Real-time from your placement rows.</p></div></div><ProgressBars items={placement} placement progress={placementProgress}/></section></div></div>}
 function ProgressBars({items,progress}:any){const groups:any={};items.forEach((q:any)=>{const k=q.section||q.topic;if(!groups[k])groups[k]={total:0,solved:0};groups[k].total++;if(progress[String(q.id)]?.solved)groups[k].solved++;});return <div className="progress-bars">{Object.entries(groups).map(([k,v]:any)=><div className="bar-row" key={k}><div className="bar-label"><span>{k}</span><strong>{v.solved}/{v.total}</strong></div><div className="track"><div className="fill" style={{width:`${v.solved/v.total*100}%`}}/></div></div>)}</div>}
-function SettingsPage({theme,setTheme,displayName}:any){return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">PREFERENCES</div><h1>Settings</h1><p>Theme and workspace preferences.</p></div></div><section className="panel settings-panel"><div className="setting-row settings-appearance"><div><strong>Appearance</strong><span>Remembered on this device.</span></div></div><ThemeSwatches current={theme} onPick={setTheme}/><div className="setting-row"><div><strong>Display name</strong><span>Shown in your dashboard greeting.</span></div><Badge tone="purple">{displayName}</Badge></div></section></div>}
+function SettingsPage({theme,setTheme,displayName,animPref,reducedMotion,onAnimChange,onSaveName}:any){
+  const [draft,setDraft]=useState<string>(displayName);
+  const [msg,setMsg]=useState<{ok:boolean;text:string}|null>(null);
+  const [saving,setSaving]=useState(false);
+  useEffect(()=>{ setDraft(displayName); },[displayName]);
+  const animOn=animPref==='on' && !reducedMotion;
+  const changed=draft.trim()!==displayName;
+  async function save(){ setSaving(true); setMsg(null); const err=await onSaveName(draft); setSaving(false); setMsg(err?{ok:false,text:err}:{ok:true,text:'Name updated ✓'}); }
+  return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">PREFERENCES</div><h1>Settings</h1><p>Theme, performance and profile preferences.</p></div></div>
+    <section className="panel settings-panel">
+      <div className="setting-row settings-appearance"><div><strong>Appearance</strong><span>Remembered on this device.</span></div></div>
+      <ThemeSwatches current={theme} onPick={setTheme}/>
+      <div className="setting-row"><div><strong>Animation Effects</strong><span>{animOn?'ON — cursor effects, animated backgrounds, 3D space scenes and smooth transitions.':'OFF — Performance Mode: static and lightweight, best for low-end PCs.'}</span></div>
+        <div className="seg" role="group" aria-label="Animation Effects"><button className={animOn?'on':''} disabled={reducedMotion} onClick={()=>onAnimChange('on')}>On</button><button className={!animOn?'on':''} onClick={()=>onAnimChange('off')}>Off</button></div></div>
+      {reducedMotion && <div className="setting-note">Your device has “reduce motion” turned on, so animations stay off.</div>}
+      <div className="setting-row name-row"><div><strong>Display name</strong><span>Shown in your dashboard greeting and avatar.</span></div>
+        <div className="name-edit"><input value={draft} maxLength={40} aria-label="Display name" onChange={e=>{setDraft(e.target.value);setMsg(null);}} onKeyDown={e=>{ if(e.key==='Enter' && changed && !saving && draft.trim()) save(); }}/><button className="primary" disabled={!changed||saving||!draft.trim()} onClick={save}>{saving?'Saving…':'Save'}</button></div></div>
+      {msg && <div className={`setting-note ${msg.ok?'ok':'err'}`}>{msg.text}</div>}
+    </section></div>}
 function WhatToDo({steps}:{steps:string[]}){
   const [open,setOpen]=useState(false);
   if(steps.length===0) return null;
@@ -673,6 +757,7 @@ const MONACO_THEME_MAP:Record<Theme,{base:'vs'|'vs-dark';name:string;colors:Reco
   coffee:{base:'vs-dark',name:'dph-coffee',colors:{'editor.background':'#2e2018','editor.foreground':'#f1e4d0'}},
   dark:{base:'vs-dark',name:'dph-dark',colors:{'editor.background':'#171c17','editor.foreground':'#eef1ea'}},
   space:{base:'vs-dark',name:'dph-space',colors:{'editor.background':'#0d1130','editor.foreground':'#e9ecff'}},
+  universe:{base:'vs-dark',name:'dph-universe',colors:{'editor.background':'#080b24','editor.foreground':'#eaf0ff'}},
 };
 function starterCodeFor(q:any,sampleCase?:TestCase){
   const cat=q.topic||q.section;
@@ -733,7 +818,7 @@ self.postMessage({ok:true,logs:__logs});
     worker.onerror=(e)=>finish({ok:false,logs:[],error:e.message,stack:e.filename?`:${e.lineno}:${e.colno}`:''});
   });
 }
-function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved}:{q:any;qType:'dsa'|'placement'|'custom';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void}){
+function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved,animations=true}:{q:any;qType:'dsa'|'placement'|'custom';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void;animations?:boolean}){
   const storageKey=`${qType}_editor_${userId}_${q.id}`;
   const examples=testCases.slice(0,3);
   const sampleCase=testCases[0];
@@ -830,7 +915,7 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
           beforeMount={beforeMount}
           onMount={(editor:any)=>{ editorRef.current=editor; editor.addCommand(2048|3,()=>run()); }}
           onChange={(v:string|undefined)=>setCode(v||'')}
-          options={{minimap:{enabled:false},fontSize:13,tabSize:2,automaticLayout:true,scrollBeyondLastLine:false,wordWrap:'on'}}
+          options={{minimap:{enabled:false},fontSize:13,tabSize:2,automaticLayout:true,scrollBeyondLastLine:false,wordWrap:'on',smoothScrolling:animations,cursorSmoothCaretAnimation:animations?'on':'off',cursorBlinking:animations?'blink':'solid'}}
         />
       </div>
       <div className="editor-io-panel">

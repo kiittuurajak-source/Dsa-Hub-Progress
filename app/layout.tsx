@@ -15,6 +15,9 @@ export const viewport: Viewport = {
   themeColor: '#1f5c3f',
 };
 
+// Runs before first paint so the saved theme and animation mode apply instantly (no flash of animations).
+const initScript = `try{var d=document.documentElement;var m=localStorage.getItem('dph-anim');var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;d.dataset.motion=(m==='off'||r)?'off':'on';d.dataset.theme=localStorage.getItem('dph-theme')||'sepia';}catch(e){}`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: initScript }} /></head><body>{children}</body></html>;
 }
