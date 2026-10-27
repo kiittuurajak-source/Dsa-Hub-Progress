@@ -44,7 +44,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Build assets are content-hashed and immutable — cache-first.
-  if (url.pathname.startsWith('/_next/static/')) {
+  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/universe/') || url.pathname.startsWith('/fonts/')) {
     event.respondWith(
       caches.open(SHELL_CACHE).then(async (cache) => {
         const cached = await cache.match(req);
