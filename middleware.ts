@@ -10,4 +10,4 @@ export async function middleware(request: NextRequest) {
   await supabase.auth.getUser();
   return response;
 }
-export const config={matcher:['/((?!_next/static|_next/image|monaco/|sw\\.js|manifest\\.json|favicon\\.ico|icon-192\\.png|icon-512\\.png|apple-touch-icon\\.png).*)']};
+export const config={matcher:['/((?!_next/static|_next/image|monaco/|universe/|fonts/|sw\\.js|manifest\\.json|favicon\\.ico|icon-192\\.png|icon-512\\.png|apple-touch-icon\\.png).*)']};
