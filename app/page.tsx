@@ -7,6 +7,8 @@ import placementTestCasesJson from '@/lib/placementTestCases.json';
 const PLACEMENT_TESTCASES:Record<number,TestCase[]> = Object.fromEntries((placementTestCasesJson as any[]).map(x=>[x.id,x.testCases]));
 import dsaTestCasesJson from '@/lib/dsaTestCases.json';
 const DSA_TESTCASES:Record<number,TestCase[]> = Object.fromEntries((dsaTestCasesJson as any[]).map(x=>[x.id,x.testCases]));
+import thoughtsJson from '@/lib/motivationalThoughts.json';
+const THOUGHTS:string[]=thoughtsJson as string[];
 import dsaDescriptionsJson from '@/lib/dsaDescriptions.json';
 import placementDescriptionsJson from '@/lib/placementDescriptions.json';
 import dsaHowJson from '@/lib/dsaHow.json';
@@ -24,7 +26,7 @@ import type { CustomQuestion, DsaQuestion, PlacementQuestion, ProgressRow, TestC
 import { format, subDays } from 'date-fns';
 import {
   Archive, ArrowLeft, ArrowRight, BookOpen, Check, ChevronDown, ClipboardList,
-  Code2, Download, Eye, Filter, Flame, Grid2X2, Lightbulb, ListFilter, LogOut, Menu, Palette,
+  Code2, Copy, Download, Eye, Filter, Flame, Grid2X2, Lightbulb, ListFilter, LogOut, Menu, Palette,
   NotebookPen, Play, Plus, RefreshCw, RotateCcw, Search, Settings, Sparkles, Target, WifiOff, X, Zap
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -71,6 +73,33 @@ async function warmUpEditor(force?:boolean):Promise<boolean>{
     localStorage.setItem(KEY,'1');
     return true;
   }catch{ return false; }
+}
+// Motivation thought: a new one every time the app is opened / someone logs in. A shuffled queue (kept in
+// localStorage) guarantees no thought repeats until all of them have been shown.
+function pickThoughtIndex():number{
+  const n=THOUGHTS.length; if(n===0) return -1;
+  try{
+    let queue:number[]=JSON.parse(localStorage.getItem('dph_thought_queue')||'[]');
+    let pos=parseInt(localStorage.getItem('dph_thought_pos')||'0',10);
+    const last=parseInt(localStorage.getItem('dph_thought_last')||'-1',10);
+    if(!Array.isArray(queue)||queue.length!==n||isNaN(pos)||pos>=n){
+      queue=Array.from({length:n},(_,i)=>i);
+      for(let i=n-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [queue[i],queue[j]]=[queue[j],queue[i]]; }
+      if(n>1 && queue[0]===last){ [queue[0],queue[1]]=[queue[1],queue[0]]; }
+      pos=0;
+    }
+    const idx=queue[pos];
+    localStorage.setItem('dph_thought_queue',JSON.stringify(queue));
+    localStorage.setItem('dph_thought_pos',String(pos+1));
+    localStorage.setItem('dph_thought_last',String(idx));
+    return idx;
+  }catch{ return Math.floor(Math.random()*n); }
+}
+function offlineStatusText(st:any){
+  const ready=!!(st.data&&st.editor&&st.pending===0);
+  const when=st.savedAt?` · ${format(new Date(st.savedAt),'dd MMM, hh:mm a')}`:'';
+  const text=(ready?`Offline ready ✓${when}`:st.data?`Data saved ✓${when} · editor files not saved yet`:'Not saved for offline yet')+(st.pending>0?` · ${st.pending} change${st.pending>1?'s':''} waiting to sync`:'');
+  return {ready,text};
 }
 // true when the service worker's editor cache really holds the Monaco files
 async function editorFilesCached():Promise<boolean>{
@@ -122,8 +151,10 @@ function themeFromLocal():Theme { if(typeof window==='undefined') return 'sepia'
 type Theme='light'|'mist'|'sepia'|'coffee'|'dark'|'space'|'universe';
 const THEMES:Theme[]=['light','mist','sepia','coffee','dark','space','universe'];
 const THEME_LABEL:Record<Theme,string>={light:'Light',mist:'Mist',sepia:'Sepia',coffee:'Coffee',dark:'Dark',space:'Space',universe:'SpaceVerse'};
-// SpaceVerse background: parallax nebula + stars + textured planets. Pure CSS transforms (GPU), no WebGL / Three.js.
-// It is only mounted while the theme is SpaceVerse AND animations are ON; in Performance Mode it is not rendered at all.
+// SpaceVerse background. Built to be light: ONE static full-screen layer (nebula + stars + vignette painted once),
+// plus a few small animated pieces (planets, comet, twinkling stars). Only the planets follow the mouse (parallax).
+// Mounted only while the theme is SpaceVerse AND animations are ON; in Performance Mode it is not rendered at all.
+const UV_TWINKLES:[number,number,number][]=[[8,12,0],[22,70,1],[37,24,2],[52,8,3],[63,48,4],[78,18,1],[88,62,2],[14,88,3]];
 function UniverseScene({paused}:{paused:boolean}){
   const ref=useRef<HTMLDivElement>(null);
   const [hidden,setHidden]=useState(false);
@@ -141,15 +172,12 @@ function UniverseScene({paused}:{paused:boolean}){
   const d=(n:number)=>({'--d':n} as React.CSSProperties);
   const Sphere=({children}:{children?:React.ReactNode})=><div className="uv-sphere"><div className="uv-tex"/><div className="uv-shade"/>{children}</div>;
   return <div ref={ref} className={`uv-scene${(paused||hidden)?' uv-paused':''}`} aria-hidden="true">
-    <div className="uv-layer" style={d(-6)}><div className="uv-nebula"/></div>
-    <div className="uv-layer" style={d(-10)}><div className="uv-stars uv-s1"/></div>
-    <div className="uv-layer" style={d(-20)}><div className="uv-stars uv-s2"/></div>
-    <div className="uv-layer" style={d(-34)}><div className="uv-stars uv-s3"/></div>
-    <div className="uv-layer" style={d(-52)}><div className="uv-planet uv-gas"><div className="uv-ring uv-ring-back"/><Sphere/><div className="uv-ring uv-ring-front"/></div></div>
-    <div className="uv-layer" style={d(-30)}><div className="uv-planet uv-earth"><Sphere/><div className="uv-atmo"/><div className="uv-orbit"><div className="uv-moon"><Sphere/></div></div></div></div>
-    <div className="uv-layer uv-purple-layer" style={d(-22)}><div className="uv-planet uv-purple"><Sphere/></div></div>
+    <div className="uv-bg"/>
+    {UV_TWINKLES.map(([x,y,k],i)=><i key={i} className="uv-tw" style={{left:x+'%',top:y+'%',animationDelay:(k*-1.7)+'s'}}/>)}
+    <div className="uv-layer" style={d(-26)}><div className="uv-planet uv-gas"><div className="uv-ring uv-ring-back"/><Sphere/><div className="uv-ring uv-ring-front"/></div></div>
+    <div className="uv-layer" style={d(-16)}><div className="uv-planet uv-earth"><Sphere/><div className="uv-atmo"/><div className="uv-orbit"><div className="uv-moon"><Sphere/></div></div></div></div>
+    <div className="uv-layer uv-purple-layer" style={d(-10)}><div className="uv-planet uv-purple"><Sphere/></div></div>
     <div className="uv-comet"/>
-    <div className="uv-vignette"/>
   </div>;
 }
 function ThemeSwatches({current,onPick}:{current:Theme;onPick:(t:Theme)=>void}){return <div className="theme-swatch-grid">{THEMES.map(t=><button key={t} className={`theme-swatch swatch-${t} ${current===t?'active':''}`} onClick={()=>onPick(t)}><span className="swatch-preview"/><span className="swatch-name">{THEME_LABEL[t]}</span>{current===t&&<Check size={13} className="swatch-check"/>}</button>)}</div>}
@@ -254,11 +282,14 @@ export default function Home(){
   const [online,setOnline]=useState(true);
   const [offlineStatus,setOfflineStatus]=useState<{data:boolean;editor:boolean;pending:number;savedAt:string|null}>({data:false,editor:false,pending:0,savedAt:null});
   const [savingOffline,setSavingOffline]=useState(false);
+  const [thoughtIdx,setThoughtIdx]=useState(-1);
+  const [thoughtCopied,setThoughtCopied]=useState(false);
   const dsa=dsaQuestions as unknown as DsaQuestion[];
   const placement=placementQuestions as unknown as PlacementQuestion[];
 
   useEffect(()=>{ document.documentElement.dataset.theme=theme; localStorage.setItem('dph-theme',theme); },[theme]);
   const sessionRef=useRef<any>(null); sessionRef.current=session;
+  const latestRef=useRef<any>({}); latestRef.current={progress,placementProgress,customProgress};
   const uidRef=useRef<string|null>(null);       // user we have already bootstrapped data for
   const hydrated=useRef(false);                 // true once state holds real (cached or fetched) data
   const pullingRef=useRef(false);
@@ -268,14 +299,28 @@ export default function Home(){
     setDisplayName(c.displayName||'Student'); setProgress(c.progress||{}); setPlacementProgress(c.placementProgress||{}); setActivity(c.activity||{}); setPlacementActivity(c.placementActivity||{}); setNotes(c.notes||{}); setCustom(c.custom||[]); setCustomProgress(c.customProgress||{});
   }
 
-  // Keep the local saved copy in sync with every change (including offline
-  // edits), but never before real data has been loaded — so it can never be
-  // overwritten with the empty initial state.
+  // Keep the local saved copy in sync with every change (including offline edits), but never before real
+  // data has been loaded — so it can never be overwritten with the empty initial state. The write is
+  // debounced (it serialises everything) and flushed immediately when the page is hidden/closed.
+  const snapRef=useRef<{uid:string;snap:any}|null>(null);
   useEffect(()=>{
     const uid=session?.user?.id;
     if(!uid || !hydrated.current) return;
-    saveCache(uid,{displayName,progress,placementProgress,activity,placementActivity,notes,custom,customProgress});
+    const snap={displayName,progress,placementProgress,activity,placementActivity,notes,custom,customProgress};
+    snapRef.current={uid,snap};
+    const t=setTimeout(()=>{ if(snapRef.current){ saveCache(snapRef.current.uid,snapRef.current.snap); snapRef.current=null; } },600);
+    return ()=>clearTimeout(t);
   },[displayName,progress,placementProgress,activity,placementActivity,notes,custom,customProgress]);
+  useEffect(()=>{
+    const flush=()=>{ const sn=snapRef.current; if(sn){ saveCache(sn.uid,sn.snap); snapRef.current=null; } };
+    const onHide=()=>{ if(document.visibilityState==='hidden') flush(); };
+    window.addEventListener('pagehide',flush); document.addEventListener('visibilitychange',onHide);
+    return ()=>{ window.removeEventListener('pagehide',flush); document.removeEventListener('visibilitychange',onHide); };
+  },[]);
+
+  // New motivation thought whenever someone logs in / the app is opened (the id only changes on login).
+  useEffect(()=>{ if(session?.user?.id){ setThoughtIdx(pickThoughtIndex()); setThoughtCopied(false); } },[session?.user?.id]);
+  useEffect(()=>{ if(module==='settings') refreshOfflineStatus(); },[module]);
 
   useEffect(()=>{
     if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').catch(()=>{}); }
@@ -311,8 +356,8 @@ export default function Home(){
     return ()=>clearTimeout(t);
   },[session?.user?.id,online]);
 
-  // Animated cursor: a dot + a trailing ring (grows over clickable things, ripples on click,
-  // leaves a tiny star trail in the Space theme). The normal cursor stays visible.
+  // Animated cursor: a dot + a trailing ring (grows over clickable things, ripples on click, leaves a few
+  // tiny stars in Space themes). The normal cursor stays visible. Work is done at most once per frame.
   useEffect(()=>{
     if(!animations) return;
     if(typeof window==='undefined' || typeof window.matchMedia!=='function') return;
@@ -321,18 +366,22 @@ export default function Home(){
     const dot=document.createElement('div'); dot.className='cfx-dot';
     const ring=document.createElement('div'); ring.className='cfx-ring';
     document.body.appendChild(ring); document.body.appendChild(dot);
-    let x=-100,y=-100,rx=-100,ry=-100,raf=0,shown=false,lastStar=0,stars=0;
+    let x=-100,y=-100,rx=-100,ry=-100,raf=0,shown=false,lastStar=0,stars=0,target:Element|null=null,dirty=false;
     const interactive='a,button,[role="button"],input,select,textarea,label,summary,.heat,.nav-button,.notes-btn,.row-arrow,.status';
-    const tick=()=>{ rx+=(x-rx)*0.18; ry+=(y-ry)*0.18; ring.style.transform=`translate3d(${rx}px,${ry}px,0)`; raf=(Math.abs(x-rx)>0.1||Math.abs(y-ry)>0.1)?requestAnimationFrame(tick):0; };
+    const tick=()=>{
+      rx+=(x-rx)*0.22; ry+=(y-ry)*0.22;
+      dot.style.transform=`translate3d(${x}px,${y}px,0)`; ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;
+      if(dirty){ dirty=false; const hot=!!target?.closest?.(interactive); ring.classList.toggle('hot',hot); dot.classList.toggle('hot',hot); }
+      raf=(dirty||Math.abs(x-rx)>0.2||Math.abs(y-ry)>0.2)?requestAnimationFrame(tick):0;
+    };
     const onMove=(e:MouseEvent)=>{
-      x=e.clientX; y=e.clientY; dot.style.transform=`translate3d(${x}px,${y}px,0)`;
+      x=e.clientX; y=e.clientY; target=e.target as Element|null; dirty=true;
       if(!shown){ shown=true; rx=x; ry=y; ring.classList.add('on'); dot.classList.add('on'); }
-      const hot=!!(e.target as Element|null)?.closest?.(interactive);
-      ring.classList.toggle('hot',hot); dot.classList.toggle('hot',hot);
       if(!raf) raf=requestAnimationFrame(tick);
-      if((document.documentElement.dataset.theme==='space' || document.documentElement.dataset.theme==='universe') && stars<24){
+      const th=document.documentElement.dataset.theme;
+      if((th==='space' || th==='universe') && stars<10){
         const now=performance.now();
-        if(now-lastStar>45){
+        if(now-lastStar>100){
           lastStar=now; stars++;
           const st=document.createElement('div'); st.className='cfx-star';
           st.style.left=x+'px'; st.style.top=y+'px';
@@ -349,7 +398,7 @@ export default function Home(){
     };
     const onUp=()=>ring.classList.remove('down');
     const onLeave=()=>{ shown=false; ring.classList.remove('on'); dot.classList.remove('on'); };
-    window.addEventListener('mousemove',onMove); window.addEventListener('mousedown',onDown); window.addEventListener('mouseup',onUp); document.addEventListener('mouseleave',onLeave);
+    window.addEventListener('mousemove',onMove,{passive:true}); window.addEventListener('mousedown',onDown); window.addEventListener('mouseup',onUp); document.addEventListener('mouseleave',onLeave);
     return ()=>{
       window.removeEventListener('mousemove',onMove); window.removeEventListener('mousedown',onDown); window.removeEventListener('mouseup',onUp); document.removeEventListener('mouseleave',onLeave);
       if(raf) cancelAnimationFrame(raf); ring.remove(); dot.remove();
@@ -432,7 +481,7 @@ export default function Home(){
         // instead of clobbering it — the upcoming load(uid) will pick up
         // whatever the server currently has. Code writes are timestamped via
         // code_updated_at independently of the row's other progress fields.
-        const tsCol = item.row.code!==undefined ? 'code_updated_at' : (item.table.endsWith('_notes') ? 'updated_at' : (item.table.endsWith('_progress') ? 'last_viewed_at' : null));
+        const tsCol = item.row.code2!==undefined ? 'code2_updated_at' : item.row.code!==undefined ? 'code_updated_at' : (item.table.endsWith('_notes') ? 'updated_at' : (item.table.endsWith('_progress') ? 'last_viewed_at' : null));
         if(tsCol && item.row.question_id!==undefined){
           const {data:serverRow,error:selErr}=await supa.from(item.table).select(tsCol).eq('user_id',uid).eq('question_id',item.row.question_id).maybeSingle();
           if(selErr && isOfflineError(selErr)){ remaining.push(item); continue; }
@@ -440,7 +489,12 @@ export default function Home(){
           const localTs=item.row[tsCol];
           if(serverTs && localTs && new Date(serverTs) > new Date(localTs)){ continue; }
         }
-        const {error}=await supa.from(item.table).upsert(item.row);
+        let {error}=await supa.from(item.table).upsert(item.row);
+        if(error && /code2/i.test(error.message||'')){
+          // Method 2 columns not created in the database yet: still sync everything else
+          const {code2:_a,code2_updated_at:_b,code2_passed_hash:_c,code2_passed_at:_d,...rest}=item.row;
+          if(Object.keys(rest).length>2){ ({error}=await supa.from(item.table).upsert(rest)); } else { error=null as any; }
+        }
         if(error) remaining.push(item); else anySynced=true;
       }catch{ remaining.push(item); }
     }
@@ -469,18 +523,21 @@ export default function Home(){
       ]);
       const [profile,dprog,pprog,dact,pact,dnotes,pnotes,cq,cp]=results as any[];
       if(results.some((r:any)=>r.error && isOfflineError(r.error))) throw new Error('offline');
-      const nextProgress=Object.fromEntries((dprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
-      const nextPlacementProgress=Object.fromEntries((pprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at}] ));
+      const nextProgress=Object.fromEntries((dprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at,code2:r.code2,code2_updated_at:r.code2_updated_at,code2_passed_hash:r.code2_passed_hash,code2_passed_at:r.code2_passed_at}] ));
+      const nextPlacementProgress=Object.fromEntries((pprog.data||[]).map((r:any)=>[String(r.question_id),{question_id:r.question_id,solved:r.solved,hint_used:r.hint_used,solution_seen:r.solution_seen,solved_at:r.solved_at,last_viewed_at:r.last_viewed_at,code:r.code,code_updated_at:r.code_updated_at,code2:r.code2,code2_updated_at:r.code2_updated_at,code2_passed_hash:r.code2_passed_hash,code2_passed_at:r.code2_passed_at}] ));
       const nextActivity=Object.fromEntries((dact.data||[]).map((r:any)=>[r.date,r.dsa_solved_count]));
       const nextPlacementActivity=Object.fromEntries((pact.data||[]).map((r:any)=>[r.date,r.placement_solved_count]));
       const nextNotes=Object.fromEntries([...(dnotes.data||[]).map((r:any)=>[`dsa-${r.question_id}`,r.note_text]),...(pnotes.data||[]).map((r:any)=>[`placement-${r.question_id}`,r.note_text])]);
       const nextCustom=cq.data||[];
       const nextCustomProgress=Object.fromEntries((cp.data||[]).map((r:any)=>[r.question_id,r]));
+      const mProgress=keepLocalCode2(nextProgress,latestRef.current.progress||{});
+      const mPlacement=keepLocalCode2(nextPlacementProgress,latestRef.current.placementProgress||{});
+      const mCustom=keepLocalCode2(nextCustomProgress,latestRef.current.customProgress||{});
       const name=profile.data?.display_name||displayName;
       hydrated.current=true;
       setDisplayName(name);
-      setProgress(nextProgress); setPlacementProgress(nextPlacementProgress); setActivity(nextActivity); setPlacementActivity(nextPlacementActivity); setNotes(nextNotes); setCustom(nextCustom); setCustomProgress(nextCustomProgress);
-      saveCache(uid,{displayName:name,progress:nextProgress,placementProgress:nextPlacementProgress,activity:nextActivity,placementActivity:nextPlacementActivity,notes:nextNotes,custom:nextCustom,customProgress:nextCustomProgress});
+      setProgress(mProgress); setPlacementProgress(mPlacement); setActivity(nextActivity); setPlacementActivity(nextPlacementActivity); setNotes(nextNotes); setCustom(nextCustom); setCustomProgress(mCustom);
+      saveCache(uid,{displayName:name,progress:mProgress,placementProgress:mPlacement,activity:nextActivity,placementActivity:nextPlacementActivity,notes:nextNotes,custom:nextCustom,customProgress:mCustom});
     }catch(e){
       ok=false;
       // No connection: keep what is on screen. Only when nothing is on screen yet
@@ -492,6 +549,13 @@ export default function Home(){
     }
     if(!opts?.silent) setLoading(false);
     return ok;
+  }
+
+  function nextThought(){ setThoughtIdx(pickThoughtIndex()); setThoughtCopied(false); }
+  async function copyThought(){
+    const t=THOUGHTS[thoughtIdx]; if(!t) return;
+    try{ await navigator.clipboard.writeText(t); setThoughtCopied(true); setTimeout(()=>setThoughtCopied(false),1600); }
+    catch{ setNotice('Could not copy'); setTimeout(()=>setNotice(''),1500); }
   }
 
   // ---- Change display name (Settings) ----
@@ -544,8 +608,7 @@ export default function Home(){
     const now=new Date().toISOString();
     const row={user_id:session.user.id,question_id:type==='custom'?id:Number(id),solved,hint_used,solution_seen,solved_at:key==='solved'?(next?now:null):old.solved_at,last_viewed_at:now};
     const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
-    const nextRow:any={question_id:id,solved:row.solved,hint_used:row.hint_used,solution_seen:row.solution_seen,solved_at:row.solved_at,last_viewed_at:row.last_viewed_at};
-    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
+    patchProgress(type,id,{solved:row.solved,hint_used:row.hint_used,solution_seen:row.solution_seen,solved_at:row.solved_at,last_viewed_at:row.last_viewed_at});
     const {error}=await supa!.from(table).upsert(row);
     if(error){
       if(isOfflineError(error)){ queueWrite(session.user.id,table,row); }
@@ -563,8 +626,7 @@ export default function Home(){
     const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),solved:true,hint_used:false,solution_seen:false,solved_at:old.solved_at||now,last_viewed_at:now};
     if(code!==undefined && code.trim()!==''){ row.code=code; row.code_updated_at=now; }
     const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
-    const nextRow:any={...old,question_id:id,solved:true,hint_used:false,solution_seen:false,solved_at:row.solved_at,last_viewed_at:now,...(row.code!==undefined?{code:row.code,code_updated_at:row.code_updated_at}:{})};
-    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
+    patchProgress(type,id,{solved:true,hint_used:false,solution_seen:false,solved_at:row.solved_at,last_viewed_at:now,...(row.code!==undefined?{code:row.code,code_updated_at:row.code_updated_at}:{})});
     let {error}=await supa!.from(table).upsert(row);
     if(error && row.code!==undefined && /code/i.test(error.message||'')){
       // code columns missing in DB (schema not updated yet) — still save the solved status
@@ -581,10 +643,43 @@ export default function Home(){
     const source=type==='dsa'?progress:type==='placement'?placementProgress:customProgress;
     const old=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
     const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),code,code_updated_at:now};
-    const nextRow:any={...old,question_id:id,code,code_updated_at:now};
-    if(type==='dsa') setProgress(v=>({...v,[id]:nextRow})); else if(type==='placement') setPlacementProgress(v=>({...v,[id]:nextRow})); else setCustomProgress(v=>({...v,[id]:nextRow}));
+    patchProgress(type,id,{code,code_updated_at:now});
     const {error}=await supa!.from(table).upsert(row);
     if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); }
+  }
+  // Merge fields into the latest state of one question. Always based on the newest state (never a captured copy),
+  // so a delayed autosave or a status toggle can never wipe another field (solved, code, Method 2 tick...).
+  function patchProgress(type:'dsa'|'placement'|'custom',id:string,fields:Record<string,any>){
+    const base:any={question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
+    const upd=(v:any)=>({...v,[id]:{...(v[id]||base),question_id:id,...fields}});
+    if(type==='dsa') setProgress(upd); else if(type==='placement') setPlacementProgress(upd); else setCustomProgress(upd);
+  }
+
+  // ---- Method 2 (alternative solution) persistence: independent of Method 1's code / solved status ----
+  async function saveCode2(type:'dsa'|'placement'|'custom',id:string,code:string,opts?:{clear?:boolean}){
+    if(!session) return;
+    const clear=!!opts?.clear;
+    if(!clear && (!code || !code.trim())) return;          // never overwrite a saved solution with an empty one by accident
+    const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
+    const now=new Date().toISOString();
+    const source=type==='dsa'?progress:type==='placement'?placementProgress:customProgress;
+    const old:any=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
+    const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),code2:clear?'':code,code2_updated_at:now};
+    if(clear){ row.code2_passed_hash=null; row.code2_passed_at=null; }
+    patchProgress(type,id,{code2:row.code2,code2_updated_at:now,...(clear?{code2_passed_hash:null,code2_passed_at:null}:{})});
+    const {error}=await supa!.from(table).upsert(row);
+    if(error && isOfflineError(error)) queueWrite(session.user.id,table,row);
+  }
+  async function markMethod2Passed(type:'dsa'|'placement'|'custom',id:string,code:string){
+    if(!session) return;
+    const table=type==='dsa'?'dsa_progress':type==='placement'?'placement_progress':'custom_question_progress';
+    const now=new Date().toISOString();
+    const source=type==='dsa'?progress:type==='placement'?placementProgress:customProgress;
+    const old:any=source[id]||{question_id:id,solved:false,hint_used:false,solution_seen:false,solved_at:null,last_viewed_at:null};
+    const row:any={user_id:session.user.id,question_id:type==='custom'?id:Number(id),code2:code,code2_updated_at:now,code2_passed_hash:hashCode(code),code2_passed_at:now};
+    patchProgress(type,id,{code2:code,code2_updated_at:now,code2_passed_hash:row.code2_passed_hash,code2_passed_at:now});
+    const {error}=await supa!.from(table).upsert(row);
+    if(error){ if(isOfflineError(error)) queueWrite(session.user.id,table,row); else { setNotice('Method 2 verified on this device — run the new SQL to sync it'); setTimeout(()=>setNotice(''),2500); } }
   }
   async function syncActivity(type:'dsa'|'placement'|'custom',oldSolved:boolean,newSolved:boolean,oldSolvedAt:string|null){
     if(type==='custom' || oldSolved===newSolved) return;
@@ -653,13 +748,13 @@ export default function Home(){
     <main className="main">
       <header className="topbar"><button className="mobile-menu" onClick={()=>setMobileOpen(v=>!v)}><Menu size={21}/></button><div className="crumb">{module==='dashboard'?'Overview':module==='dsa'?'DSA Problems':module==='placement'?'Placement Preparation':module==='my'?'My Questions':module==='progress'?'Progress':module==='notes'?'Bookmarks / Notes':'Settings'}</div><div className="topbar-actions">{!online && <span className="offline-badge" title="You're offline — changes are saved locally and will sync automatically"><WifiOff size={13}/> Offline</span>}<span className="user-pill">{session.user.email}</span><div className="theme-menu-wrap"><button className="icon-btn" onClick={()=>setThemeOpen(v=>!v)} title="Appearance"><Palette size={17}/></button>{themeOpen && <ThemeMenu current={theme} onPick={(t)=>{setTheme(t);setThemeOpen(false)}} onClose={()=>setThemeOpen(false)}/>}</div><div className="avatar">{displayName.slice(0,2).toUpperCase()}</div></div></header>
       <div className="content">
-        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule} theme={theme} animations={animations} offlineStatus={offlineStatus} savingOffline={savingOffline} onSaveOffline={saveForOffline}/>}        
+        {module==='dashboard' && <Dashboard displayName={displayName} dsaSolved={dsaSolved} placementSolved={placementSolved} dsaStreak={dsaStreak} placementStreak={pStreak} lastDsa={lastDsa} lastPlacement={lastPlacement} dsaChart={dsaChart} pChart={pChart} combinedActivity={combinedActivity} setModule={setModule} theme={theme} animations={animations} thought={thoughtIdx>=0?THOUGHTS[thoughtIdx]:null} onNextThought={nextThought} onCopyThought={copyThought} thoughtCopied={thoughtCopied}/>}        
         {module==='dsa' && <ProblemPage title="DSA Problems" subtitle="355 curated" questions={dsaFiltered} progress={progress} filters={filters} setFilters={setFilters} type="dsa" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'dsa',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('dsa',String(id))} onEditor={(id:any)=>setEditorSel({type:'dsa',id:String(id)})}/>} 
         {module==='placement' && <ProblemPage title="Placement Preparation" subtitle="Unthinkable Solutions LLP • Daffodil Software" badge="281 curated questions" questions={pFiltered} progress={placementProgress} filters={placementFilters} setFilters={setPlacementFilters} type="placement" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'placement',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('placement',String(id))} onEditor={(id:any)=>setEditorSel({type:'placement',id:String(id)})}/>} 
         {module==='my' && <ProblemPage title="My Questions" subtitle="Practice and track any additional questions you want to add." badge={`${custom.length} total`} questions={cFiltered} progress={customProgress} filters={filters} setFilters={setFilters} type="custom" onToggle={toggleStatus} onNotes={(id:any)=>{setSelected({type:'custom',id:String(id)});setNotesOpen(true)}} onDetail={(id:any)=>openDetail('custom',String(id))} onEditor={(id:any)=>setEditorSel({type:'custom',id:String(id)})} addQuestion={()=>setAddOpen(true)}/>} 
         {module==='notes' && <NotesPage dsa={dsa} placement={placement} custom={custom} progress={progress} placementProgress={placementProgress} customProgress={customProgress} notes={notes} onOpen={(type:any,id:any)=>{setSelected({type,id:String(id)});setNotesOpen(true)}}/>}
         {module==='progress' && <ProgressPage dsa={dsa} placement={placement} progress={progress} placementProgress={placementProgress} activity={activity} placementActivity={placementActivity} />}
-        {module==='settings' && <SettingsPage theme={theme} setTheme={setTheme} displayName={displayName} animPref={animPref} reducedMotion={reducedMotion} onAnimChange={changeAnim} onSaveName={saveDisplayName}/>}      
+        {module==='settings' && <SettingsPage theme={theme} setTheme={setTheme} displayName={displayName} animPref={animPref} reducedMotion={reducedMotion} onAnimChange={changeAnim} onSaveName={saveDisplayName} offlineStatus={offlineStatus} savingOffline={savingOffline} onSaveOffline={saveForOffline}/>}      
       </div>
     </main>
     {notice && <div className="toast"><Zap size={15}/>{notice}</div>}
@@ -667,7 +762,7 @@ export default function Home(){
     {selectedQuestion && notesOpen && <NotesDrawer selected={selected!} q={selectedQuestion as any} initial={notes[`${selected!.type}-${selected!.id}`]||''} onClose={()=>{setNotesOpen(false);setSelected(null)}} onSave={saveNote}/>}
     {editOpen && selected?.type==='custom' && selectedQuestion && <EditQuestion q={selectedQuestion as CustomQuestion} onClose={()=>setEditOpen(false)} onSave={async(values:any)=>{const {data,error}=await supa!.from('custom_questions').update(values).eq('id',selected.id).eq('user_id',session.user.id).select().single();if(error){setNotice(error.message);return;}setCustom(v=>v.map(x=>x.id===selected.id?data:x));setEditOpen(false);setNotice('Question updated');setTimeout(()=>setNotice(''),1400)}} onDelete={async()=>{const {error}=await supa!.from('custom_questions').delete().eq('id',selected.id).eq('user_id',session.user.id);if(error){setNotice(error.message);return;}setCustom(v=>v.filter(x=>x.id!==selected.id));setEditOpen(false);setSelected(null);setNotice('Question deleted');setTimeout(()=>setNotice(''),1400)}}/>}
     {addOpen && <AddQuestion onClose={()=>setAddOpen(false)} onSave={async(q:any)=>{const {data,error}=await supa!.from('custom_questions').insert({...q,user_id:session.user.id}).select().single();if(error){setNotice(error.message);return;}setCustom(v=>[data,...v]);setAddOpen(false);setNotice('Question added');setTimeout(()=>setNotice(''),1500)}}/>}
-    {editorSel && editorQuestion && <CodeEditorDrawer q={editorQuestion as any} qType={editorSel.type} p={editorProgress} testCases={editorSel.type==='custom'?[]:(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }} animations={animations}/>}
+    {editorSel && editorQuestion && <CodeEditorDrawer q={editorQuestion as any} qType={editorSel.type} p={editorProgress} testCases={editorSel.type==='custom'?[]:(editorSel.type==='dsa'?DSA_TESTCASES:PLACEMENT_TESTCASES)[Number(editorSel.id)]||[]} theme={theme} userId={session.user.id} onClose={()=>setEditorSel(null)} onSaveCode={(code:string)=>saveCode(editorSel.type,editorSel.id,code)} onSaveCode2={(code:string,opts?:{clear?:boolean})=>saveCode2(editorSel.type,editorSel.id,code,opts)} onMethod2Passed={(code:string)=>markMethod2Passed(editorSel.type,editorSel.id,code)} onSubmitSolved={async(code:string)=>{ await markSolved(editorSel.type,editorSel.id,code); setEditorSel(null); }} animations={animations}/>}
   </div></>
 }
 
@@ -691,16 +786,16 @@ const CHART_COLORS:Record<Theme,{solved:string;remaining:string}>={
   space:{solved:'#8b9cff',remaining:'#2a3170'},
   universe:{solved:'#7aa2ff',remaining:'#232a66'},
 };
-function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule,theme,animations,offlineStatus,savingOffline,onSaveOffline}:any){
-  const st=offlineStatus||{data:false,editor:false,pending:0,savedAt:null};
-  const ready=st.data&&st.editor&&st.pending===0;
-  const when=st.savedAt?` · ${format(new Date(st.savedAt),'dd MMM, hh:mm a')}`:'';
-  const statusText=(ready?`Offline ready ✓${when}`:st.data?`Data saved ✓${when} · editor files not saved yet`:'Not saved for offline yet')+(st.pending>0?` · ${st.pending} change${st.pending>1?'s':''} waiting to sync`:'');
+function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStreak,lastDsa,lastPlacement,dsaChart,pChart,combinedActivity,setModule,theme,animations,thought,onNextThought,onCopyThought,thoughtCopied}:any){
   const colors=CHART_COLORS[(theme as Theme)]||CHART_COLORS.sepia;
   return <div className="page-stack">
-  <section className="hero"><div><div className="eyebrow">DAILY PROGRESS</div><h1>Welcome back, {displayName}!</h1><p>Track your DSA preparation, placement readiness, and consistency from one workspace.</p></div><div className="hero-side"><div className="hero-date"><span>Today</span><strong>{format(new Date(),'dd MMM yyyy')}</strong></div>
-    <button className="offline-save-btn" disabled={savingOffline} onClick={onSaveOffline}>{savingOffline?<><span className="mini-spin"/> Saving…</>:<><Download size={15}/> Save for offline</>}</button>
-    <div className={`offline-status ${ready?'ok':''}`}>{statusText}</div></div></section>
+  <section className="hero"><div><div className="eyebrow">DAILY PROGRESS</div><h1>Welcome back, {displayName}!</h1><p>Track your DSA preparation, placement readiness, and consistency from one workspace.</p></div><div className="hero-side"><div className="hero-date"><span>Today</span><strong>{format(new Date(),'dd MMM yyyy')}</strong></div></div>
+    {thought && <div className="hero-thought">
+      <div className="thought-label"><Sparkles size={13}/> AAJ KA THOUGHT ✨</div>
+      <blockquote className="thought-text" key={thought}>{thought}</blockquote>
+      <div className="thought-row"><span className="thought-foot">Roz thoda better. Bas consistency mat chhodna. 💪</span>
+        <div className="thought-actions"><button className="thought-btn" onClick={onNextThought}><RefreshCw size={13}/> Next</button><button className="thought-btn" onClick={onCopyThought}>{thoughtCopied?<><Check size={13}/> Copied</>:<><Copy size={13}/> Copy</>}</button></div></div>
+    </div>}</section>
   <div className="stats-grid"><StatCard title="DSA Problems Solved" value={`${dsaSolved} / 355`} meta={`${Math.round(dsaSolved/355*100)}% complete`} icon={<Target/>} tone="purple"/><StatCard title="Placement Solved" value={`${placementSolved} / 281`} meta={`${Math.round(placementSolved/281*100)}% complete`} icon={<Flame/>} tone="amber"/><StatCard title="DSA Streak" value={`${dsaStreak} days`} meta="active-day streak" icon={<Zap/>} tone="green"/><StatCard title="Placement Streak" value={`${placementStreak} days`} meta="active-day streak" icon={<Sparkles/>} tone="red"/></div>
   <div className="two-col"><ChartCard title="DSA Problem Overview" subtitle="Solved vs remaining by section" data={dsaChart} colors={colors} animate={animations}/><ChartCard title="Placement Overview" subtitle="Solved vs remaining by topic" data={pChart} colors={colors} animate={animations}/></div>
   <section className="panel"><div className="panel-head"><div><h2>Activity</h2><p>Combined DSA + Placement — 11 Sep 2026 to 1 Sep 2027</p></div><Badge>Less → More</Badge></div><Heatmap activity={combinedActivity}/></section>
@@ -709,14 +804,19 @@ function Dashboard({displayName,dsaSolved,placementSolved,dsaStreak,placementStr
 function StatCard({title,value,meta,icon,tone}:{title:string;value:string;meta:string;icon:React.ReactNode;tone:string}){return <div className={`stat-card tone-${tone}`}><div className="stat-icon">{icon}</div><div><span>{title}</span><strong>{value}</strong><small>{meta}</small></div></div>}
 function ChartCard({title,subtitle,data,colors,animate}:any){return <section className="panel chart-panel"><div className="panel-head"><div><h2>{title}</h2><p>{subtitle}</p></div></div><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{left:-16,right:12,top:8,bottom:30}}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" angle={-30} textAnchor="end" height={55} tick={{fontSize:10}}/><YAxis tick={{fontSize:10}}/><Tooltip isAnimationActive={!!animate}/><Bar isAnimationActive={!!animate} dataKey="solved" stackId="a" name="Solved" fill={colors?.solved||"#1f5c3f"} radius={[5,5,0,0]}/><Bar isAnimationActive={!!animate} dataKey="remaining" stackId="a" name="Remaining" fill={colors?.remaining||"#ece2c9"} radius={[5,5,0,0]}/></BarChart></ResponsiveContainer></div></section>}
 
-function ProblemPage({title,subtitle,badge,questions,progress,filters,setFilters,type,onToggle,onNotes,onDetail,onEditor,addQuestion}:any){const topics=[...new Set(questions.map((q:any)=>q.section||q.topic))] as string[];const patterns=[...new Set(questions.map((q:any)=>q.pattern))] as string[];const sources=(type==='placement'?[...new Set(questions.map((q:any)=>q.source))]:[]) as string[];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">{type==='placement'?'COMPANY TRACK':'PRACTICE TRACK'}</div><h1>{title}</h1><p>{subtitle}</p></div><div className="title-actions">{badge&&<Badge tone="purple">{badge}</Badge>}{addQuestion&&<button className="primary" onClick={addQuestion}><Plus size={17}/> Add Question</button>}</div></div><section className="panel filters"><div className="filter-search"><Search size={17}/><input placeholder="Search title, topic, pattern…" value={filters.search} onChange={e=>setFilters((v:any)=>({...v,search:e.target.value}))}/></div><Select label="Difficulty" value={filters.difficulty} options={['All','Easy','Medium','Hard']} onChange={(v)=>setFilters((x:any)=>({...x,difficulty:v}))}/><Select label={type==='placement'?'Topic':'Section'} value={filters.section} options={['All',...topics]} onChange={(v)=>setFilters((x:any)=>({...x,section:v}))}/><Select label="Pattern" value={filters.pattern} options={['All',...patterns]} onChange={(v)=>setFilters((x:any)=>({...x,pattern:v}))}/>{type==='placement'&&<Select label="Source" value={filters.source} options={['All',...sources]} onChange={(v)=>setFilters((x:any)=>({...x,source:v}))}/>}{type==='placement'&&<Select label="Priority" value={filters.priority} options={['All','TOP PRIORITY','HIGH','MEDIUM','LOW']} onChange={(v)=>setFilters((x:any)=>({...x,priority:v}))}/>}<Select label="Status" value={filters.status} options={['All','Unsolved','Solved','Hint Used','Solution Seen']} onChange={(v)=>setFilters((x:any)=>({...x,status:v}))}/><button className="icon-reset" onClick={()=>setFilters(EMPTY_FILTERS)} title="Reset filters"><RefreshCw size={16}/></button></section><div className="list-meta"><span>{questions.length} results</span><span><Filter size={14}/> filters combine live</span></div><section className="panel question-list">{questions.length===0?<div className="empty">No questions match your filters.</div>:questions.map((q:any)=><QuestionRow key={q.id} q={q} p={progress[String(q.id)]} type={type} onToggle={onToggle} onNotes={onNotes} onDetail={onDetail} onEditor={onEditor}/>)}</section></div>}
+function ProblemPage({title,subtitle,badge,questions,progress,filters,setFilters,type,onToggle,onNotes,onDetail,onEditor,addQuestion}:any){const topics=[...new Set(questions.map((q:any)=>q.section||q.topic))] as string[];const patterns=[...new Set(questions.map((q:any)=>q.pattern))] as string[];const sources=(type==='placement'?[...new Set(questions.map((q:any)=>q.source))]:[]) as string[];
+  const [limit,setLimit]=useState(60); const moreRef=useRef<HTMLDivElement>(null); const hasMore=questions.length>limit;
+  useEffect(()=>{ setLimit(60); },[filters]);
+  useEffect(()=>{ const el=moreRef.current; if(!el||typeof IntersectionObserver==='undefined') return; const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting) setLimit(l=>l+60); },{rootMargin:'500px'}); io.observe(el); return ()=>io.disconnect(); },[hasMore,limit]);
+  return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">{type==='placement'?'COMPANY TRACK':'PRACTICE TRACK'}</div><h1>{title}</h1><p>{subtitle}</p></div><div className="title-actions">{badge&&<Badge tone="purple">{badge}</Badge>}{addQuestion&&<button className="primary" onClick={addQuestion}><Plus size={17}/> Add Question</button>}</div></div><section className="panel filters"><div className="filter-search"><Search size={17}/><input placeholder="Search title, topic, pattern…" value={filters.search} onChange={e=>setFilters((v:any)=>({...v,search:e.target.value}))}/></div><Select label="Difficulty" value={filters.difficulty} options={['All','Easy','Medium','Hard']} onChange={(v)=>setFilters((x:any)=>({...x,difficulty:v}))}/><Select label={type==='placement'?'Topic':'Section'} value={filters.section} options={['All',...topics]} onChange={(v)=>setFilters((x:any)=>({...x,section:v}))}/><Select label="Pattern" value={filters.pattern} options={['All',...patterns]} onChange={(v)=>setFilters((x:any)=>({...x,pattern:v}))}/>{type==='placement'&&<Select label="Source" value={filters.source} options={['All',...sources]} onChange={(v)=>setFilters((x:any)=>({...x,source:v}))}/>}{type==='placement'&&<Select label="Priority" value={filters.priority} options={['All','TOP PRIORITY','HIGH','MEDIUM','LOW']} onChange={(v)=>setFilters((x:any)=>({...x,priority:v}))}/>}<Select label="Status" value={filters.status} options={['All','Unsolved','Solved','Hint Used','Solution Seen']} onChange={(v)=>setFilters((x:any)=>({...x,status:v}))}/><button className="icon-reset" onClick={()=>setFilters(EMPTY_FILTERS)} title="Reset filters"><RefreshCw size={16}/></button></section><div className="list-meta"><span>{questions.length} results</span><span><Filter size={14}/> filters combine live</span></div><section className="panel question-list">{questions.length===0?<div className="empty">No questions match your filters.</div>:questions.slice(0,limit).map((q:any)=><QuestionRow key={q.id} q={q} p={progress[String(q.id)]} type={type} onToggle={onToggle} onNotes={onNotes} onDetail={onDetail} onEditor={onEditor}/>)}{hasMore&&<div className="list-more" ref={moreRef}><button className="thought-btn" onClick={()=>setLimit(l=>l+60)}>Show 60 more · {questions.length-limit} remaining</button></div>}</section></div>}
 function Select({label,value,options,onChange}:{label:string;value:string;options:string[];onChange:(v:string)=>void}){return <label className="select-wrap"><span>{label}</span><select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=><option key={o}>{o}</option>)}</select><ChevronDown size={14}/></label>}
-function QuestionRow({q,p,type,onToggle,onNotes,onDetail,onEditor}:any){const rowClass=`question-row ${(type==='placement'||type==='dsa')?'has-editor':''} ${p?.solved?'solved-row':p?.solution_seen?'solution-seen':p?.hint_used?'hint-seen':''}`;return <div className={rowClass}><StatusButtons p={p} onToggle={(k)=>onToggle(type,String(q.id),k)}/><div className="qid">{type==='custom'?`Q${q.serial??''}`:`Q${q.id}`}</div><div className="qmain"><strong>{q.title}</strong><div className="chips"><Badge tone="muted">{q.section||q.topic}</Badge><Badge>{q.pattern}</Badge>{type==='placement'&&<Badge tone="purple">{q.source}</Badge>}{type==='custom'&&q.source&&<Badge tone="purple">{q.source}</Badge>}</div></div>{type==='placement'?<PriorityBadge priority={q.priority}/>:<span/>}<Badge tone={q.difficulty==='Easy'?'green':q.difficulty==='Medium'?'amber':'red'}>{q.difficulty}</Badge><div className="row-actions"><button className="notes-btn" onClick={()=>onNotes(q.id)}><NotebookPen size={15}/> Notes</button>{onEditor&&<button className="notes-btn editor-btn" onClick={()=>onEditor(q.id)}><Code2 size={15}/> Editor</button>}</div><button className="row-arrow" onClick={()=>onDetail(q.id)}><ArrowRight size={16}/></button></div>}
+function QuestionRow({q,p,type,onToggle,onNotes,onDetail,onEditor}:any){const rowClass=`question-row ${(type==='placement'||type==='dsa')?'has-editor':''} ${p?.solved?'solved-row':p?.solution_seen?'solution-seen':p?.hint_used?'hint-seen':''}`;return <div className={rowClass}><StatusButtons p={p} onToggle={(k)=>onToggle(type,String(q.id),k)}/><div className="qid">{type==='custom'?`Q${q.serial??''}`:`Q${q.id}`}</div><div className="qmain"><strong>{q.title}</strong><div className="chips"><Badge tone="muted">{q.section||q.topic}</Badge><Badge>{q.pattern}</Badge>{type==='placement'&&<Badge tone="purple">{q.source}</Badge>}{type==='custom'&&q.source&&<Badge tone="purple">{q.source}</Badge>}{p?.code2 ? (p.code2_passed_hash===hashCode(p.code2) ? <span title="Method 2 passed all test cases"><Badge tone="green">2 Methods ✓</Badge></span> : <span title="Method 2 solution saved"><Badge tone="purple">2 Methods</Badge></span>) : null}</div></div>{type==='placement'?<PriorityBadge priority={q.priority}/>:<span/>}<Badge tone={q.difficulty==='Easy'?'green':q.difficulty==='Medium'?'amber':'red'}>{q.difficulty}</Badge><div className="row-actions"><button className="notes-btn" onClick={()=>onNotes(q.id)}><NotebookPen size={15}/> Notes</button>{onEditor&&<button className="notes-btn editor-btn" onClick={()=>onEditor(q.id)}><Code2 size={15}/> Editor</button>}</div><button className="row-arrow" onClick={()=>onDetail(q.id)}><ArrowRight size={16}/></button></div>}
 
 function NotesPage({dsa,placement,custom,progress,placementProgress,customProgress,notes,onOpen}:any){const rows=[...dsa.filter((q:any)=>notes[`dsa-${q.id}`]).map((q:any)=>({type:'dsa',id:q.id,title:q.title,meta:q.section})),...placement.filter((q:any)=>notes[`placement-${q.id}`]).map((q:any)=>({type:'placement',id:q.id,title:q.title,meta:q.topic})),...custom.filter((q:any)=>notes[`custom-${q.id}`]).map((q:any)=>({type:'custom',id:q.id,title:q.title,meta:q.topic}))];return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">PRIVATE WORKSPACE</div><h1>Bookmarks / Notes</h1><p>Your saved notes across DSA, Placement and My Questions.</p></div></div><section className="panel notes-list">{rows.length===0?<div className="empty">No saved notes yet. Open any question and start writing.</div>:rows.map(r=><button key={`${r.type}-${r.id}`} className="saved-note" onClick={()=>onOpen(r.type,r.id)}><NotebookPen size={17}/><div><strong>{r.title}</strong><span>{r.meta}</span></div><ArrowRight size={16}/></button>)}</section></div>}
 function ProgressPage({dsa,placement,progress,placementProgress,activity,placementActivity}:any){const easy=dsa.filter((q:any)=>q.difficulty==='Easy'&&progress[String(q.id)]?.solved).length;const med=dsa.filter((q:any)=>q.difficulty==='Medium'&&progress[String(q.id)]?.solved).length;const hard=dsa.filter((q:any)=>q.difficulty==='Hard'&&progress[String(q.id)]?.solved).length;const pe=placement.filter((q:any)=>placementProgress[String(q.id)]?.solved).length;return <div className="page-stack"><div className="page-title-row"><div><div className="eyebrow">ANALYTICS</div><h1>Progress</h1><p>Official DSA and Placement metrics stay completely independent.</p></div></div><div className="stats-grid"><StatCard title="DSA solved" value={`${Object.values(progress).filter((p:any)=>p.solved).length} / 355`} meta={`${Math.round(Object.values(progress).filter((p:any)=>p.solved).length/355*100)}%`} icon={<Target/>} tone="purple"/><StatCard title="Easy / Medium / Hard" value={`${easy} / ${med} / ${hard}`} meta="DSA solved by difficulty" icon={<ListFilter/>} tone="green"/><StatCard title="Placement solved" value={`${pe} / 281`} meta={`${Math.round(pe/281*100)}%`} icon={<Flame/>} tone="amber"/><StatCard title="Active days" value={`${Object.values(activity).filter(Boolean).length} / ${Object.values(placementActivity).filter(Boolean).length}`} meta="DSA / Placement" icon={<Zap/>} tone="red"/></div><div className="two-col"><section className="panel"><div className="panel-head"><div><h2>DSA completion by section</h2><p>Real-time from your progress rows.</p></div></div><ProgressBars items={dsa} progress={progress}/></section><section className="panel"><div className="panel-head"><div><h2>Placement completion by topic</h2><p>Real-time from your placement rows.</p></div></div><ProgressBars items={placement} placement progress={placementProgress}/></section></div></div>}
 function ProgressBars({items,progress}:any){const groups:any={};items.forEach((q:any)=>{const k=q.section||q.topic;if(!groups[k])groups[k]={total:0,solved:0};groups[k].total++;if(progress[String(q.id)]?.solved)groups[k].solved++;});return <div className="progress-bars">{Object.entries(groups).map(([k,v]:any)=><div className="bar-row" key={k}><div className="bar-label"><span>{k}</span><strong>{v.solved}/{v.total}</strong></div><div className="track"><div className="fill" style={{width:`${v.solved/v.total*100}%`}}/></div></div>)}</div>}
-function SettingsPage({theme,setTheme,displayName,animPref,reducedMotion,onAnimChange,onSaveName}:any){
+function SettingsPage({theme,setTheme,displayName,animPref,reducedMotion,onAnimChange,onSaveName,offlineStatus,savingOffline,onSaveOffline}:any){
+  const ofs=offlineStatusText(offlineStatus||{data:false,editor:false,pending:0,savedAt:null});
   const [draft,setDraft]=useState<string>(displayName);
   const [msg,setMsg]=useState<{ok:boolean;text:string}|null>(null);
   const [saving,setSaving]=useState(false);
@@ -731,6 +831,8 @@ function SettingsPage({theme,setTheme,displayName,animPref,reducedMotion,onAnimC
       <div className="setting-row"><div><strong>Animation Effects</strong><span>{animOn?'ON — cursor effects, animated backgrounds, 3D space scenes and smooth transitions.':'OFF — Performance Mode: static and lightweight, best for low-end PCs.'}</span></div>
         <div className="seg" role="group" aria-label="Animation Effects"><button className={animOn?'on':''} disabled={reducedMotion} onClick={()=>onAnimChange('on')}>On</button><button className={!animOn?'on':''} onClick={()=>onAnimChange('off')}>Off</button></div></div>
       {reducedMotion && <div className="setting-note">Your device has “reduce motion” turned on, so animations stay off.</div>}
+      <div className="setting-row"><div><strong>Offline access</strong><span>Save your latest data and the code editor on this device so the site works without internet. Safe to tap again — nothing gets duplicated.</span><span className={`offline-line ${ofs.ready?'ok':''}`}>{ofs.text}</span></div>
+        <button className="offline-save-btn" disabled={savingOffline} onClick={onSaveOffline}>{savingOffline?<><span className="mini-spin"/> Saving…</>:<><Download size={15}/> Save for offline</>}</button></div>
       <div className="setting-row name-row"><div><strong>Display name</strong><span>Shown in your dashboard greeting and avatar.</span></div>
         <div className="name-edit"><input value={draft} maxLength={40} aria-label="Display name" onChange={e=>{setDraft(e.target.value);setMsg(null);}} onKeyDown={e=>{ if(e.key==='Enter' && changed && !saving && draft.trim()) save(); }}/><button className="primary" disabled={!changed||saving||!draft.trim()} onClick={save}>{saving?'Saving…':'Save'}</button></div></div>
       {msg && <div className={`setting-note ${msg.ok?'ok':'err'}`}>{msg.text}</div>}
@@ -759,7 +861,7 @@ const MONACO_THEME_MAP:Record<Theme,{base:'vs'|'vs-dark';name:string;colors:Reco
   space:{base:'vs-dark',name:'dph-space',colors:{'editor.background':'#0d1130','editor.foreground':'#e9ecff'}},
   universe:{base:'vs-dark',name:'dph-universe',colors:{'editor.background':'#080b24','editor.foreground':'#eaf0ff'}},
 };
-function starterCodeFor(q:any,sampleCase?:TestCase){
+function starterCodeFor(q:any,sampleCase?:TestCase,method:1|2=1){
   const cat=q.topic||q.section;
   let decl='';
   if(sampleCase){
@@ -770,7 +872,7 @@ function starterCodeFor(q:any,sampleCase?:TestCase){
       decl=`let input = ${JSON.stringify(inp)};`;
     }
   }
-  return `// ${q.title}\n// ${cat?`Topic: ${cat} · `:''}Pattern: ${q.pattern}\n\n${decl}\n\n// Write your code here — use console.log() to print your answer\n\n`;
+  return `${method===2?'// Method 2 — an alternative solution to the same question\n':''}// ${q.title}\n// ${cat?`Topic: ${cat} · `:''}Pattern: ${q.pattern}\n\n${decl}\n\n// Write your code here — use console.log() to print your answer\n\n`;
 }
 function hintsFor(q:any){
   return [
@@ -778,6 +880,83 @@ function hintsFor(q:any){
     `Break it down: identify what you read on each step, what you update (a running value, a map, a pointer), and when you stop.`,
     `Trace "${q.title}" by hand on a tiny example first, then translate each hand-step into one line of code — start with the simplest case.`,
   ];
+}
+// ---------- Method 2 helpers ----------
+// Short fingerprint of a solution. A successful Method 2 submission stores the fingerprint of the code that passed;
+// the green tick is only shown while the code still has the same fingerprint (edit it and it needs re-submitting).
+function hashCode(code:string):string{
+  const t=(code||'').replace(/\r\n/g,'\n').trim();
+  let h=0x811c9dc5;
+  for(let i=0;i<t.length;i++){ h^=t.charCodeAt(i); h=Math.imul(h,0x01000193); }
+  return (h>>>0).toString(16)+'-'+t.length;
+}
+// Swap the value of `let key = ...;` for another test case's input so the same code can be checked on every case.
+function replaceInputDeclaration(code:string,key:string,valueJson:string):string|null{
+  if(!/^[A-Za-z_$][\w$]*$/.test(key)) return null;
+  const m=new RegExp('(^|[\\n;{}]\\s*)((?:let|const|var)\\s+'+key.replace(/\$/g,'\\$')+'\\s*=\\s*)','m').exec(code);
+  if(!m) return null;
+  const start=m.index+m[0].length;
+  let i=start,depth=0,quote:string|null=null;
+  for(;i<code.length;i++){
+    const c=code[i];
+    if(quote){ if(c==='\\'){ i++; continue; } if(c===quote) quote=null; continue; }
+    if(c==='"'||c==="'"||c==='`'){ quote=c; continue; }
+    if(c==='('||c==='['||c==='{') depth++;
+    else if(c===')'||c===']'||c==='}') depth--;
+    else if((c===';'||c==='\n'||c===',') && depth<=0) break;
+  }
+  return code.slice(0,start)+valueJson+code.slice(i);
+}
+// Stricter than outputMatchesExpected (used for Method 1): whole values must match, "15" does not match 5.
+function outputMatchesStrict(logs:string[],expected:any):boolean{
+  if(expected===undefined||expected===null) return false;
+  const lines=logs.map(l=>l.trim()).filter(Boolean);
+  if(lines.length===0) return false;
+  const compact=(x:string)=>x.replace(/\s+/g,'').replace(/'/g,'"');
+  const text=lines.join('\n');
+  const esc=(x:string)=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const hasToken=(tok:string)=>new RegExp('(^|[^\\w.\\-])'+esc(tok)+'($|[^\\w.\\-])').test(text);
+  if(Array.isArray(expected)){ const e=compact(JSON.stringify(expected)); return lines.some(l=>compact(l)===e) || compact(text)===e; }
+  if(typeof expected==='object'){
+    return Object.values(expected).every(v=>typeof v==='object'&&v!==null ? compact(text).includes(compact(JSON.stringify(v))) : hasToken(String(v)));
+  }
+  const e=String(expected);
+  return lines.some(l=>l===e || l.replace(/^["']|["']$/g,'')===e) || hasToken(e);
+}
+type CaseResult={pass:boolean;input:any;expected:any;actual?:string;error?:string};
+// Runs the code on EVERY test case (case 1 = the code as written, the others with their inputs swapped in).
+async function validateAllCases(code:string,testCases:TestCase[]):Promise<CaseResult[]>{
+  const results:CaseResult[]=[];
+  for(let i=0;i<testCases.length;i++){
+    const tc=testCases[i];
+    let variant=code;
+    if(i>0){
+      const inp=tc.input;
+      const pairs:[string,any][]=(inp&&typeof inp==='object'&&!Array.isArray(inp))?Object.entries(inp):[['input',inp]];
+      let missing:string|null=null;
+      for(const [k,v] of pairs){ const next=replaceInputDeclaration(variant,k,JSON.stringify(v)); if(next===null){ missing=k; break; } variant=next; }
+      if(missing){ results.push({pass:false,input:tc.input,expected:tc.expected,error:`Could not find "let ${missing} = …" in your code. Keep the input variables at the top (one "let name = value;" per line) so every test case can be checked.`}); continue; }
+    }
+    const res=await runInWorker(variant);
+    if(!res.ok){ results.push({pass:false,input:tc.input,expected:tc.expected,error:(res.error||'Runtime error')+(res.line?` (line ${res.line})`:'')}); continue; }
+    results.push({pass:outputMatchesStrict(res.logs,tc.expected),input:tc.input,expected:tc.expected,actual:res.logs.slice(0,3).join(' | ')});
+  }
+  return results;
+}
+// When a load from the server has no Method 2 data for a question (column not created yet, or an unsynced local
+// edit), keep what this device has — never lose a Method 2 solution because of a refresh.
+function keepLocalCode2(next:Record<string,any>,prev:Record<string,any>){
+  const out={...next};
+  for(const [id,pr] of Object.entries(prev||{})){
+    const pv:any=pr; if(!pv||!pv.code2) continue;
+    const nx=out[id];
+    if(!nx){ out[id]=pv; continue; }
+    const localNewer=pv.code2_updated_at && (!nx.code2_updated_at || new Date(pv.code2_updated_at)>new Date(nx.code2_updated_at));
+    if(nx.code2===undefined || (!nx.code2 && localNewer) || (nx.code2 && localNewer)){
+      out[id]={...nx,code2:pv.code2,code2_updated_at:pv.code2_updated_at,code2_passed_hash:pv.code2_passed_hash,code2_passed_at:pv.code2_passed_at};
+    }
+  }
+  return out;
 }
 function outputMatchesExpected(logs:string[],expected:any):boolean{
   if(expected===undefined||expected===null) return false;
@@ -818,69 +997,153 @@ self.postMessage({ok:true,logs:__logs});
     worker.onerror=(e)=>finish({ok:false,logs:[],error:e.message,stack:e.filename?`:${e.lineno}:${e.colno}`:''});
   });
 }
-function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSubmitSolved,animations=true}:{q:any;qType:'dsa'|'placement'|'custom';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSubmitSolved:(code:string)=>void;animations?:boolean}){
-  const storageKey=`${qType}_editor_${userId}_${q.id}`;
+function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,onSaveCode2,onMethod2Passed,onSubmitSolved,animations=true}:{q:any;qType:'dsa'|'placement'|'custom';p?:ProgressRow;testCases:TestCase[];theme:Theme;userId:string;onClose:()=>void;onSaveCode:(code:string)=>void;onSaveCode2:(code:string,opts?:{clear?:boolean})=>void;onMethod2Passed:(code:string)=>Promise<void>;onSubmitSolved:(code:string)=>void;animations?:boolean}){
+  const storageKey=`${qType}_editor_${userId}_${q.id}`;      // Method 1 local draft (unchanged)
+  const storageKey2=`${qType}_editor2_${userId}_${q.id}`;    // Method 2 local draft
   const examples=testCases.slice(0,3);
   const sampleCase=testCases[0];
   const description=qType==='dsa'?DSA_DESCRIPTIONS[Number(q.id)]:qType==='placement'?PLACEMENT_DESCRIPTIONS[Number(q.id)]:(q.statement||'');
   const howSteps=useMemo(()=>qType==='custom'?[]:parseHowSteps(qType==='dsa'?DSA_HOW[Number(q.id)]:PLACEMENT_HOW[Number(q.id)]),[qType,q.id]);
-  const [code,setCode]=useState<string>('');
+  const starter1=useMemo(()=>starterCodeFor(q,sampleCase,1),[qType,q.id]);
+  const starter2=useMemo(()=>starterCodeFor(q,sampleCase,2),[qType,q.id]);
+  type Out={ok:boolean;logs:string[];error?:string;line?:number|null};
+  const [method,setMethod]=useState<1|2>(1);               // Method 1 is always the default
+  const [code1,setCode1]=useState<string>('');
+  const [code2,setCode2]=useState<string>('');
   const [loaded,setLoaded]=useState(false);
-  const [output,setOutput]=useState<{ok:boolean;logs:string[];error?:string;line?:number|null}|null>(null);
-  const [lastRunCode,setLastRunCode]=useState<string|null>(null);
+  const [out,setOut]=useState<{1:Out|null;2:Out|null}>({1:null,2:null});          // each method keeps its own output
+  const [lastRun,setLastRun]=useState<{1:string|null;2:string|null}>({1:null,2:null});
   const [running,setRunning]=useState(false);
+  const [submitting2,setSubmitting2]=useState(false);
+  const [val2,setVal2]=useState<{code:string;results:CaseResult[]}|null>(null);
+  const [notice2,setNotice2]=useState('');
   const [saveState,setSaveState]=useState<'saved'|'saving'>('saved');
   const [hintIndex,setHintIndex]=useState(0);
   const [confirmReset,setConfirmReset]=useState(false);
+  const [clipMsg,setClipMsg]=useState('');
   const hints=useMemo(()=>hintsFor(q),[q]);
   const editorRef=useRef<any>(null);
-  const skipNextSaveRef=useRef(true);
-  // Resolve the correct starting code ONCE per question: compare the last
-  // Supabase-synced code (p.code / p.code_updated_at, from any device) against
-  // this browser's own unsynced local draft, and use whichever is newer.
-  // Never falls back to the starter template while either a server or local
-  // saved value exists — avoids the "saved code disappears" class of bugs.
+  const skip1Ref=useRef(true), skip2Ref=useRef(true);
+  const runRef=useRef<()=>void>(()=>{});
+  // Resolve the starting code of BOTH methods ONCE per question: server copy (any device) vs this browser's own
+  // unsynced draft — the newer one wins. Never falls back to the starter while a saved copy exists.
   useEffect(()=>{
-    let draft:{code:string;updatedAt:string}|null=null;
-    try{ const raw=localStorage.getItem(storageKey); draft=raw?JSON.parse(raw):null; }catch{ draft=null; }
-    const serverCode=p?.code||null; const serverTs=p?.code_updated_at||null;
-    let initial:string;
-    if(serverCode && draft?.code){
-      initial=(serverTs && draft.updatedAt && new Date(serverTs)>new Date(draft.updatedAt))?serverCode:draft.code;
-    } else if(serverCode){ initial=serverCode; }
-    else if(draft?.code){ initial=draft.code; }
-    else { initial=starterCodeFor(q,sampleCase); }
-    skipNextSaveRef.current=true;
-    setCode(initial);
-    setOutput(null); setLastRunCode(null); setHintIndex(0);
+    const read=(key:string)=>{ try{ const raw=localStorage.getItem(key); return raw?JSON.parse(raw):null; }catch{ return null; } };
+    const pick=(serverCode:string|null|undefined,serverTs:string|null|undefined,draft:any,starter:string)=>{
+      if(serverCode && draft?.code) return (serverTs && draft.updatedAt && new Date(serverTs)>new Date(draft.updatedAt))?serverCode:draft.code;
+      if(serverCode) return serverCode;
+      if(draft?.code) return draft.code;
+      return starter;
+    };
+    skip1Ref.current=true; skip2Ref.current=true;
+    setCode1(pick(p?.code,p?.code_updated_at,read(storageKey),starter1));
+    setCode2(pick(p?.code2,p?.code2_updated_at,read(storageKey2),starter2));
+    setOut({1:null,2:null}); setLastRun({1:null,2:null}); setVal2(null); setHintIndex(0); setMethod(1);
     setLoaded(true);
   },[storageKey]);
+  // Method 1 autosave (existing behaviour)
   useEffect(()=>{
     if(!loaded) return;
-    if(skipNextSaveRef.current){ skipNextSaveRef.current=false; return; }
+    if(skip1Ref.current){ skip1Ref.current=false; return; }
     setSaveState('saving');
     const t=setTimeout(()=>{
-      const now=new Date().toISOString();
-      try{ localStorage.setItem(storageKey,JSON.stringify({code,updatedAt:now})); }catch{}
-      if(code.trim()) onSaveCode(code);
+      try{ localStorage.setItem(storageKey,JSON.stringify({code:code1,updatedAt:new Date().toISOString()})); }catch{}
+      if(code1.trim()) onSaveCode(code1);
       setSaveState('saved');
     },700);
     return ()=>clearTimeout(t);
-  },[code,loaded,storageKey]);
+  },[code1,loaded,storageKey]);
+  // Method 2 autosave (own draft + own database column). Only real edits are saved; an empty or untouched
+  // starter is never written over a saved solution.
+  useEffect(()=>{
+    if(!loaded) return;
+    if(skip2Ref.current){ skip2Ref.current=false; return; }
+    setSaveState('saving');
+    const t=setTimeout(()=>{
+      try{ localStorage.setItem(storageKey2,JSON.stringify({code:code2,updatedAt:new Date().toISOString()})); }catch{}
+      if(code2.trim() && code2.trim()!==starter2.trim()) onSaveCode2(code2);
+      setSaveState('saved');
+    },700);
+    return ()=>clearTimeout(t);
+  },[code2,loaded,storageKey2]);
+
+  const code=method===1?code1:code2;
   const run=async()=>{
-    setRunning(true); setOutput(null);
-    const res=await runInWorker(code);
-    setOutput(res); setLastRunCode(code); setRunning(false);
+    if(running||submitting2) return;
+    const m=method, c=m===1?code1:code2;            // runs ONLY the selected method's code
+    setRunning(true); setOut(o=>({...o,[m]:null}));
+    const res=await runInWorker(c);
+    setOut(o=>({...o,[m]:res})); setLastRun(l=>({...l,[m]:c})); setRunning(false);
+  };
+  runRef.current=run;
+  // Method 2 Submit: checks the code against EVERY test case (not just the sample). The tick is only earned when all pass.
+  const submit2=async()=>{
+    if(submitting2||running) return;
+    const c=code2;
+    if(!c.trim() || c.trim()===starter2.trim()){ setNotice2('Write your Method 2 solution first.'); setTimeout(()=>setNotice2(''),2200); return; }
+    setSubmitting2(true); setVal2(null);
+    try{
+      let results:CaseResult[];
+      if(qType==='custom' || testCases.length===0){
+        const res=await runInWorker(c);
+        setOut(o=>({...o,2:res})); setLastRun(l=>({...l,2:c}));
+        results=[{pass:res.ok,input:null,expected:null,error:res.ok?undefined:(res.error||'Runtime error')}];
+      } else { results=await validateAllCases(c,testCases); }
+      setVal2({code:c,results});
+      if(results.length>0 && results.every(r=>r.pass)) await onMethod2Passed(c);   // saves the code + its fingerprint
+      else if(c.trim()) onSaveCode2(c);
+    } finally { setSubmitting2(false); }
   };
   const doReset=()=>{
-    const starter=starterCodeFor(q,sampleCase);
-    skipNextSaveRef.current=true;
-    setCode(starter); setOutput(null); setLastRunCode(null); setConfirmReset(false);
-    try{ localStorage.setItem(storageKey,JSON.stringify({code:starter,updatedAt:new Date().toISOString()})); }catch{}
+    setConfirmReset(false);
+    const now=new Date().toISOString();
+    if(method===1){
+      skip1Ref.current=true; setCode1(starter1); setOut(o=>({...o,1:null})); setLastRun(l=>({...l,1:null}));
+      try{ localStorage.setItem(storageKey,JSON.stringify({code:starter1,updatedAt:now})); }catch{}
+    } else {
+      skip2Ref.current=true; setCode2(starter2); setOut(o=>({...o,2:null})); setLastRun(l=>({...l,2:null})); setVal2(null);
+      try{ localStorage.setItem(storageKey2,JSON.stringify({code:starter2,updatedAt:now})); }catch{}
+      onSaveCode2('',{clear:true});                 // explicit reset: clears the saved Method 2 solution and its tick
+    }
+  };
+  // ---- mobile-friendly clipboard tools (use Monaco's own selection/edit API) ----
+  const say=(m:string)=>{ setClipMsg(m); setTimeout(()=>setClipMsg(''),2600); };
+  const selAll=()=>{ const ed=editorRef.current; const model=ed?.getModel?.(); if(!ed||!model) return; ed.focus(); ed.setSelection(model.getFullModelRange()); say('Selected all code'); };
+  const selectedText=()=>{ const ed=editorRef.current; const model=ed?.getModel?.(); const sel=ed?.getSelection?.(); return (model&&sel&&!sel.isEmpty())?model.getValueInRange(sel):''; };
+  const doCopy=async()=>{
+    const ed=editorRef.current; const model=ed?.getModel?.(); if(!ed||!model) return;
+    const sel=selectedText(); const text=sel||model.getValue();
+    try{ await navigator.clipboard.writeText(text); say(sel?'Copied selection':'Copied all code'); }
+    catch{ ed.focus(); if(!sel) ed.setSelection(model.getFullModelRange()); let ok=false; try{ ok=document.execCommand('copy'); }catch{} say(ok?'Copied':'Clipboard blocked — long-press the selection and choose Copy'); }
+  };
+  const doCut=async()=>{
+    const ed=editorRef.current; if(!ed) return;
+    const sel=selectedText(); if(!sel){ say('Select some code first, then tap Cut'); return; }
+    try{ await navigator.clipboard.writeText(sel); ed.executeEdits('toolbar',[{range:ed.getSelection(),text:'',forceMoveMarkers:true}]); ed.pushUndoStop(); ed.focus(); say('Cut'); }
+    catch{ say('Clipboard blocked — nothing was cut'); }
+  };
+  const doPaste=async()=>{
+    const ed=editorRef.current; if(!ed) return;
+    try{
+      const text=await navigator.clipboard.readText();
+      if(!text){ say('Clipboard is empty'); return; }
+      ed.executeEdits('toolbar',[{range:ed.getSelection(),text,forceMoveMarkers:true}]); ed.pushUndoStop(); ed.focus(); say('Pasted');
+    }catch{ ed.focus(); say('Browser blocked clipboard access — long-press in the editor and choose Paste'); }
   };
   const beforeMount=(monaco:any)=>{ Object.values(MONACO_THEME_MAP).forEach(t=>monaco.editor.defineTheme(t.name,{base:t.base,inherit:true,rules:[],colors:t.colors})); const ts=monaco.languages?.typescript ?? monaco.typescript; ts?.javascriptDefaults?.setDiagnosticsOptions?.({noSemanticValidation:false,noSyntaxValidation:false}); };
   const monacoThemeName=MONACO_THEME_MAP[theme]?.name||'dph-sepia';
-  const matched=qType==='custom' ? !!(output?.ok && code===lastRunCode) : (output?.ok && sampleCase && code===lastRunCode ? outputMatchesExpected(output.logs,sampleCase.expected) : false);
+
+  // ---- status ----
+  const matched1=qType==='custom' ? !!(out[1]?.ok && code1===lastRun[1]) : (out[1]?.ok && sampleCase && code1===lastRun[1] ? outputMatchesExpected(out[1]!.logs,sampleCase.expected) : false);
+  const matched2=qType==='custom' ? !!(out[2]?.ok && code2===lastRun[2]) : !!(out[2]?.ok && sampleCase && code2===lastRun[2] && outputMatchesStrict(out[2]!.logs,sampleCase.expected));
+  const matched=method===1?matched1:matched2;
+  const m2Saved=code2.trim()!=='' && code2.trim()!==starter2.trim();
+  const m2Passed=m2Saved && !!p?.code2_passed_hash && p.code2_passed_hash===hashCode(code2);
+  const m2Stale=!!p?.code2_passed_hash && !m2Passed;           // passed once, but the code has changed since
+  const m2Status:'empty'|'saved'|'stale'|'passed'=m2Passed?'passed':m2Stale?'stale':m2Saved?'saved':'empty';
+  const m2Title={empty:'Method 2 is empty',saved:'Method 2 saved — not verified yet',stale:'Code changed — submit again to verify',passed:'All test cases passed'}[m2Status];
+  const activeOut=out[method];
+  const valShown=method===2 && val2 && val2.code===code2 ? val2.results : null;
   const [mobileView,setMobileView]=useState<'problem'|'code'>('problem');
   return <div className="overlay editor-overlay"><div className="editor-modal" data-mobile-view={mobileView}>
     <button className="mobile-view-toggle" onClick={()=>setMobileView(v=>v==='problem'?'code':'problem')}>
@@ -903,42 +1166,73 @@ function CodeEditorDrawer({q,qType,p,testCases,theme,userId,onClose,onSaveCode,o
     </div>
     <div className="editor-right">
       <div className="editor-tabs-row">
-        <span className="editor-lang">JavaScript</span>
-        <button className="primary" disabled={running} onClick={run}><Play size={15}/> {running?'Running…':'Run Code'}</button>
+        <div className="method-tabs" role="tablist" aria-label="Solution method">
+          <span className="editor-lang">JavaScript</span>
+          <button role="tab" aria-selected={method===1} className={`method-tab ${method===1?'on':''}`} onClick={()=>setMethod(1)}>Method 1{p?.solved&&<span className="m-ico ok" title="Solved" aria-label="Solved"><Check size={12}/></span>}</button>
+          <button role="tab" aria-selected={method===2} className={`method-tab ${method===2?'on':''}`} onClick={()=>setMethod(2)}>Method 2
+            <span className={`m-ico m-${m2Status}`} title={m2Title} aria-label={m2Title}>{m2Status==='passed'?<Check size={12}/>:m2Status==='stale'?'!':null}</span>
+          </button>
+        </div>
+        <button className="primary" disabled={running||submitting2} onClick={run}><Play size={15}/> {running?'Running…':'Run Code'}</button>
+      </div>
+      <div className="editor-tools" role="toolbar" aria-label="Editor tools">
+        <button className="thought-btn" onClick={selAll}>Select all</button>
+        <button className="thought-btn" onClick={doCopy}><Copy size={13}/> Copy</button>
+        <button className="thought-btn" onClick={doCut}>Cut</button>
+        <button className="thought-btn" onClick={doPaste}>Paste</button>
+        {clipMsg && <span className="clip-msg" role="status">{clipMsg}</span>}
       </div>
       <div className="editor-shell">
-        <MonacoEditor
+        {loaded ? <MonacoEditor
           height="100%"
           language="javascript"
           theme={monacoThemeName}
+          path={`${qType}-${q.id}-m${method}.js`}
           value={code}
           beforeMount={beforeMount}
-          onMount={(editor:any)=>{ editorRef.current=editor; editor.addCommand(2048|3,()=>run()); }}
-          onChange={(v:string|undefined)=>setCode(v||'')}
-          options={{minimap:{enabled:false},fontSize:13,tabSize:2,automaticLayout:true,scrollBeyondLastLine:false,wordWrap:'on',smoothScrolling:animations,cursorSmoothCaretAnimation:animations?'on':'off',cursorBlinking:animations?'blink':'solid'}}
-        />
+          onMount={(editor:any)=>{ editorRef.current=editor; editor.addCommand(2048|3,()=>runRef.current()); }}
+          onChange={(v:string|undefined)=>{ const val=v||''; const uri=String(editorRef.current?.getModel?.()?.uri||''); if(uri.endsWith('-m2.js')) setCode2(val); else setCode1(val); }}
+          options={{minimap:{enabled:false},fontSize:13,tabSize:2,automaticLayout:true,scrollBeyondLastLine:false,wordWrap:'on',padding:{top:8,bottom:8},smoothScrolling:animations,cursorSmoothCaretAnimation:animations?'on':'off',cursorBlinking:animations?'blink':'solid'}}
+        /> : <div className="editor-loading">Loading your saved code…</div>}
       </div>
+      {method===2 && m2Stale && <div className="method-note" role="status">Method 2 changed after your last successful submit — submit again to verify it.</div>}
+      {notice2 && <div className="method-note warn" role="status">{notice2}</div>}
       <div className="editor-io-panel">
-        <div className="editor-io-label">OUTPUT {matched && <span className="match-tick"><Check size={13}/> {qType==='custom'?'Ran successfully':'Matches expected output'}</span>}</div>
+        <div className="editor-io-label">OUTPUT · METHOD {method} {matched && <span className="match-tick"><Check size={13}/> {qType==='custom'?'Ran successfully':method===1?'Matches expected output':'Matches sample output'}</span>}</div>
         <div className="editor-io-box editor-output">
-          {!output && <span className="ghost">Run your code to see output here.</span>}
-          {output && output.ok && <><div className={`output-status ${matched?'ok':''}`}>{matched?<><Check size={13}/> Code executed successfully</>:'Code executed'}</div>{output.logs.length===0?<div className="ghost">(no console output — use console.log to print your answer)</div>:output.logs.map((l,i)=><div key={i}>{l}</div>)}</>}
-          {output && !output.ok && <><div className="output-status err">⚠ {output.error}{output.line?` (around line ${output.line} in your code)`:''}</div>{output.logs.map((l,i)=><div key={i}>{l}</div>)}</>}
+          {!activeOut && <span className="ghost">Run your code to see output here.</span>}
+          {activeOut && activeOut.ok && <><div className={`output-status ${matched?'ok':''}`}>{matched?<><Check size={13}/> Code executed successfully</>:'Code executed'}</div>{activeOut.logs.length===0?<div className="ghost">(no console output — use console.log to print your answer)</div>:activeOut.logs.map((l,i)=><div key={i}>{l}</div>)}</>}
+          {activeOut && !activeOut.ok && <><div className="output-status err">⚠ {activeOut.error}{activeOut.line?` (around line ${activeOut.line} in your code)`:''}</div>{activeOut.logs.map((l,i)=><div key={i}>{l}</div>)}</>}
         </div>
       </div>
+      {valShown && <div className="m2-results" role="status">
+        <div className="info-label">METHOD 2 · {valShown.filter(r=>r.pass).length}/{valShown.length} TEST CASES PASSED{valShown.every(r=>r.pass)?' ✓':''}</div>
+        <div className="tc-list">{valShown.map((r,i)=><div key={i} className={`tc-item ${r.pass?'pass':'fail'}`}>
+          <div className="tc-head">{r.pass?<Check size={14}/>:<X size={14}/>} Test case {i+1} {r.pass?'passed':'failed'}</div>
+          {!r.pass && <div className="tc-detail">
+            {r.input!==null && <div><span>Input:</span> <code>{JSON.stringify(r.input)}</code></div>}
+            {r.expected!==null && <div><span>Expected:</span> <code>{JSON.stringify(r.expected)}</code></div>}
+            {r.error?<div><span>Problem:</span> <code>{r.error}</code></div>:<div><span>Your output:</span> <code>{r.actual||'(nothing printed)'}</code></div>}
+          </div>}
+        </div>)}</div>
+      </div>}
       <div className="smart-hint-panel"><div className="info-label"><Lightbulb size={13}/> SMART HINT</div><p>{hintIndex===0?'Click "Show next hint" below for a progressive hint — it won\'t give away the full solution.':hints[hintIndex-1]}</p></div>
       <div className="editor-hint-row">
         <span className="save-line">{saveState==='saving'?'Saving…':'Saved ✓'}</span>
         <div className="editor-hint-actions">
+          <button className="primary run-sticky" disabled={running||submitting2} onClick={run}><Play size={14}/> Run</button>
           {hintIndex<hints.length && <button className="notes-btn" onClick={()=>setHintIndex(v=>v+1)}><Lightbulb size={14}/> Show next hint ({hintIndex}/{hints.length})</button>}
           {!confirmReset && <button className="notes-btn" onClick={()=>setConfirmReset(true)}><RotateCcw size={14}/> Reset Code</button>}
-          {confirmReset && <span className="reset-confirm">Reset your code? <button className="notes-btn" onClick={()=>setConfirmReset(false)}>Cancel</button><button className="danger-btn" onClick={doReset}>Reset</button></span>}
-          <button className="primary submit-btn" disabled={!matched} title={matched?'Mark this question solved':'Run your code and match the expected output first'} onClick={()=>onSubmitSolved(code)}><Check size={15}/> Submit</button>
+          {confirmReset && <span className="reset-confirm">Reset {method===2?'Method 2':'your'} code? <button className="notes-btn" onClick={()=>setConfirmReset(false)}>Cancel</button><button className="danger-btn" onClick={doReset}>Reset</button></span>}
+          {method===1
+            ? <button className="primary submit-btn" disabled={!matched1} title={matched1?'Mark this question solved':'Run your code and match the expected output first'} onClick={()=>onSubmitSolved(code1)}><Check size={15}/> Submit</button>
+            : <button className="primary submit-btn submit2" disabled={submitting2||running} title="Checks Method 2 against all test cases" onClick={submit2}>{submitting2?<><span className="mini-spin"/> Checking…</>:<><Check size={15}/> Submit</>}</button>}
         </div>
       </div>
     </div>
   </div></div>;
 }
+
 
 function AddQuestion({onClose,onSave}:any){const [f,setF]=useState({title:'',difficulty:'Medium',topic:'',pattern:'',statement:'',source:'',link:'',tags:''});return <div className="overlay"><aside className="drawer add-drawer"><div className="drawer-head"><div><div className="eyebrow">CUSTOM PRACTICE</div><h2>Add question</h2></div><button className="close" onClick={onClose}><X size={18}/></button></div><div className="form-grid"><label>Question title<input value={f.title} onChange={e=>setF({...f,title:e.target.value})}/></label><label>Difficulty<select value={f.difficulty} onChange={e=>setF({...f,difficulty:e.target.value})}><option>Easy</option><option>Medium</option><option>Hard</option></select></label><label>Topic / Section<input value={f.topic} onChange={e=>setF({...f,topic:e.target.value})}/></label><label>Pattern<input value={f.pattern} onChange={e=>setF({...f,pattern:e.target.value})}/></label><label className="full">Problem statement<textarea value={f.statement} onChange={e=>setF({...f,statement:e.target.value})}/></label><label>Source<input value={f.source} onChange={e=>setF({...f,source:e.target.value})}/></label><label>Link<input value={f.link} onChange={e=>setF({...f,link:e.target.value})}/></label><label className="full">Tags<input value={f.tags} onChange={e=>setF({...f,tags:e.target.value})}/></label></div><button className="primary wide" disabled={!f.title.trim()} onClick={()=>onSave({title:f.title,difficulty:f.difficulty,topic:f.topic,pattern:f.pattern,statement:f.statement,source:f.source||null,link:f.link||null,tags:f.tags.split(',').map((x:string)=>x.trim()).filter(Boolean)})}><Plus size={17}/> Save Question</button></aside></div>}
 function EditQuestion({q,onClose,onSave,onDelete}:any){const [f,setF]=useState({title:q.title,difficulty:q.difficulty,topic:q.topic,pattern:q.pattern,statement:q.statement||'',source:q.source||'',link:q.link||'',tags:(q.tags||[]).join(', ')});return <div className="overlay"><aside className="drawer add-drawer"><div className="drawer-head"><div><div className="eyebrow">CUSTOM PRACTICE</div><h2>Edit question</h2></div><button className="close" onClick={onClose}><X size={18}/></button></div><div className="form-grid"><label>Question title<input value={f.title} onChange={e=>setF({...f,title:e.target.value})}/></label><label>Difficulty<select value={f.difficulty} onChange={e=>setF({...f,difficulty:e.target.value})}><option>Easy</option><option>Medium</option><option>Hard</option></select></label><label>Topic / Section<input value={f.topic} onChange={e=>setF({...f,topic:e.target.value})}/></label><label>Pattern<input value={f.pattern} onChange={e=>setF({...f,pattern:e.target.value})}/></label><label className="full">Problem statement<textarea value={f.statement} onChange={e=>setF({...f,statement:e.target.value})}/></label><label>Source<input value={f.source} onChange={e=>setF({...f,source:e.target.value})}/></label><label>Link<input value={f.link} onChange={e=>setF({...f,link:e.target.value})}/></label><label className="full">Tags<input value={f.tags} onChange={e=>setF({...f,tags:e.target.value})}/></label></div><div className="edit-footer"><button className="danger-btn" onClick={onDelete}>Delete</button><button className="primary" disabled={!f.title.trim()} onClick={()=>onSave({title:f.title,difficulty:f.difficulty,topic:f.topic,pattern:f.pattern,statement:f.statement,source:f.source||null,link:f.link||null,tags:f.tags.split(',').map((x:string)=>x.trim()).filter(Boolean),updated_at:new Date().toISOString()})}>Save changes</button></div></aside></div>}
