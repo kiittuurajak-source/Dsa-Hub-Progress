@@ -36,6 +36,10 @@ create table if not exists dsa_progress (
   last_viewed_at timestamptz,
   code text,
   code_updated_at timestamptz,
+  code2 text,
+  code2_updated_at timestamptz,
+  code2_passed_hash text,
+  code2_passed_at timestamptz,
   primary key (user_id, question_id)
 );
 create table if not exists dsa_notes (
@@ -62,6 +66,10 @@ create table if not exists placement_progress (
   last_viewed_at timestamptz,
   code text,
   code_updated_at timestamptz,
+  code2 text,
+  code2_updated_at timestamptz,
+  code2_passed_hash text,
+  code2_passed_at timestamptz,
   primary key (user_id, question_id)
 );
 create table if not exists placement_notes (
@@ -100,6 +108,12 @@ create table if not exists custom_question_progress (
   solution_seen boolean not null default false,
   solved_at timestamptz,
   last_viewed_at timestamptz,
+  code text,
+  code_updated_at timestamptz,
+  code2 text,
+  code2_updated_at timestamptz,
+  code2_passed_hash text,
+  code2_passed_at timestamptz,
   primary key (user_id, question_id)
 );
 create table if not exists custom_question_notes (
@@ -117,6 +131,21 @@ alter table dsa_progress add column if not exists code text;
 alter table dsa_progress add column if not exists code_updated_at timestamptz;
 alter table placement_progress add column if not exists code text;
 alter table placement_progress add column if not exists code_updated_at timestamptz;
+alter table custom_question_progress add column if not exists code text;
+alter table custom_question_progress add column if not exists code_updated_at timestamptz;
+-- Method 2 (alternative solution) columns
+alter table dsa_progress add column if not exists code2 text;
+alter table dsa_progress add column if not exists code2_updated_at timestamptz;
+alter table dsa_progress add column if not exists code2_passed_hash text;
+alter table dsa_progress add column if not exists code2_passed_at timestamptz;
+alter table placement_progress add column if not exists code2 text;
+alter table placement_progress add column if not exists code2_updated_at timestamptz;
+alter table placement_progress add column if not exists code2_passed_hash text;
+alter table placement_progress add column if not exists code2_passed_at timestamptz;
+alter table custom_question_progress add column if not exists code2 text;
+alter table custom_question_progress add column if not exists code2_updated_at timestamptz;
+alter table custom_question_progress add column if not exists code2_passed_hash text;
+alter table custom_question_progress add column if not exists code2_passed_at timestamptz;
 
 alter table profiles enable row level security;
 alter table dsa_progress enable row level security;
